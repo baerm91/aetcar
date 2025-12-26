@@ -1,0 +1,358 @@
+{
+  "meta": {
+    "description": "UI-Übersetzungen für AETCAR",
+    "languages": ["de", "en", "mp"],
+    "pages": ["_global", "index", "fundkarte", "steinzelt", "panorama"],
+    "total_keys": 85,
+    "version": "1.1",
+    "note": "Editiere diese Datei oder nutze Google Sheets + convert_translations.py"
+  },
+  "languages": ["de", "en", "mp"],
+  "pages": {
+    "_global": {
+      "nav.brand": {
+        "de": "ÆTCAR",
+        "en": "ÆTCAR",
+        "mp": "ÆTCAR"
+      },
+      "nav.start": {
+        "de": "Start",
+        "en": "Home",
+        "mp": "Lauft weg!"
+      },
+      "nav.fundkarte": {
+        "de": "Fundkarte",
+        "en": "Find Map",
+        "mp": "Was... ist deine Lieblingsfarbe?"
+      },
+      "nav.steinzelt": {
+        "de": "Steinzelt",
+        "en": "Stone Tent",
+        "mp": "Camelot! (Nur ein Modell)"
+      },
+      "nav.sarkophage": {
+        "de": "Sarkophage",
+        "en": "Sarcophagi",
+        "mp": "Sehr teure Kisten"
+      },
+      "footer.copyright": {
+        "de": "Archäologischer Park Carnuntum",
+        "en": "Archaeological Park Carnuntum",
+        "mp": "Die Ritter die Ni sagen"
+      },
+      "footer.links": {
+        "de": "Archiv · Info · Rechtliches",
+        "en": "Archive · Info · Legal",
+        "mp": "Gebüsch · Ni · Ekki-Ekki"
+      },
+      "btn.reset": {
+        "de": "Zurücksetzen",
+        "en": "Reset",
+        "mp": "Lauft weg! Lauft weg!"
+      },
+      "btn.close": {
+        "de": "Schließen",
+        "en": "Close",
+        "mp": "Der tapfere Sir Robin lief davon!"
+      },
+      "btn.toggle_list": {
+        "de": "Liste ein-/ausblenden",
+        "en": "Toggle list",
+        "mp": "Ist nur ein Modell!"
+      },
+      "filter.search": {
+        "de": "Suche...",
+        "en": "Search...",
+        "mp": "Afrikanische oder europäische?"
+      },
+      "filter.no_results": {
+        "de": "Keine Ergebnisse",
+        "en": "No results",
+        "mp": "Wir sind die Ritter die Ni sagen!"
+      },
+      "loading.message": {
+        "de": "Daten werden geladen ...",
+        "en": "Loading data ...",
+        "mp": "Suche den Heiligen Gral..."
+      },
+      "loading.images": {
+        "de": "Lade Sarkophag-Bilder",
+        "en": "Loading sarcophagi images",
+        "mp": "Hole Bilder vom toten Papagei..."
+      },
+      "card.fundkarte.title": {
+        "de": "Fundkarte",
+        "en": "Find Map",
+        "mp": "Die Heilige Karte"
+      },
+      "card.steinzelt.title": {
+        "de": "Steinzelt",
+        "en": "Stone Tent",
+        "mp": "Camelot!"
+      },
+      "card.sarkophage.title": {
+        "de": "Sarkophage",
+        "en": "Sarcophagi",
+        "mp": "Papageien-Lagerhaus"
+      },
+      "themes.title": {
+        "de": "📚 Themen erkunden",
+        "en": "📚 Explore Themes",
+        "mp": "📚 Drei Fragen!"
+      },
+      "themes.back": {
+        "de": "← Zurück zur Übersicht",
+        "en": "← Back to overview",
+        "mp": "← Tapfer davonlaufen!"
+      },
+      "themes.filter": {
+        "de": "Objekte filtern",
+        "en": "Filter objects",
+        "mp": "Ni! Ni! Ni!"
+      },
+      "themes.show_on_map": {
+        "de": "Auf Karte zeigen",
+        "en": "Show on map",
+        "mp": "Blau! Nein, geeeelb!"
+      },
+      "themes.explore_all": {
+        "de": "Alle ansehen",
+        "en": "View all",
+        "mp": "Bringt eure Toten raus!"
+      },
+      "map.legend.certain": {
+        "de": "Sicherer Fundort",
+        "en": "Certain find location",
+        "mp": "Definitiv hier gestorben"
+      },
+      "map.legend.uncertain": {
+        "de": "Vermutet / Unsicher",
+        "en": "Presumed / Uncertain",
+        "mp": "Größtenteils tot hier"
+      },
+      "map.legend.cluster": {
+        "de": "Cluster (Anzahl)",
+        "en": "Cluster (count)",
+        "mp": "Tote-Leute-Party"
+      },
+      "map.legend.landmark": {
+        "de": "Landmarke",
+        "en": "Landmark",
+        "mp": "Ein Gebüsch!"
+      },
+      "panorama.upright": {
+        "de": "Aufrecht",
+        "en": "Upright",
+        "mp": "Noch nicht tot!"
+      },
+      "panorama.sort": {
+        "de": "Sortieren",
+        "en": "Sort",
+        "mp": "Grad der Totheit"
+      },
+      "panorama.sort.id_asc": {
+        "de": "Inventar (aufsteigend)",
+        "en": "Inventory (ascending)",
+        "mp": "Am wenigsten tot zuerst"
+      },
+      "panorama.sort.id_desc": {
+        "de": "Inventar (absteigend)",
+        "en": "Inventory (descending)",
+        "mp": "Am totesten zuerst"
+      },
+      "panorama.sort.size_desc": {
+        "de": "Bildfläche (größte zuerst)",
+        "en": "Image size (largest first)",
+        "mp": "Die größten Totenkisten"
+      },
+      "panorama.sort.size_asc": {
+        "de": "Bildfläche (kleinste zuerst)",
+        "en": "Image size (smallest first)",
+        "mp": "Klitzekleine Särge"
+      },
+      "panorama.sort.aspect_desc": {
+        "de": "Seitenverhältnis (breit zuerst)",
+        "en": "Aspect ratio (wide first)",
+        "mp": "Horizontal verstorben"
+      },
+      "panorama.sort.aspect_asc": {
+        "de": "Seitenverhältnis (hoch zuerst)",
+        "en": "Aspect ratio (tall first)",
+        "mp": "Vertikal herausgefordert"
+      },
+      "panorama.layout.masonry": {
+        "de": "Masonry-Ansicht",
+        "en": "Masonry view",
+        "mp": "Wunderbares Chaos"
+      },
+      "panorama.layout.compact": {
+        "de": "Kompakt-Ansicht",
+        "en": "Compact view",
+        "mp": "Sardinen-Modus"
+      },
+      "panorama.layout.shelf": {
+        "de": "Regal-Ansicht",
+        "en": "Shelf view",
+        "mp": "Papageien-Ausstellung"
+      }
+    },
+    "index": {
+      "hero.pill": {
+        "de": "Pro Aeternitate Carnunti",
+        "en": "Pro Aeternitate Carnunti",
+        "mp": "Nur eine Fleischwunde!"
+      },
+      "hero.title": {
+        "de": "Römische Sarkophage",
+        "en": "Roman Sarcophagi",
+        "mp": "Sehr teure Steinkisten"
+      },
+      "hero.subtitle": {
+        "de": "aus dem Raum Carnuntum",
+        "en": "from the Carnuntum Region",
+        "mp": "für Leute die noch nicht ganz tot sind"
+      },
+      "hero.description": {
+        "de": "Im Folgenden sehen Sie steinerne Behältnisse für die Toten. Sie liegen im Dunkel der Erde, wurden aus bereits genutztem Material gefertigt, bewegt, geöffnet und wieder verschlossen. Erhalten haben sich in ihnen Zeugnisse römischen Kulturerbes, von Handlung, Ritual und Zeit.",
+        "en": "Below you will see stone containers for the dead. They lie in the darkness of the earth, crafted from already used material, moved, opened and closed again. Preserved within them are testimonies of Roman cultural heritage, of action, ritual and time.",
+        "mp": "Bringt eure Toten raus! *klong* Bringt eure Toten raus! Das sind Steinkisten für Leute die definitiv, höchst aufrichtig tot sind. Naja, größtenteils tot. Manchen ging's wieder besser!"
+      },
+      "section.entry_points": {
+        "de": "Einstiegspunkte",
+        "en": "Entry Points",
+        "mp": "Keiner kommt hier durch!"
+      },
+      "section.collection": {
+        "de": "Sammlung & Kontexte",
+        "en": "Collection & Contexts",
+        "mp": "Die Heilige-Gral-Sammlung"
+      },
+      "section.collection_desc": {
+        "de": "Drei Wege in die Sammlung: Erkunden Sie die Fundorte auf der Karte, vergleichen Sie Objekte im Steinzelt oder stöbern Sie durch alle Sarkophage.",
+        "en": "Three ways into the collection: Explore the find locations on the map, compare objects in the Stone Tent, or browse through all sarcophagi.",
+        "mp": "Drei Pfade liegen vor Euch, tapferer Ritter: Die Karte der fragwürdigen Farben, das Schloss (nur ein Modell), oder die Galerie der Noch-nicht-ganz-tot-Lagerung."
+      },
+      "card.fundkarte.text": {
+        "de": "Die Fundkarte zeigt, wo die Sarkophage gefunden wurden und wie ihre Fundorte in den antiken Raum von Carnuntum eingebettet sind.",
+        "en": "The find map shows where the sarcophagi were discovered and how their find locations are embedded in the ancient space of Carnuntum.",
+        "mp": "Was... ist die Fluggeschwindigkeit einer unbeladenen Schwalbe? Ach ja, hier haben wir die Totenkisten gefunden."
+      },
+      "card.fundkarte.link": {
+        "de": "↗ Zur Fundkarte",
+        "en": "↗ To the Map",
+        "mp": "↗ Blau! Nein, geeeelb..."
+      },
+      "card.steinzelt.text": {
+        "de": "Zwischen Grabung und Forschung werden hier Sarkophage gesichert, geöffnet und ihre Inhalte für die spezialisierte wissenschaftliche Bearbeitung getrennt erfasst.",
+        "en": "Between excavation and research, sarcophagi are secured here, opened and their contents separately recorded for specialized scientific processing.",
+        "mp": "Wenn ich's mir recht überlege, gehen wir doch nicht nach Camelot. Es ist ein alberner Ort. Aber die Wissenschaft hier ist erstklassig!"
+      },
+      "card.steinzelt.link": {
+        "de": "↗ Zum Steinzelt",
+        "en": "↗ To the Stone Tent",
+        "mp": "↗ Ist nur ein Modell"
+      },
+      "card.sarkophage.text": {
+        "de": "Die Galerie ermöglicht den Vergleich der Sarkophage und macht Unterschiede in Gestaltung, Dimension und Nutzung sichtbar.",
+        "en": "The gallery allows comparison of sarcophagi and reveals differences in design, dimension and use.",
+        "mp": "Das ist ein Ex-Papagei! Nein warte, das sind Ex-Römer. Schönes Gefieder allerdings."
+      },
+      "card.sarkophage.link": {
+        "de": "↗ Zur Übersicht",
+        "en": "↗ To the Overview",
+        "mp": "↗ Bringt eure Toten!"
+      },
+      "stats.sarkophage": {
+        "de": "Sarkophage",
+        "en": "Sarcophagi",
+        "mp": "Papageien-Lager"
+      },
+      "stats.grabungen": {
+        "de": "Grabungen",
+        "en": "Excavations",
+        "mp": "Killerkaninchen-Begegnungen"
+      },
+      "stats.beigaben": {
+        "de": "Mit Beigaben",
+        "en": "With Grave Goods",
+        "mp": "Heilige Handgranaten"
+      },
+      "stats.years": {
+        "de": "~1900 Jahre",
+        "en": "~1900 years",
+        "mp": "Mir geht's besser!"
+      },
+      "stats.years_label": {
+        "de": "Unter der Erde",
+        "en": "Underground",
+        "mp": "Sie hat mich in einen Molch verwandelt"
+      },
+      "focus.eyebrow": {
+        "de": "Kuratierte Einblicke",
+        "en": "Curated Insights",
+        "mp": "Ich bin noch gar nicht tot!"
+      },
+      "focus.title": {
+        "de": "Objekte im Fokus",
+        "en": "Objects in Focus",
+        "mp": "Sie hat mich in einen Molch verwandelt!"
+      },
+      "focus.description": {
+        "de": "Fünf kuratierte Objektgeschichten machen sichtbar: Diese Sammlung erzählt Geschichte – Sarkophag für Sarkophag. Themen erscheinen hier als Schlagwörter, der Einstieg bleibt bewusst objektzentriert.",
+        "en": "Five curated object stories reveal: This collection tells history – sarcophagus by sarcophagus. Themes appear here as keywords, the approach remains deliberately object-centered.",
+        "mp": "Hört mal, seltsame Frauen die in Teichen liegen und Schwerter verteilen sind keine Basis für ein Regierungssystem! Aber diese Kisten? Exzellente Basis für Archäologie."
+      },
+      "focus.btn": {
+        "de": "Alle Objekte ansehen",
+        "en": "View All Objects",
+        "mp": "Bringt eure Toten raus!"
+      }
+    },
+    "fundkarte": {
+      "title": {
+        "de": "Fundkarte",
+        "en": "Find Map",
+        "mp": "Die Suche nach dem Heiligen Gral"
+      },
+      "layer.satellite": {
+        "de": "Satellit",
+        "en": "Satellite",
+        "mp": "Schwalben-Perspektive"
+      },
+      "layer.historical": {
+        "de": "Historisch",
+        "en": "Historical",
+        "mp": "Als Ritter noch Ritter waren"
+      }
+    },
+    "steinzelt": {
+      "title": {
+        "de": "Steinzelt",
+        "en": "Stone Tent",
+        "mp": "Camelot! (Nur ein Modell)"
+      }
+    },
+    "panorama": {
+      "title": {
+        "de": "Sarkophage",
+        "en": "Sarcophagi",
+        "mp": "Die Papageien-Sammlung"
+      },
+      "layout.grid": {
+        "de": "Raster",
+        "en": "Grid",
+        "mp": "Organisiertes Chaos"
+      },
+      "layout.masonry": {
+        "de": "Masonry",
+        "en": "Masonry",
+        "mp": "Wunderbares Chaos"
+      },
+      "sort.id": {
+        "de": "Nach ID",
+        "en": "By ID",
+        "mp": "Nach Totheit"
+      }
+    }
+  }
+}

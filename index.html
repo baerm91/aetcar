@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aeternitas Carnunti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="objectModal.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-2: #161616;
+            --card: transparent;
+            --card-border: rgba(255, 255, 255, 0.10);
+            --text: rgba(255, 255, 255, 0.92);
+            --muted: rgba(255, 255, 255, 0.62);
+            --primary: #f6b15d;
+            --primary-2: #d4944a;
+        }
+
+        /* Remove white lines (tile borders/grid) */
+        .leaflet-tile-container img,
+        .leaflet-image-layer,
+        .leaflet-pane img {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow: auto;
+            height: auto;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            background-color: var(--bg);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1400px;
+            max-width: 100vw;
+            height: 850px;
+            background: url('assets/background.png') no-repeat center top;
+            background-size: cover;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.85;
+            mask-image: 
+                linear-gradient(to bottom, black 0%, black 50%, transparent 100%),
+                linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+            mask-composite: intersect;
+            -webkit-mask-image: 
+                linear-gradient(to bottom, black 0%, black 50%, transparent 100%),
+                linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+            -webkit-mask-composite: source-in;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        .hero {
+            display: block;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            width: fit-content;
+        }
+
+        h1 {
+            margin-top: 14px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 56px;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            background: radial-gradient(ellipse 80% 100% at 50% 50%, #fff9e6 0%, #f6b15d 40%, #f6b15d 60%, #fff9e6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 .accent {
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            margin-top: 14px;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 52ch;
+        }
+
+        .hero-actions {
+            margin-top: 22px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.90);
+            transition: transform 0.2s ease, 
+                        background 0.2s ease,
+                        border-color 0.2s ease,
+                        outline 0.2s ease;
+            position: relative;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.10);
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid rgba(212, 175, 55, 0.6);
+            outline-offset: 2px;
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .btn.primary {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-2) 100%);
+            background-size: 200% 200%;
+            background-position: 0% 50%;
+            border-color: rgba(212, 175, 55, 0.45);
+            color: #000;
+            overflow: hidden;
+            transition: transform 0.2s ease, 
+                        background-position 0.6s ease,
+                        border-color 0.2s ease,
+                        outline 0.2s ease;
+        }
+
+        .btn.primary:hover {
+            background-position: 100% 50%;
+            transform: translateY(-1px);
+        }
+
+        .btn.primary:focus-visible {
+            outline: 2px solid rgba(212, 175, 55, 0.8);
+            outline-offset: 2px;
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 22px 60px rgba(0, 0, 0, 0.55);
+        }
+
+        .hero-card-header {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .hero-card-header .label {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .hero-card iframe {
+            width: 100%;
+            height: 380px;
+            border: 0;
+            display: block;
+            background: #000;
+        }
+
+        .section {
+            margin-top: 42px;
+            padding-top: 18px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-fullwidth {
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            width: 100vw;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .container-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .cards-fullwidth {
+            width: 100%;
+            padding: 0 24px;
+        }
+
+        .cards-fullwidth .cards {
+            max-width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .section-header::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: rgba(255, 255, 255, 0.92);
+            white-space: nowrap;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+
+        .card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            background: var(--card);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color 0.3s ease, 
+                        box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            min-height: 250px;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(246, 177, 93, 0.65);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.40);
+        }
+
+        .card:focus-visible {
+            outline: 2px solid rgba(246, 177, 93, 0.6);
+            outline-offset: 3px;
+            border-color: rgba(246, 177, 93, 0.65);
+        }
+
+        .card-media {
+            position: relative;
+            height: 140px;
+            background: rgba(0, 0, 0, 0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.92;
+        }
+
+        .card-body {
+            padding: 16px;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .card-text {
+            margin-top: 8px;
+            color: var(--muted);
+            line-height: 1.55;
+            font-size: 13px;
+        }
+
+        .card-link {
+            margin-top: 10px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.92) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .card:focus-visible {
+            outline: 2px solid rgba(246, 177, 93, 0.55);
+            outline-offset: 3px;
+            border-color: rgba(246, 177, 93, 0.45);
+        }
+
+        .section-lead {
+            margin-top: -8px;
+            margin-bottom: 18px;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 80ch;
+            font-size: 14px;
+        }
+
+        /* ============================================
+           OBJEKTE IM FOKUS - New Design
+           ============================================ */
+        .focus-section {
+            background: linear-gradient(
+                180deg,
+                rgba(15, 12, 10, 0.7) 0%,
+                rgba(20, 16, 12, 0.85) 30%,
+                rgba(20, 16, 12, 0.85) 70%,
+                rgba(15, 12, 10, 0.7) 100%
+            );
+            padding: 64px 0 72px;
+            margin-top: 48px;
+            position: relative;
+            border-top: 1px solid rgba(246, 177, 93, 0.15);
+            border-bottom: 1px solid rgba(246, 177, 93, 0.15);
+        }
+
+        /* Dekorative Rahmenecken */
+        .focus-section::before,
+        .focus-section::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .focus-section::before {
+            top: 24px;
+            left: 48px;
+            border-top: 2px solid #f6b15d;
+            border-left: 2px solid #f6b15d;
+        }
+
+        .focus-section::after {
+            top: 24px;
+            right: 48px;
+            border-top: 2px solid #f6b15d;
+            border-right: 2px solid #f6b15d;
+        }
+
+        /* Untere Ecken über container-inner */
+        .focus-section .container-inner {
+            position: relative;
+        }
+
+        .focus-section .container-inner::before,
+        .focus-section .container-inner::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .focus-section .container-inner::before {
+            bottom: -48px;
+            left: -24px;
+            border-bottom: 2px solid #f6b15d;
+            border-left: 2px solid #f6b15d;
+        }
+
+        .focus-section .container-inner::after {
+            bottom: -48px;
+            right: -24px;
+            border-bottom: 2px solid #f6b15d;
+            border-right: 2px solid #f6b15d;
+        }
+
+        .focus-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .focus-header-left {
+            max-width: 620px;
+        }
+
+        .focus-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #f6b15d;
+            margin-bottom: 12px;
+        }
+
+        .focus-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 48px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .focus-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 540px;
+        }
+
+        .focus-header-right {
+            display: flex;
+            align-items: flex-start;
+            padding-top: 56px;
+        }
+
+        .focus-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: 1px solid #f6b15d;
+            background: transparent;
+            color: #f6b15d;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .focus-btn:hover {
+            background: rgba(224, 120, 80, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .focus-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .focus-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .focus-card {
+            display: flex;
+            flex-direction: column;
+            background: transparent;
+            border-radius: 0;
+            overflow: visible;
+            position: relative;
+            z-index: 1;
+        }
+
+        .focus-card:hover {
+            z-index: 10;
+        }
+
+        .focus-card-media {
+            position: relative;
+            height: 360px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        /* Shine overlay effect */
+        .focus-card-media::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.08),
+                rgba(255, 255, 255, 0.15),
+                rgba(255, 255, 255, 0.08),
+                transparent
+            );
+            transform: skewX(-20deg);
+            z-index: 2;
+            pointer-events: none;
+            transition: left 0s 0.6s;
+        }
+
+        .focus-card:hover .focus-card-media::before {
+            left: 150%;
+            transition: left 0.8s ease-in-out;
+        }
+
+        /* Vignette frame effect */
+        .focus-card-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 1;
+            transition: opacity 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .focus-card:hover .focus-card-media::after {
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2),
+                        0 0 40px rgba(224, 120, 80, 0.15);
+            opacity: 1;
+        }
+
+        .focus-card-media img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 140%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: grayscale(100%) brightness(0.9);
+            transition: filter 0.6s ease, 
+                        top 4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .focus-card:hover .focus-card-media img {
+            filter: grayscale(0%) brightness(1.05);
+            top: -40%;
+            transform: scale(1.02);
+        }
+
+        .focus-card-media .media-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .focus-card-media.has-image .media-fallback {
+            display: none;
+        }
+
+        .focus-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .focus-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border: 1px solid rgba(224, 120, 80, 0.5);
+            border-radius: 2px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #f6b15d;
+            background: transparent;
+        }
+
+        .focus-card-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 10px;
+            line-height: 1.25;
+        }
+
+        .focus-card-text {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 14px;
+            line-height: 1.65;
+            flex-grow: 1;
+        }
+
+        .focus-card-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .focus-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .focus-card-link:hover {
+            color: #f6b15d;
+        }
+
+        .focus-card-link svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        @media (max-width: 980px) {
+            .focus-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .focus-title {
+                font-size: 38px;
+            }
+            
+            .focus-header {
+                flex-direction: column;
+            }
+            
+            .focus-header-right {
+                padding-top: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .focus-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .focus-section {
+                padding: 48px 0;
+            }
+            
+            .focus-title {
+                font-size: 32px;
+            }
+        }
+
+        /* Legacy feature card styles - keep for compatibility */
+        .feature-card {
+            min-height: 220px;
+        }
+
+        .feature-card .card-media {
+            height: 170px;
+            position: relative;
+            background: radial-gradient(520px 220px at 18% 24%, rgba(212, 175, 55, 0.18), transparent 62%),
+                radial-gradient(520px 220px at 78% 76%, rgba(176, 141, 42, 0.14), transparent 62%),
+                rgba(0, 0, 0, 0.22);
+            text-transform: none;
+            letter-spacing: 0.06em;
+            font-weight: 700;
+            overflow: hidden;
+        }
+
+        .feature-card .card-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.24) 55%, rgba(0, 0, 0, 0.52) 100%);
+            pointer-events: none;
+        }
+
+        .feature-card .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 220ms ease;
+            display: block;
+        }
+
+        .feature-card .card-media.has-image img.is-loaded {
+            opacity: 1;
+        }
+
+        .feature-card .card-media.is-portrait img {
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.55);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            transform-origin: center;
+        }
+
+        .feature-card .card-media .media-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.70);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 12px;
+            background: rgba(0, 0, 0, 0.10);
+            pointer-events: none;
+        }
+
+        .feature-card .card-media.has-image .media-fallback {
+            opacity: 0;
+        }
+
+        .feature-why {
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.55;
+            font-size: 13px;
+        }
+
+        .feature-why strong {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 800;
+        }
+
+        .stats {
+            margin-top: 34px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0;
+            padding: 32px 0;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .stat:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .stat-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+        }
+
+        .stat .num {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 42px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #f6b15d;
+            line-height: 1;
+        }
+
+        .stat .label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 36px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        /* Card Actions */
+        .card-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .card-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+
+        .card-action-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 44px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding-top: 28px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script src="i18n.js"></script>
+    <div id="site-nav"></div>
+    <script src="nav-loader.js"></script>
+
+    <main class="container">
+        <section class="hero">
+            <div>
+                <div class="pill" data-i18n="hero.pill">Pro Aeternitate Carnunti</div>
+                <h1><span data-i18n="hero.title">Römische Sarkophage</span><br><span data-i18n="hero.subtitle">aus dem Raum Carnuntum</span></h1>
+                <p data-i18n="hero.description">Im Folgenden sehen Sie steinerne Behältnisse für die Toten.
+                    Sie liegen im Dunkel der Erde, wurden aus bereits genutztem Material gefertigt, bewegt, geöffnet und wieder verschlossen.
+                    Erhalten haben sich in ihnen Zeugnisse römischen Kulturerbes, von Handlung, Ritual und Zeit.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="focus-header" style="margin-bottom: 32px;">
+                <div class="focus-header-left">
+                    <div class="focus-eyebrow" data-i18n="section.entry_points">Einstiegspunkte</div>
+                    <h2 class="focus-title" data-i18n="section.collection">Sammlung & Kontexte</h2>
+                    <p class="focus-description" data-i18n="section.collection_desc">Drei Wege in die Sammlung: Erkunden Sie die Fundorte auf der Karte, vergleichen Sie Objekte im Steinzelt oder stöbern Sie durch alle Sarkophage.</p>
+                </div>
+            </div>
+            <div class="cards">
+                <a class="card" href="fundkarte.html">
+                    <div class="card-media"><img src="assets/fundkarte.webp" alt="Fundkarte"></div>
+                    <div class="card-body">
+                        <div class="card-title" data-i18n="card.fundkarte.title" data-i18n-page="_global">Fundkarte</div>
+                        <div class="card-text" data-i18n="card.fundkarte.text">Die Fundkarte zeigt, wo die Sarkophage gefunden wurden und wie ihre Fundorte in den antiken Raum von Carnuntum eingebettet sind.</div>
+                        <div class="card-link" data-i18n="card.fundkarte.link">↗ Zur Fundkarte</div>
+                    </div>
+                </a>
+                <a class="card" href="steinzelt.html">
+                    <div class="card-media"><img src="assets/steinzelt.webp" alt="Steinzelt"></div>
+                    <div class="card-body">
+                        <div class="card-title" data-i18n="card.steinzelt.title" data-i18n-page="_global">Steinzelt</div>
+                        <div class="card-text" data-i18n="card.steinzelt.text">Zwischen Grabung und Forschung werden hier Sarkophage gesichert, geöffnet und ihre Inhalte für die spezialisierte wissenschaftliche Bearbeitung getrennt erfasst.</div>
+                        <div class="card-link" data-i18n="card.steinzelt.link">↗ Zum Steinzelt</div>
+                    </div>
+                </a>
+                <a class="card" href="panorama_optimized.html">
+                    <div class="card-media"><img src="assets/sarkophage.webp" alt="Sarkophage"></div>
+                    <div class="card-body">
+                        <div class="card-title" data-i18n="card.sarkophage.title" data-i18n-page="_global">Sarkophage</div>
+                        <div class="card-text" data-i18n="card.sarkophage.text">Die Galerie ermöglicht den Vergleich der Sarkophage und macht Unterschiede in Gestaltung, Dimension und Nutzung sichtbar.</div>
+                        <div class="card-link" data-i18n="card.sarkophage.link">↗ Zur Übersicht</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="stats" aria-label="Projektstatistiken">
+                <div class="stat">
+                    <div class="num" id="statsObjectCount">–</div>
+                    <div class="label" data-i18n="stats.sarkophage">Sarkophage</div>
+                </div>
+                <div class="stat">
+                    <div class="num" id="statsGrabungCount">–</div>
+                    <div class="label" data-i18n="stats.grabungen">Grabungen</div>
+                </div>
+                <div class="stat">
+                    <div class="num" id="statsBeigabenCount">–</div>
+                    <div class="label" data-i18n="stats.beigaben">Mit Beigaben</div>
+                </div>
+                <div class="stat">
+                    <div class="num" data-i18n="stats.years">~1900 Jahre</div>
+                    <div class="label" data-i18n="stats.years_label">Unter der Erde</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-fullwidth focus-section" aria-labelledby="feature-title">
+            <div class="container-inner">
+                <div class="focus-header">
+                    <div class="focus-header-left">
+                        <div class="focus-eyebrow" data-i18n="focus.eyebrow">Kuratierte Einblicke</div>
+                        <h2 class="focus-title" id="feature-title" data-i18n="focus.title">Objekte im Fokus</h2>
+                        <p class="focus-description" data-i18n="focus.description">Fünf kuratierte Objektgeschichten machen sichtbar: Diese Sammlung erzählt Geschichte – Sarkophag für Sarkophag. Themen erscheinen hier als Schlagwörter, der Einstieg bleibt bewusst objektzentriert.</p>
+                    </div>
+                    <div class="focus-header-right">
+                        <a href="panorama_optimized.html" class="focus-btn">
+                            <span data-i18n="focus.btn">Alle Objekte ansehen</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="focus-cards" id="featureCards"></div>
+            </div>
+        </section>
+
+        <footer>
+            <div data-i18n="footer.copyright" data-i18n-page="_global">Archäologischer Park Carnuntum</div>
+            <div data-i18n="footer.links" data-i18n-page="_global">Archiv · Info · Rechtliches</div>
+        </footer>
+    </main>
+
+    <script src="objectModal.js"></script>
+    <script>
+        const FEATURE_OBJECTS = [
+            {
+                title: 'Sarkophag der Herennia Rufina',
+                story: 'Eine junge Frau, namentlich bekannt, gestorben mit 20 Jahren – ihr Sarkophag erzählt von Liebe, Erinnerung und Status in der römischen Provinz.',
+                tags: ['Herennia', 'Rufina'],
+                inv: 'CAR-S-1845',
+                image: 'extracted_sarcophagi/CAR-S-1845.jpg',
+                target: { page: 'steinzelt.html', search: 'herennia rufina' }
+            },
+            {
+                title: 'Sarkophag mit weiblicher Mumie',
+                story: 'Ein außergewöhnlich erhaltener Körper eröffnet Einblicke in Krankheit, Konservierung und Tod – jenseits literarischer Quellen.',
+                tags: ['Mumie', 'Konservierung'],
+                inv: 'CAR-S-2065',
+                image: 'extracted_sarcophagi/CAR-S-2065.jpg',
+                target: { page: 'steinzelt.html', search: 'mumie' }
+            },
+            {
+                title: 'Spolien & umgearbeitete Sarkophage',
+                story: 'Grabdenkmäler wurden weiterverwendet – als Baumaterial, Wasserbecken oder Tröge. Eine Geschichte der Transformation.',
+                tags: ['Transformation', 'Spolien'],
+                inv: 'CAR-S-1964',
+                image: 'extracted_sarcophagi/CAR-S-1964.jpg',
+                target: { page: 'steinzelt.html', tags: ['spolie'] }
+            }
+        ];
+
+        // Global data storage
+        let objectLookup = {};
+        let steinzeltInvSet = new Set();
+        let dataLoaded = false;
+
+        function buildTargetUrl(target, baseUrl) {
+            if (!target) return baseUrl;
+            const params = new URLSearchParams();
+            if (target.inv) {
+                params.set('ids', target.inv);
+            } else if (Array.isArray(target.ids) && target.ids.length > 0) {
+                params.set('ids', target.ids.join(','));
+            }
+
+            // Only add tags/search if no specific ID, or if we want to filter context
+            if (Array.isArray(target.tags) && target.tags.length > 0) {
+                params.set('tags', target.tags.join(','));
+            }
+            if (typeof target.search === 'string' && target.search.trim().length > 0) {
+                params.set('search', target.search.toLowerCase().trim());
+            }
+            const qs = params.toString();
+            return baseUrl + (qs ? '?' + qs : '');
+        }
+
+
+        function renderFeatureCards() {
+            const host = document.getElementById('featureCards');
+            if (!host) return;
+            host.innerHTML = '';
+
+            // SVG icons for footer links
+            const icons = {
+                sarkophage: '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M6 6V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2"/></svg>',
+                fundkarte: '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+                steinzelt: '<svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><rect x="9" y="13" width="6" height="8"/></svg>'
+            };
+
+            FEATURE_OBJECTS.forEach(feature => {
+                const objData = objectLookup[feature.inv];
+
+                // Card container
+                const card = document.createElement('div');
+                card.className = 'focus-card';
+
+                // Image wrapper with link
+                const primaryUrl = buildTargetUrl({ ...feature.target, inv: feature.inv }, feature.target.page || 'steinzelt.html');
+
+                const mediaLink = document.createElement('a');
+                mediaLink.href = primaryUrl;
+                mediaLink.className = 'focus-card-media';
+                mediaLink.style.cursor = 'pointer';
+
+                // Open modal on click instead of navigating
+                mediaLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const obj = objectLookup[feature.inv];
+                    if (obj && typeof openObjectModal === 'function') {
+                        openObjectModal(obj, {
+                            imageUrl: feature.image
+                        });
+                    } else {
+                        // Fallback: navigate to the URL if modal not available
+                        window.location.href = primaryUrl;
+                    }
+                });
+
+                const fallback = document.createElement('div');
+                fallback.className = 'media-fallback';
+                fallback.textContent = 'Objektbild folgt';
+                mediaLink.appendChild(fallback);
+
+                if (typeof feature.image === 'string' && feature.image.trim().length > 0) {
+                    const img = document.createElement('img');
+                    img.src = feature.image;
+                    img.alt = feature.title;
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                    img.dataset.fallbackUrl = (objData && objData.foto_url) ? String(objData.foto_url).trim() : '';
+                    img.onload = function () {
+                        mediaLink.classList.add('has-image');
+                    };
+                    img.onerror = function () {
+                        const src = img.getAttribute('src') || '';
+                        if (src.includes('extracted_sarcophagi/') && !src.includes('extracted_sarcophagi_smart/')) {
+                            img.src = src.replace('extracted_sarcophagi/', 'extracted_sarcophagi_smart/');
+                            return;
+                        }
+                        const fallbackUrl = img.dataset.fallbackUrl || '';
+                        if (fallbackUrl && src !== fallbackUrl) {
+                            img.src = fallbackUrl;
+                            return;
+                        }
+                        mediaLink.classList.remove('has-image');
+                    };
+                    mediaLink.appendChild(img);
+                }
+
+                card.appendChild(mediaLink);
+
+                // Tags
+                if (Array.isArray(feature.tags) && feature.tags.length > 0) {
+                    const tagsContainer = document.createElement('div');
+                    tagsContainer.className = 'focus-card-tags';
+                    feature.tags.forEach(tag => {
+                        const tagEl = document.createElement('span');
+                        tagEl.className = 'focus-tag';
+                        tagEl.textContent = tag;
+                        tagsContainer.appendChild(tagEl);
+                    });
+                    card.appendChild(tagsContainer);
+                }
+
+                // Title
+                const title = document.createElement('h3');
+                title.className = 'focus-card-title';
+                title.textContent = feature.title;
+                card.appendChild(title);
+
+                // Description
+                const text = document.createElement('p');
+                text.className = 'focus-card-text';
+                text.textContent = feature.story;
+                card.appendChild(text);
+
+                // Footer with links
+                const footer = document.createElement('div');
+                footer.className = 'focus-card-footer';
+
+                // Determine conditions
+                const hasMapCoords = objData && objData.lat && objData.lng;
+                const hasSteinzeltCoords = steinzeltInvSet.has(feature.inv);
+
+                // Helper to create footer link
+                const createFooterLink = (url, iconKey, label) => {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.className = 'focus-card-link';
+                    link.innerHTML = icons[iconKey] + ' ' + label;
+                    return link;
+                };
+
+                // Sarkophage link (always)
+                const urlPanorama = buildTargetUrl({ ...feature.target, inv: feature.inv }, 'panorama_optimized.html');
+                footer.appendChild(createFooterLink(urlPanorama, 'sarkophage', 'Sarkophage'));
+
+                // Fundkarte (conditional)
+                if (hasMapCoords) {
+                    const urlMap = buildTargetUrl({ ...feature.target, inv: feature.inv }, 'fundkarte.html');
+                    footer.appendChild(createFooterLink(urlMap, 'fundkarte', 'Fundkarte'));
+                }
+
+                // Steinzelt (conditional)
+                if (hasSteinzeltCoords) {
+                    const urlSteinzelt = buildTargetUrl({ ...feature.target, inv: feature.inv }, 'steinzelt.html');
+                    footer.appendChild(createFooterLink(urlSteinzelt, 'steinzelt', 'Steinzelt'));
+                }
+
+                card.appendChild(footer);
+                host.appendChild(card);
+            });
+        }
+
+        // Initial render (basic links only, or empty if we wait)
+        renderFeatureCards();
+
+        // Load Data
+        Promise.all([
+            fetch('data.json').then(res => res.json()),
+            fetch('assets/coordinates.json').then(res => res.json()),
+            fetch('assets/beigaben.json').then(res => res.json())
+        ])
+            .then(([mainData, coordsData, beigabenData]) => {
+                // Process Main Data
+                mainData.forEach(obj => {
+                    if (obj && obj.Inventarnummer) {
+                        objectLookup[obj.Inventarnummer] = obj;
+                    }
+                });
+
+                // Process Coordinates Data (array of coordinate objects with Inventarnummer)
+                if (Array.isArray(coordsData)) {
+                    coordsData.forEach(entry => {
+                        if (entry && entry.Inventarnummer) {
+                            steinzeltInvSet.add(entry.Inventarnummer);
+                        }
+                    });
+                }
+
+                dataLoaded = true;
+
+                // Count-Up Animation Function
+                function animateValue(element, start, end, duration) {
+                    if (!element) return;
+                    let startTimestamp = null;
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        const current = Math.floor(progress * (end - start) + start);
+                        element.textContent = current;
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            element.textContent = end;
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                }
+
+                // Update Stats with animation
+                const objectCountEl = document.getElementById('statsObjectCount');
+                const grabungCountEl = document.getElementById('statsGrabungCount');
+                const beigabenCountEl = document.getElementById('statsBeigabenCount');
+                const objectCount = mainData.length;
+                const grabungCount = mainData.filter(obj =>
+                    obj.Erwerbsart && obj.Erwerbsart.toLowerCase().includes('grabung')
+                ).length;
+                const beigabenCount = beigabenData && beigabenData.by_sarkophag 
+                    ? Object.keys(beigabenData.by_sarkophag).length 
+                    : 0;
+
+                // Intersection Observer for scroll-in animation
+                const statsSection = document.querySelector('.stats');
+                if (statsSection) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                                entry.target.classList.add('animated');
+                                
+                                if (objectCountEl) {
+                                    animateValue(objectCountEl, 0, objectCount, 1500);
+                                }
+                                
+                                if (grabungCountEl) {
+                                    animateValue(grabungCountEl, 0, grabungCount, 1500);
+                                }
+                                
+                                if (beigabenCountEl) {
+                                    animateValue(beigabenCountEl, 0, beigabenCount, 1500);
+                                }
+                            }
+                        });
+                    }, { threshold: 0.3 });
+
+                    observer.observe(statsSection);
+                } else {
+                    // Fallback: animate immediately if observer not available
+                    if (objectCountEl) {
+                        animateValue(objectCountEl, 0, objectCount, 1500);
+                    }
+                    if (grabungCountEl) {
+                        animateValue(grabungCountEl, 0, grabungCount, 1500);
+                    }
+                    if (beigabenCountEl) {
+                        animateValue(beigabenCountEl, 0, beigabenCount, 1500);
+                    }
+                }
+
+                // Re-render cards with conditional links
+                renderFeatureCards();
+            })
+            .catch(err => console.error('Fehler beim Laden der Daten:', err));
+
+        // Fade-in animation for sections on scroll
+        (function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        })();
+    </script>
+</body>
+
+</html>
