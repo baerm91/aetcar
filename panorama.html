@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarkophag Panorama</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --surface-color: #161616;
+            --surface-color-hover: #222222;
+            --card-bg: #1e1e1e;
+            --primary-color: #f6b15d;
+            --primary-color-2: #b08d2a;
+            --primary-glow: rgba(212, 175, 55, 0.3);
+            --text-primary: #f0f0f0;
+            --text-secondary: #a0a0a0;
+            --border-color: #333;
+            --glass-bg: rgba(20, 20, 20, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(30, 30, 30, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(40, 40, 40, 0.4) 0%, transparent 50%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.25);
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #000;
+            box-shadow: 0 2px 10px var(--primary-glow);
+        }
+
+        .stats {
+            padding: 10px 20px;
+            background: var(--surface-color);
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .stats strong {
+            color: var(--primary-color);
+        }
+
+        .panorama-container {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .sarcophagus-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .sarcophagus-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.5);
+        }
+
+        .sarcophagus-card.hidden {
+            display: none;
+        }
+
+        .sarcophagus-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 10px;
+            background: var(--card-bg);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .card-details {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .modal-info {
+            background: var(--card-bg);
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .close-modal:hover {
+            background: var(--primary-color-2);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .size-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .size-control label {
+            font-size: 14px;
+        }
+
+        .size-control input[type="range"] {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏛️ Sarkophag Panorama</h1>
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Suche nach Inventarnummer...">
+            </div>
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">Alle</button>
+                <button class="filter-btn" data-filter="19">19xx</button>
+                <button class="filter-btn" data-filter="20">20xx</button>
+            </div>
+            <div class="size-control">
+                <label for="sizeSlider">Größe:</label>
+                <input type="range" id="sizeSlider" min="150" max="400" value="250" step="10">
+            </div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <span>Angezeigt: <strong id="visibleCount">0</strong> von <strong id="totalCount">0</strong> Sarkophagen</span>
+    </div>
+
+    <div class="panorama-container" id="panoramaContainer">
+        <div class="loading">Lade Sarkophag-Bilder...</div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">✕ Schließen</button>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-info">
+                <div class="card-title" id="modalTitle"></div>
+                <div class="card-details" id="modalDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allData = [];
+        let currentFilter = 'all';
+        let currentSearch = '';
+        let currentSize = 250;
+
+        // Lade Daten
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                allData = await response.json();
+                renderPanorama();
+            } catch (error) {
+                console.error('Fehler beim Laden der Daten:', error);
+                document.getElementById('panoramaContainer').innerHTML = 
+                    '<div class="loading">Fehler beim Laden der Daten</div>';
+            }
+        }
+
+        // Rendere Panorama
+        function renderPanorama() {
+            const container = document.getElementById('panoramaContainer');
+            container.innerHTML = '';
+
+            const filteredData = filterData();
+            
+            filteredData.forEach(item => {
+                const card = createCard(item);
+                container.appendChild(card);
+            });
+
+            updateStats(filteredData.length);
+        }
+
+        // Erstelle Karte
+        function createCard(item) {
+            const card = document.createElement('div');
+            card.className = 'sarcophagus-card';
+            card.style.width = `${currentSize}px`;
+            
+            const invNum = item.Inventarnummer || 'Unbekannt';
+            const imagePath = `extracted_sarcophagi/${invNum}.jpg`;
+            
+            card.innerHTML = `
+                <img src="${imagePath}" alt="${invNum}" onerror="this.src='assets/map.jpg'; this.style.opacity='0.3';">
+                <div class="card-info">
+                    <div class="card-title">${invNum}</div>
+                    <div class="card-details">
+                        ${item.Typ || 'Typ unbekannt'}<br>
+                        ${item.Material || ''}
+                    </div>
+                </div>
+            `;
+
+            card.onclick = () => openModal(item, imagePath);
+            
+            return card;
+        }
+
+        // Filtere Daten
+        function filterData() {
+            return allData.filter(item => {
+                const invNum = item.Inventarnummer || '';
+                
+                // Suchfilter
+                if (currentSearch && !invNum.toLowerCase().includes(currentSearch.toLowerCase())) {
+                    return false;
+                }
+
+                // Kategoriefilter
+                if (currentFilter === 'all') {
+                    return true;
+                } else if (currentFilter === '19') {
+                    return invNum.includes('-19');
+                } else if (currentFilter === '20') {
+                    return invNum.includes('-20');
+                }
+
+                return true;
+            });
+        }
+
+        // Öffne Modal
+        function openModal(item, imagePath) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDetails = document.getElementById('modalDetails');
+
+            modalImage.src = imagePath;
+            modalTitle.textContent = item.Inventarnummer || 'Unbekannt';
+            
+            let details = [];
+            if (item.Typ) details.push(`Typ: ${item.Typ}`);
+            if (item.Material) details.push(`Material: ${item.Material}`);
+            if (item.Maße) details.push(`Maße: ${item.Maße}`);
+            if (item.Fundort) details.push(`Fundort: ${item.Fundort}`);
+            if (item.Datierung) details.push(`Datierung: ${item.Datierung}`);
+            
+            modalDetails.innerHTML = details.join('<br>') || 'Keine weiteren Details verfügbar';
+
+            modal.classList.add('active');
+        }
+
+        // Schließe Modal
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        // Update Statistik
+        function updateStats(visibleCount) {
+            document.getElementById('visibleCount').textContent = visibleCount;
+            document.getElementById('totalCount').textContent = allData.length;
+        }
+
+        // Event Listeners
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderPanorama();
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                renderPanorama();
+            });
+        });
+
+        document.getElementById('sizeSlider').addEventListener('input', (e) => {
+            currentSize = parseInt(e.target.value);
+            document.querySelectorAll('.sarcophagus-card').forEach(card => {
+                card.style.width = `${currentSize}px`;
+            });
+        });
+
+        // Modal schließen bei ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Modal schließen bei Klick außerhalb
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') {
+                closeModal();
+            }
+        });
+
+        // Initialisierung
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "description": "Individuen (Bestattungen) in Sarkophagen",
+    "total_count": 5,
+    "sarkophage_count": 2,
+    "version": "1.0"
+  },
+  "by_sarkophag": {
+    "CAR-S-1845": [
+      {
+        "sarkophag_id": "CAR-S-1845",
+        "id": "A",
+        "bezeichnung": "Gemahlin Herennia Rufina",
+        "geschlecht": "Weiblich",
+        "sterbealter": "adult",
+        "kategorie": "Körperbestattung"
+      },
+      {
+        "sarkophag_id": "CAR-S-1845",
+        "id": "B",
+        "bezeichnung": "Individuum B",
+        "geschlecht": "Männlich",
+        "sterbealter": "35-40 Jahre",
+        "kategorie": "Körperbestattung"
+      },
+      {
+        "sarkophag_id": "CAR-S-1845",
+        "id": "C",
+        "bezeichnung": "Individuum C",
+        "geschlecht": "unbekannt",
+        "sterbealter": "19-20 Jahre",
+        "kategorie": "Körperbestattung"
+      }
+    ],
+    "CAR-S-2028": [
+      {
+        "sarkophag_id": "CAR-S-2028",
+        "id": "A",
+        "bezeichnung": "Claudia Ursa",
+        "geschlecht": "Weiblich",
+        "sterbealter": "23-24 Jahre",
+        "kategorie": "Körperbestattung",
+        "anmerkungen": "Ehefrau von Septimius Veranus"
+      },
+      {
+        "sarkophag_id": "CAR-S-2028",
+        "id": "B",
+        "bezeichnung": "Sohn der Claudia Ursa",
+        "geschlecht": "Männlich",
+        "sterbealter": "10 Jahre",
+        "kategorie": "Körperbestattung",
+        "anmerkungen": "Sohn von Claudia Ursa und Septimius Veranus"
+      }
+    ]
+  },
+  "all": [
+    {
+      "sarkophag_id": "CAR-S-1845",
+      "id": "A",
+      "bezeichnung": "Gemahlin Herennia Rufina",
+      "geschlecht": "Weiblich",
+      "sterbealter": "adult",
+      "kategorie": "Körperbestattung"
+    },
+    {
+      "sarkophag_id": "CAR-S-1845",
+      "id": "B",
+      "bezeichnung": "Individuum B",
+      "geschlecht": "Männlich",
+      "sterbealter": "35-40 Jahre",
+      "kategorie": "Körperbestattung"
+    },
+    {
+      "sarkophag_id": "CAR-S-1845",
+      "id": "C",
+      "bezeichnung": "Individuum C",
+      "geschlecht": "unbekannt",
+      "sterbealter": "19-20 Jahre",
+      "kategorie": "Körperbestattung"
+    },
+    {
+      "sarkophag_id": "CAR-S-2028",
+      "id": "A",
+      "bezeichnung": "Claudia Ursa",
+      "geschlecht": "Weiblich",
+      "sterbealter": "23-24 Jahre",
+      "kategorie": "Körperbestattung",
+      "anmerkungen": "Ehefrau von Septimius Veranus"
+    },
+    {
+      "sarkophag_id": "CAR-S-2028",
+      "id": "B",
+      "bezeichnung": "Sohn der Claudia Ursa",
+      "geschlecht": "Männlich",
+      "sterbealter": "10 Jahre",
+      "kategorie": "Körperbestattung",
+      "anmerkungen": "Sohn von Claudia Ursa und Septimius Veranus"
+    }
+  ]
+}

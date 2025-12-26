@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETERNITAS CARNUNTI - Fundkarte</title>
+    <meta name="description" content="Interaktive Fundkarte der Sarkophage von Carnuntum">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="filterToolbar.css">
+    <link rel="stylesheet" href="objectModal.css">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --bg-2: #161616;
+            --glass-bg: rgba(10, 10, 10, 0.88);
+            --glass-border: rgba(255, 255, 255, 0.10);
+            --text: rgba(255, 255, 255, 0.92);
+            --muted: rgba(255, 255, 255, 0.62);
+            --primary: #f6b15d;
+            --primary-2: #d4944a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text);
+            min-height: 100vh;
+            background: var(--bg);
+        }
+
+        /* Remove white lines (tile borders/grid) */
+        .leaflet-tile-container img,
+        .leaflet-image-layer,
+        .leaflet-pane img {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Fix tile seams/gaps */
+        .leaflet-tile {
+            filter: none !important;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .leaflet-tile-container {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .leaflet-container {
+            background: #0a0a0a !important;
+        }
+
+        .leaflet-grid-label {
+            display: none !important;
+        }
+
+        #map {
+            position: fixed;
+            top: 116px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+
+        /* Filter Toolbar */
+        .filter-toolbar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            height: 52px;
+            z-index: 900;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            gap: 16px;
+        }
+
+        .toolbar-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toolbar-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.5);
+            white-space: nowrap;
+        }
+
+        .toolbar-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.12);
+            margin: 0 8px;
+        }
+
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            gap: 4px;
+        }
+
+        .view-toggle-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .view-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text);
+        }
+
+        .view-toggle-btn.active {
+            background: rgba(246, 177, 93, 0.16);
+            border-color: rgba(246, 177, 93, 0.38);
+            color: var(--text);
+        }
+
+        .view-toggle-btn .icon {
+            font-size: 13px;
+        }
+
+        /* Toolbar Dropdown */
+        .toolbar-dropdown {
+            position: relative;
+        }
+
+        .toolbar-dropdown-btn {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .toolbar-dropdown-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .toolbar-dropdown-btn.has-selection {
+            background: rgba(246, 177, 93, 0.12);
+            border-color: rgba(246, 177, 93, 0.3);
+        }
+
+        .toolbar-dropdown-btn .arrow {
+            font-size: 8px;
+            opacity: 0.6;
+            transition: transform 0.2s ease;
+        }
+
+        .toolbar-dropdown.open .toolbar-dropdown-btn .arrow {
+            transform: rotate(180deg);
+        }
+
+        .toolbar-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            min-width: 220px;
+            max-height: 280px;
+            overflow-y: auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+            padding: 8px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .toolbar-dropdown.open .toolbar-dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .dropdown-checkbox {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.15s ease;
+        }
+
+        .dropdown-item.checked .dropdown-checkbox {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .dropdown-checkbox::after {
+            content: '✓';
+            font-size: 10px;
+            color: #000;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .dropdown-item.checked .dropdown-checkbox::after {
+            opacity: 1;
+        }
+
+        .dropdown-label {
+            flex: 1;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .dropdown-count {
+            font-size: 11px;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Certainty Toggle in Toolbar */
+        .toolbar-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .toolbar-toggle:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .toolbar-toggle.active {
+            background: rgba(246, 177, 93, 0.16);
+            border-color: rgba(246, 177, 93, 0.38);
+        }
+
+        .toolbar-toggle-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            white-space: nowrap;
+        }
+
+        .toolbar-toggle-switch {
+            width: 32px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 9px;
+            position: relative;
+            transition: background 0.2s ease;
+        }
+
+        .toolbar-toggle.active .toolbar-toggle-switch {
+            background: var(--primary);
+        }
+
+        .toolbar-toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .toolbar-toggle.active .toolbar-toggle-switch::after {
+            transform: translateX(14px);
+        }
+
+        /* Reset Button in Toolbar */
+        .toolbar-reset-btn {
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: transparent;
+            color: rgba(246, 177, 93, 0.92);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .toolbar-reset-btn:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* Toolbar Search Input */
+        .toolbar-search-input {
+            width: 200px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .toolbar-search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(246, 177, 93, 0.5);
+            box-shadow: 0 0 0 2px rgba(246, 177, 93, 0.15);
+            width: 240px;
+        }
+
+        .toolbar-search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .embed .filter-toolbar {
+            display: none !important;
+        }
+
+        .embed #map {
+            top: 0;
+        }
+
+        /* Themen Panel */
+        .themes-panel {
+            position: fixed;
+            top: 136px;
+            left: 20px;
+            width: 320px;
+            max-height: calc(100vh - 176px);
+            z-index: 500;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .themes-header {
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .themes-header h2 {
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .themes-close-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: transparent;
+            color: var(--muted);
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .themes-close-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text);
+        }
+
+        .themes-body {
+            padding: 12px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .theme-card {
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+
+        .theme-card.active {
+            background: rgba(246, 177, 93, 0.12);
+            border-color: rgba(246, 177, 93, 0.35);
+        }
+
+        .theme-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .theme-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(246, 177, 93, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .theme-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .theme-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .theme-count {
+            font-size: 11px;
+            color: var(--primary);
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        /* Theme Detail View */
+        .theme-detail {
+            display: none;
+            padding: 16px;
+        }
+
+        .theme-detail.active {
+            display: block;
+        }
+
+        .theme-detail-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: transparent;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-detail-back:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+        }
+
+        .theme-detail-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-detail-description {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .theme-detail-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .theme-stat {
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .theme-stat-value {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .theme-stat-label {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-top: 2px;
+        }
+
+        .theme-detail-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .theme-action-btn {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-action-btn.primary {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-2) 100%);
+            color: #000;
+        }
+
+        .theme-action-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(246, 177, 93, 0.35);
+        }
+
+        .theme-action-btn.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text);
+        }
+
+        .theme-action-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .embed .themes-panel {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .themes-panel {
+                left: 10px;
+                right: 10px;
+                width: auto;
+                max-height: 45vh;
+            }
+        }
+
+        /* Map Legend */
+        .map-legend {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 500;
+            background: var(--glass-bg);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            padding: 14px 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 0;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .legend-marker {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .legend-marker.certain {
+            background: #3b82f6;
+            border: 2px solid #fff;
+        }
+
+        .legend-marker.uncertain {
+            background: transparent;
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+        }
+
+        .legend-marker.cluster {
+            background: var(--primary);
+            border: 2px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .legend-marker.landmark {
+            width: 18px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Result Count Button */
+        .result-count-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 500;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-2) 100%);
+            color: #000;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(246, 177, 93, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .result-count-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(246, 177, 93, 0.45);
+        }
+
+        /* Map Controls Override */
+        .leaflet-control-zoom {
+            border: none !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+        }
+
+        .leaflet-control-zoom a {
+            background: var(--glass-bg) !important;
+            color: var(--text) !important;
+            border: 1px solid var(--glass-border) !important;
+            width: 36px !important;
+            height: 36px !important;
+            line-height: 36px !important;
+            font-size: 18px !important;
+        }
+
+        .leaflet-control-zoom a:hover {
+            background: rgba(255, 255, 255, 0.12) !important;
+        }
+
+        /* Custom Popup */
+        .leaflet-popup-content-wrapper {
+            background: var(--glass-bg) !important;
+            border: 1px solid var(--glass-border) !important;
+            border-radius: 14px !important;
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45) !important;
+            padding: 0 !important;
+            overflow: hidden;
+        }
+
+        .leaflet-popup-content {
+            margin: 0 !important;
+            width: 280px !important;
+        }
+
+        .leaflet-popup-tip {
+            background: var(--glass-bg) !important;
+            border: 1px solid var(--glass-border) !important;
+        }
+
+        .leaflet-popup-close-button {
+            color: var(--text) !important;
+            font-size: 20px !important;
+            padding: 8px 10px !important;
+            z-index: 10;
+        }
+
+        .popup-content {
+            color: var(--text);
+        }
+
+        .popup-image-frame {
+            position: relative;
+            width: 100%;
+            height: 140px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .popup-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+
+        .popup-image-placeholder {
+            width: 100%;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .popup-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: rgba(246, 177, 93, 0.9);
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .popup-body {
+            padding: 14px 16px;
+        }
+
+        .popup-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .popup-location {
+            font-size: 12px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .popup-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .popup-meta-item {
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+        }
+
+        .popup-meta-label {
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 2px;
+        }
+
+        .popup-meta-value {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .popup-details-btn {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: none;
+            background: rgba(246, 177, 93, 0.16);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .popup-details-btn:hover {
+            background: rgba(246, 177, 93, 0.25);
+        }
+
+        /* Custom Markers */
+        .custom-marker {
+            width: 24px;
+            height: 24px;
+            background: #3b82f6;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+        }
+
+        .custom-marker.uncertain {
+            background: transparent;
+            border: 3px dashed rgba(255, 255, 255, 0.6);
+        }
+
+        .custom-marker.highlighted {
+            background: #f6b15d;
+            border-color: #fff;
+            box-shadow: 0 0 12px 4px rgba(246, 177, 93, 0.6), 0 3px 10px rgba(0, 0, 0, 0.35);
+            z-index: 1000 !important;
+        }
+
+        .custom-marker.dimmed {
+            background: rgba(100, 100, 100, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+            opacity: 0.5;
+        }
+
+        .custom-marker.dimmed.uncertain {
+            border-color: rgba(255, 255, 255, 0.2);
+            opacity: 0.35;
+        }
+
+        .annotation-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd166;
+            font-size: 20px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+        }
+
+        /* Cluster Markers */
+        .marker-cluster-small,
+        .marker-cluster-medium,
+        .marker-cluster-large {
+            background: rgba(246, 177, 93, 0.35) !important;
+        }
+
+        .marker-cluster-small.dimmed,
+        .marker-cluster-medium.dimmed,
+        .marker-cluster-large.dimmed {
+            background: rgba(100, 100, 100, 0.4) !important;
+            opacity: 0.5;
+        }
+
+        .marker-cluster-small div,
+        .marker-cluster-medium div,
+        .marker-cluster-large div {
+            background: var(--primary) !important;
+            color: #000 !important;
+            font-weight: 700 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .marker-cluster-small.dimmed div,
+        .marker-cluster-medium.dimmed div,
+        .marker-cluster-large.dimmed div {
+            background: rgba(100, 100, 100, 0.6) !important;
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .filter-toolbar {
+                padding: 0 12px;
+                gap: 8px;
+                overflow-x: auto;
+            }
+
+            .toolbar-label {
+                display: none;
+            }
+
+            .toolbar-divider {
+                display: none;
+            }
+
+            .view-toggle-btn {
+                padding: 8px 10px;
+            }
+
+            .view-toggle-btn .icon {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-search-input {
+                width: 140px;
+            }
+
+            .map-legend {
+                bottom: 80px;
+                right: 10px;
+            }
+
+            .result-count-btn {
+                left: 10px;
+                right: 10px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script src="i18n.js"></script>
+    <div id="site-nav"></div>
+    <script src="nav-loader.js"></script>
+
+    <!-- Filter Toolbar -->
+    <div class="filter-toolbar" id="filterToolbar">
+        <!-- Page-specific: View Toggle -->
+        <div class="toolbar-section">
+            <span class="toolbar-label">Ansicht</span>
+            <div class="view-toggle">
+                <button class="view-toggle-btn active" data-view="fundorte">
+                    <span class="icon">📍</span> Fundorte
+                </button>
+                <button class="view-toggle-btn" data-view="bestattung">
+                    <span class="icon">🏛️</span> Bestattungsräume
+                </button>
+            </div>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Page-specific: Certainty Toggle -->
+        <div class="toolbar-toggle" id="certaintyToggle">
+            <span class="toolbar-toggle-label">Nur sichere Fundorte</span>
+            <div class="toolbar-toggle-switch"></div>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Facet dropdowns loaded from partial -->
+        <div id="filterFacetsPartial"></div>
+        <!-- Count, Search, Reset loaded from partial -->
+        <div id="filterToolbarPartial"></div>
+    </div>
+    <script src="filterToolbar-loader.js"></script>
+
+    <div id="map"></div>
+
+    <!-- Themen Panel -->
+    <div class="themes-panel" id="themesPanel">
+        <div class="themes-header">
+            <h2 data-i18n="themes.title" data-i18n-page="_global">📚 Themen erkunden</h2>
+            <button class="themes-close-btn" id="themesCloseBtn">×</button>
+        </div>
+        <div class="themes-body" id="themesBody">
+            <!-- Theme List View -->
+            <div id="themesList">
+                <!-- Themes werden per JS eingefügt -->
+            </div>
+            <!-- Theme Detail View -->
+            <div class="theme-detail" id="themeDetail">
+                <button class="theme-detail-back" id="themeBackBtn" data-i18n="themes.back" data-i18n-page="_global">← Zurück zur Übersicht</button>
+                <div class="theme-detail-title" id="themeDetailTitle"></div>
+                <div class="theme-detail-description" id="themeDetailDescription"></div>
+                <div class="theme-detail-stats" id="themeDetailStats"></div>
+                <div class="theme-detail-actions">
+                    <button class="theme-action-btn primary" id="themeShowOnMap" data-i18n="themes.show_on_map" data-i18n-page="_global">Auf Karte zeigen</button>
+                    <button class="theme-action-btn secondary" id="themeExploreAll" data-i18n="themes.explore_all" data-i18n-page="_global">Alle ansehen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Legend -->
+    <div class="map-legend">
+        <div class="legend-item">
+            <div class="legend-marker certain"></div>
+            <span data-i18n="map.legend.certain" data-i18n-page="_global">Sicherer Fundort</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker uncertain"></div>
+            <span data-i18n="map.legend.uncertain" data-i18n-page="_global">Vermutet / Unsicher</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker cluster">25</div>
+            <span data-i18n="map.legend.cluster" data-i18n-page="_global">Cluster (Anzahl)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker landmark">🏛️</div>
+            <span data-i18n="map.legend.landmark" data-i18n-page="_global">Landmarke</span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="objectModal.js"></script>
+    <script src="filterToolbar.js"></script>
+    <script>
+        // Check for embed mode
+        if (new URLSearchParams(window.location.search).has('embed')) {
+            document.body.classList.add('embed');
+        }
+
+        // Configuration
+        const CONFIG = {
+            CENTER: [48.115, 16.865], // Carnuntum area
+            ZOOM: 12,
+            MIN_ZOOM: 10,
+            MAX_ZOOM: 18,
+            DATE_MIN: 100,
+            DATE_MAX: 400
+        };
+
+        // State
+        let allData = [];
+        let filteredData = [];
+        let markers = L.markerClusterGroup({
+            maxClusterRadius: 30,
+            spiderfyOnMaxZoom: true,
+            showCoverageOnHover: false,
+            iconCreateFunction: function (cluster) {
+                const count = cluster.getChildCount();
+
+                // Check if all markers in cluster are dimmed
+                const allMarkers = cluster.getAllChildMarkers();
+                const allDimmed = allMarkers.every(marker =>
+                    marker.options.icon && marker.options.icon.options.className.includes('dimmed')
+                );
+
+                let size = 'small';
+                if (count > 10) size = 'medium';
+                if (count > 50) size = 'large';
+
+                const className = 'marker-cluster marker-cluster-' + size + (allDimmed ? ' dimmed' : '');
+
+                return L.divIcon({
+                    html: '<div>' + count + '</div>',
+                    className: className,
+                    iconSize: L.point(40, 40)
+                });
+            }
+        });
+
+        let annotationLayer = L.layerGroup();
+
+        let selectedFilters = {
+            dateMin: 100,
+            dateMax: 400,
+            types: new Set(),
+            materials: new Set(),
+            tags: new Set(),
+            certainOnly: false,
+            view: 'fundorte',
+            search: '',
+            ids: null
+        };
+
+        // Themen-Daten
+        const THEMES = [
+            {
+                id: 'grabstaetten',
+                icon: '⚱️',
+                title: 'Grabstätten & Nekropolen',
+                subtitle: 'Die Totenstadt von Carnuntum',
+                description: 'Die Nekropolen von Carnuntum erstrecken sich entlang der Ausfallstraßen der antiken Stadt. Hier wurden über Jahrhunderte die Verstorbenen bestattet – von einfachen Soldaten bis zu wohlhabenden Bürgern. Die Sarkophage zeugen von unterschiedlichen Bestattungsriten und sozialen Schichten.',
+                filter: obj => true,
+                center: [48.115, 16.865],
+                zoom: 13
+            },
+            {
+                id: 'militaer',
+                icon: '⚔️',
+                title: 'Militärische Bestattungen',
+                subtitle: 'Soldaten der Legionen',
+                description: 'Carnuntum war Standort der Legio XV Apollinaris und später der Legio XIV Gemina. Viele Sarkophage und Grabsteine stammen von Legionären, Centurionen und deren Familien. Die Inschriften verraten oft Rang, Dienstzeit und Herkunft.',
+                filter: obj => {
+                    const text = [obj['Titel / Darstellung'], obj.Beschreibung, obj.Inschrift].filter(Boolean).join(' ').toLowerCase();
+                    return text.includes('legion') || text.includes('milit') || text.includes('soldat') || text.includes('centurio') || text.includes('veteran');
+                },
+                center: [48.112, 16.858],
+                zoom: 14
+            },
+            {
+                id: 'zivilisten',
+                icon: '👨‍👩‍👧',
+                title: 'Zivile Bestattungen',
+                subtitle: 'Bürger und Familien',
+                description: 'Neben dem Militär lebte in Carnuntum eine bedeutende Zivilbevölkerung. Händler, Handwerker und ihre Familien hinterließen ebenfalls Grabdenkmäler. Familienszenen auf Sarkophagen zeigen das alltägliche Leben.',
+                filter: obj => {
+                    const text = [obj['Titel / Darstellung'], obj.Beschreibung].filter(Boolean).join(' ').toLowerCase();
+                    return text.includes('familie') || text.includes('frau') || text.includes('kind') || text.includes('ehepaar');
+                },
+                center: [48.118, 16.870],
+                zoom: 14
+            },
+            {
+                id: 'mythologie',
+                icon: '🏛️',
+                title: 'Mythologische Darstellungen',
+                subtitle: 'Götter und Helden',
+                description: 'Viele Sarkophage zeigen mythologische Szenen: Götter, Helden und Fabelwesen. Diese Darstellungen sollten den Verstorbenen im Jenseits schützen oder ihre Tugenden symbolisieren.',
+                filter: obj => {
+                    const text = [obj['Titel / Darstellung'], obj.Beschreibung].filter(Boolean).join(' ').toLowerCase();
+                    return text.includes('gott') || text.includes('göttin') || text.includes('jupiter') || text.includes('mars') || text.includes('venus') || text.includes('hercules') || text.includes('mytho');
+                },
+                center: [48.110, 16.862],
+                zoom: 14
+            },
+            {
+                id: 'inschriften',
+                icon: '📜',
+                title: 'Inschriften & Texte',
+                subtitle: 'Stimmen aus der Antike',
+                description: 'Die lateinischen Inschriften auf den Sarkophagen sind wertvolle historische Quellen. Sie nennen Namen, Berufe, Lebensalter und familiäre Beziehungen – und lassen uns die Menschen hinter den Steinen kennenlernen.',
+                filter: obj => obj.Inschrift && obj.Inschrift.length > 10,
+                center: [48.115, 16.865],
+                zoom: 13
+            },
+            {
+                id: 'handwerk',
+                icon: '🔨',
+                title: 'Steinmetzkunst',
+                subtitle: 'Techniken und Materialien',
+                description: 'Die Sarkophage zeigen verschiedene Bearbeitungstechniken und Materialien. Lokaler Kalkstein, importierter Marmor und unterschiedliche Reliefstile verraten viel über Handwerk und Handel in der Antike.',
+                filter: obj => {
+                    const material = obj['Material / Technik (für Objektbeschriftung)'] || '';
+                    return material.toLowerCase().includes('marmor') || material.toLowerCase().includes('kalkstein');
+                },
+                center: [48.115, 16.865],
+                zoom: 13
+            }
+        ];
+
+        let currentTheme = null;
+
+        // Initialize Map with dark tiles
+        const map = L.map('map', {
+            center: CONFIG.CENTER,
+            zoom: CONFIG.ZOOM,
+            minZoom: CONFIG.MIN_ZOOM,
+            maxZoom: CONFIG.MAX_ZOOM,
+            zoomControl: true
+        });
+
+        // Dark map tiles (CartoDB Dark Matter)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        map.addLayer(markers);
+        map.addLayer(annotationLayer);
+
+        // Move zoom control to right
+        map.zoomControl.setPosition('topright');
+
+        // Load Data (Sarkophage) + Annotationen parallel
+        Promise.all([
+            fetch('data.json').then(res => res.json()),
+            fetch('assets/annotationen.json').then(res => res.json()).catch(() => null)
+        ])
+            .then(([data, annotations]) => {
+                allData = (Array.isArray(data) ? data : [])
+                    .map(obj => {
+                        if (!obj) return null;
+                        const latRaw = obj.lat;
+                        const lngRaw = obj.lng;
+                        if (latRaw === null || latRaw === undefined || latRaw === '') return null;
+                        if (lngRaw === null || lngRaw === undefined || lngRaw === '') return null;
+                        const lat = Number(latRaw);
+                        const lng = Number(lngRaw);
+                        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+                        obj.lat = lat;
+                        obj.lng = lng;
+                        if (typeof obj.certain !== 'boolean') {
+                            obj.certain = true;
+                        }
+                        return obj;
+                    })
+                    .filter(Boolean);
+
+                renderThemesList();
+
+                // Handle ids parameter (comma-separated inventory numbers)
+                const urlParams = new URLSearchParams(window.location.search);
+                const idsParam = urlParams.get('ids');
+                let idsFilter = null;
+                if (idsParam) {
+                    const ids = new Set(idsParam.split(',').map(id => decodeURIComponent(id.trim())));
+                    idsFilter = obj => obj.Inventarnummer && ids.has(obj.Inventarnummer);
+                }
+
+                // Initialize FilterToolbar with central logic
+                FilterToolbar.init({
+                    facets: ['material', 'type', 'tags', 'gender', 'beigaben'],
+                    onFilterChange: (filtered, state) => {
+                        filteredData = filtered;
+                        updateMarkers();
+                        updateResultCount();
+                    },
+                    onReset: () => {
+                        // Reset idsFilter when toolbar is reset
+                        idsFilter = null;
+                    }
+                });
+
+                // Additional filter for certainty toggle and IDs
+                const getAdditionalFilter = () => (obj) => {
+                    if (selectedFilters.certainOnly && !obj.certain) return false;
+                    if (idsFilter && !idsFilter(obj)) return false;
+                    return true;
+                };
+
+                // Set data and let FilterToolbar handle filtering
+                FilterToolbar.setData(allData, getAdditionalFilter());
+
+                if (annotations && annotations.items) {
+                    renderAnnotations(annotations.items);
+                }
+            })
+            .catch(err => {
+                console.error('Error loading data:', err);
+            });
+
+        // Get approximate location from Standort text
+        function getLocationFromStandort(text) {
+            const locations = {
+                'Bad Deutsch-Altenburg': { lat: 48.1311, lng: 16.9064 },
+                'Petronell-Carnuntum': { lat: 48.1128, lng: 16.8567 },
+                'Hainburg': { lat: 48.1467, lng: 16.9456 },
+                'Carnuntum': { lat: 48.1150, lng: 16.8600 },
+                'default': { lat: 48.115, lng: 16.865 }
+            };
+
+            for (const [key, coords] of Object.entries(locations)) {
+                if (text && text.toLowerCase().includes(key.toLowerCase())) {
+                    return coords;
+                }
+            }
+            return locations.default;
+        }
+
+        // Update Markers (Sarkophage)
+        // Always show ALL markers, highlight filtered ones, dim the rest (like steinzelt.html)
+        function updateMarkers() {
+            markers.clearLayers();
+
+            // Build set of filtered inventory numbers for quick lookup
+            const filteredInvs = new Set(filteredData.map(obj => obj.Inventarnummer).filter(Boolean));
+            const hasActiveFilter = filteredData.length < allData.length;
+
+            allData.forEach(obj => {
+                if (!obj.lat || !obj.lng) return;
+
+                const inv = obj.Inventarnummer || '';
+                const isFiltered = !hasActiveFilter || filteredInvs.has(inv);
+
+                let className = 'custom-marker';
+                if (!obj.certain) className += ' uncertain';
+                if (hasActiveFilter) {
+                    className += isFiltered ? ' highlighted' : ' dimmed';
+                }
+
+                const markerIcon = L.divIcon({
+                    html: '',
+                    className: className,
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
+                });
+
+                const marker = L.marker([obj.lat, obj.lng], { icon: markerIcon });
+                marker.on('click', () => showPopup(obj, marker));
+                markers.addLayer(marker);
+            });
+        }
+
+        // Render annotations (separate layer)
+        function renderAnnotations(items) {
+            annotationLayer.clearLayers();
+            if (!Array.isArray(items)) return;
+
+            items.forEach(item => {
+                if (!item) return;
+                const lat = Number(item.lat);
+                const lng = Number(item.lng);
+                if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
+
+                const color = item.color || '#f6b15d';
+                const title = item.title || item.label || 'Annotation';
+                const popupHtml = `
+                    <div style="min-width:200px">
+                        <strong>${title}</strong><br>
+                        ${item.description ? `<div style="margin-top:6px">${item.description}</div>` : ''}
+                        ${item.link ? `<div style="margin-top:6px"><a href="${item.link}" target="_blank" rel="noopener">Mehr</a></div>` : ''}
+                    </div>
+                `;
+
+                const icon = L.divIcon({
+                    html: item.icon || '⭐',
+                    className: 'annotation-icon',
+                    iconSize: [26, 26],
+                    iconAnchor: [13, 13]
+                });
+
+                if (item.radius) {
+                    const radius = Number(item.radius) || 40;
+                    L.circle([lat, lng], {
+                        radius,
+                        color,
+                        weight: item.line_width || 2,
+                        fillColor: color,
+                        fillOpacity: 0.2
+                    }).bindPopup(popupHtml).addTo(annotationLayer);
+                }
+
+                L.marker([lat, lng], { icon }).bindPopup(popupHtml).addTo(annotationLayer);
+            });
+        }
+
+        // Show Popup
+        window.aetcarAdjustMapPopupImage = function (imgEl) {
+            try {
+                if (!imgEl) return;
+                const frame = imgEl.closest('.popup-image-frame');
+                if (!frame) return;
+
+                imgEl.style.width = '100%';
+                imgEl.style.height = '100%';
+                imgEl.style.objectFit = 'contain';
+                imgEl.style.objectPosition = 'center';
+                imgEl.style.position = '';
+                imgEl.style.left = '';
+                imgEl.style.top = '';
+                imgEl.style.transform = '';
+                imgEl.style.transformOrigin = '';
+
+                const nw = imgEl.naturalWidth;
+                const nh = imgEl.naturalHeight;
+                if (!(nw > 0 && nh > 0)) return;
+
+                if (nh > nw) {
+                    const w = frame.clientWidth;
+                    const h = frame.clientHeight;
+                    imgEl.style.width = h + 'px';
+                    imgEl.style.height = w + 'px';
+                    imgEl.style.position = 'absolute';
+                    imgEl.style.left = '50%';
+                    imgEl.style.top = '50%';
+                    imgEl.style.transformOrigin = 'center';
+                    imgEl.style.transform = 'translate(-50%, -50%) rotate(-90deg)';
+                }
+            } catch (e) {
+                // no-op
+            }
+        };
+
+        function showPopup(obj, marker) {
+            const inv = obj.Inventarnummer || '';
+            const title = obj['Titel / Darstellung'] || inv || 'Unbekanntes Objekt';
+            const location = obj.Standort || obj.Texteingabe || 'Unbekannter Standort';
+            const date = obj.Datierung || 'Undatiert';
+            const material = obj['Material / Technik (für Objektbeschriftung)'] || 'Unbekannt';
+            const imageUrl = inv ? `extracted_sarcophagi/${inv}.jpg` : '';
+            const externalImageUrl = obj && obj.foto_url ? String(obj.foto_url).trim() : '';
+            const externalImageAttr = externalImageUrl ? externalImageUrl.replace(/\"/g, '&quot;') : '';
+
+            const popupContent = `
+                <div class="popup-content">
+                    ${imageUrl ? `
+                        <div class="popup-image-frame">
+                            <img class="popup-image" src="${imageUrl}" data-fallback="${externalImageAttr}" alt="${title}" onload="window.aetcarAdjustMapPopupImage(this)" onerror="const fb=this.dataset.fallback; if(fb){this.onerror=null; this.src=fb;} else {this.parentElement.innerHTML='<div class=popup-image-placeholder>Kein Bild verfügbar</div>'}">
+                            ${obj.Objektname ? `<div class="popup-badge">${obj.Objektname}</div>` : ''}
+                        </div>
+                    ` : '<div class="popup-image-placeholder">Kein Bild verfügbar</div>'}
+
+                    <div class="popup-body">
+                        <div class="popup-title">${title}</div>
+                        <div class="popup-location">📍 ${location.length > 40 ? location.substring(0, 40) + '...' : location}</div>
+                        <div class="popup-meta">
+                            <div class="popup-meta-item">
+                                <div class="popup-meta-label">Datierung</div>
+                                <div class="popup-meta-value">${date}</div>
+                            </div>
+                            <div class="popup-meta-item">
+                                <div class="popup-meta-label">Material</div>
+                                <div class="popup-meta-value">${material.length > 15 ? material.substring(0, 15) + '...' : material}</div>
+                            </div>
+                        </div>
+                        <button class="popup-details-btn" onclick="openDetails('${inv}')">Details ansehen</button>
+                    </div>
+                </div>
+            `;
+
+            map.closePopup();
+            const opts = { maxWidth: 300, minWidth: 280, closeButton: true, autoClose: true, closeOnClick: true };
+            const existing = marker.getPopup && marker.getPopup();
+            if (existing) {
+                existing.setContent(popupContent);
+                existing.options.maxWidth = opts.maxWidth;
+                existing.options.minWidth = opts.minWidth;
+                existing.options.closeButton = opts.closeButton;
+                existing.options.autoClose = opts.autoClose;
+                existing.options.closeOnClick = opts.closeOnClick;
+            } else {
+                marker.bindPopup(popupContent, opts);
+                marker.on('popupclose', () => {
+                    try { marker.unbindPopup(); } catch { }
+                });
+            }
+            marker.openPopup();
+        }
+
+        // Open Details Modal
+        window.openDetails = function (invNum) {
+            const obj = allData.find(o => o.Inventarnummer === invNum);
+            if (obj && typeof window.openObjectModal === 'function') {
+                const imageUrl = invNum ? `extracted_sarcophagi/${invNum}.jpg` : '';
+                // Use currently displayed/filtered objects as navigation dataset
+                const displayedItems = filteredData.filter(o => o.lat && o.lng);
+                window.openObjectModal(obj, {
+                    imageUrl,
+                    dataset: displayedItems,
+                    imageUrlBuilder: (obj) => {
+                        const inv = obj && obj.Inventarnummer;
+                        return inv && obj && obj.lat && obj.lng ? `extracted_sarcophagi/${inv}.jpg` : '';
+                    }
+                });
+            }
+        };
+
+        // Update Result Count
+        function updateResultCount() {
+            const countEl = document.getElementById('resultCount');
+            if (countEl) {
+                countEl.textContent = filteredData.length;
+            }
+            // Also update toolbar count from partial
+            const toolbarCountEl = document.getElementById('toolbarObjectCount');
+            if (toolbarCountEl) {
+                toolbarCountEl.textContent = filteredData.length;
+            }
+        }
+
+        // ========== THEMEN PANEL ==========
+
+        // Render Themes List
+        function renderThemesList() {
+            const container = document.getElementById('themesList');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            THEMES.forEach(theme => {
+                const matchingObjects = allData.filter(theme.filter);
+                const count = matchingObjects.length;
+
+                const card = document.createElement('div');
+                card.className = 'theme-card';
+                card.dataset.themeId = theme.id;
+                card.innerHTML = `
+                    <div class="theme-card-header">
+                        <div class="theme-icon">${theme.icon}</div>
+                        <div class="theme-title">${theme.title}</div>
+                    </div>
+                    <div class="theme-subtitle">${theme.subtitle}</div>
+                    <div class="theme-count">${count} Objekte</div>
+                `;
+
+                card.addEventListener('click', () => showThemeDetail(theme));
+                container.appendChild(card);
+            });
+        }
+
+        // Show Theme Detail
+        function showThemeDetail(theme) {
+            currentTheme = theme;
+            const matchingObjects = allData.filter(theme.filter);
+
+            // Update detail view
+            document.getElementById('themeDetailTitle').innerHTML = `${theme.icon} ${theme.title}`;
+            document.getElementById('themeDetailDescription').textContent = theme.description;
+
+            // Calculate stats
+            const materials = {};
+            const dates = [];
+            matchingObjects.forEach(obj => {
+                const mat = obj['Material / Technik (für Objektbeschriftung)'] || 'Unbekannt';
+                materials[mat] = (materials[mat] || 0) + 1;
+                if (obj['Suchdatum Anfang']) dates.push(obj['Suchdatum Anfang']);
+            });
+
+            const topMaterial = Object.entries(materials).sort((a, b) => b[1] - a[1])[0];
+            const avgDate = dates.length > 0 ? Math.round(dates.reduce((a, b) => a + b, 0) / dates.length) : null;
+
+            document.getElementById('themeDetailStats').innerHTML = `
+                <div class="theme-stat">
+                    <div class="theme-stat-value">${matchingObjects.length}</div>
+                    <div class="theme-stat-label">Objekte</div>
+                </div>
+                <div class="theme-stat">
+                    <div class="theme-stat-value">${avgDate ? avgDate + ' n.Chr.' : '–'}</div>
+                    <div class="theme-stat-label">Ø Datierung</div>
+                </div>
+            `;
+
+            // Switch views
+            document.getElementById('themesList').style.display = 'none';
+            document.getElementById('themeDetail').classList.add('active');
+
+            // Highlight card
+            document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+            const activeCard = document.querySelector(`.theme-card[data-theme-id="${theme.id}"]`);
+            if (activeCard) activeCard.classList.add('active');
+
+            // Apply theme filter to map
+            applyThemeToMap(theme);
+        }
+
+        // Apply Theme to Map
+        function applyThemeToMap(theme) {
+            const matchingObjects = allData.filter(theme.filter);
+
+            // Update filtered data
+            filteredData = matchingObjects.filter(obj => {
+                // Still apply other filters
+                if (selectedFilters.certainOnly && !obj.certain) return false;
+                if (selectedFilters.search) {
+                    const searchText = [
+                        obj['Titel / Darstellung'],
+                        obj.Beschreibung,
+                        obj.Inventarnummer,
+                        obj.Objektname
+                    ].filter(Boolean).join(' ').toLowerCase();
+                    if (!searchText.includes(selectedFilters.search.toLowerCase())) return false;
+                }
+                return true;
+            });
+
+            updateMarkers();
+            updateResultCount();
+
+            // Fly to theme location
+            map.flyTo(theme.center, theme.zoom, { duration: 1 });
+        }
+
+        // Back to Themes List
+        function showThemesList() {
+            currentTheme = null;
+            document.getElementById('themesList').style.display = 'block';
+            document.getElementById('themeDetail').classList.remove('active');
+            document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+
+            // Reset to all data - trigger FilterToolbar to refilter
+            FilterToolbar.setData(allData, getAdditionalFilter());
+            map.flyTo(CONFIG.CENTER, CONFIG.ZOOM, { duration: 1 });
+        }
+
+        // Theme Panel Event Listeners
+        document.getElementById('themeBackBtn')?.addEventListener('click', showThemesList);
+
+        document.getElementById('themeShowOnMap')?.addEventListener('click', () => {
+            if (currentTheme) {
+                map.flyTo(currentTheme.center, currentTheme.zoom + 1, { duration: 1 });
+            }
+        });
+
+        document.getElementById('themeExploreAll')?.addEventListener('click', () => {
+            if (currentTheme) {
+                const matchingObjects = allData.filter(currentTheme.filter);
+                const ids = matchingObjects.map(obj => obj.Inventarnummer).filter(Boolean);
+                const params = new URLSearchParams();
+                if (ids.length > 0) {
+                    params.set('ids', ids.join(','));
+                }
+                window.location.href = 'steinzelt.html?' + params.toString();
+            }
+        });
+
+        document.getElementById('themesCloseBtn')?.addEventListener('click', () => {
+            document.getElementById('themesPanel').style.display = 'none';
+        });
+
+        // ========== END THEMEN PANEL ==========
+
+        // Dropdown toggle is now handled by FilterToolbar.js
+
+        // Certainty Toggle
+        const certaintyToggle = document.getElementById('certaintyToggle');
+        certaintyToggle.addEventListener('click', () => {
+            certaintyToggle.classList.toggle('active');
+            selectedFilters.certainOnly = certaintyToggle.classList.contains('active');
+            // Re-apply filters with updated certainty
+            FilterToolbar.setData(allData, getAdditionalFilter());
+        });
+
+        // View Toggle
+        document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedFilters.view = btn.dataset.view;
+                // View change doesn't affect filtering, just UI
+            });
+        });
+
+        // Reset Filters
+        document.getElementById('toolbarResetFilters')?.addEventListener('click', () => {
+            selectedFilters = {
+                dateMin: 100,
+                dateMax: 400,
+                types: new Set(),
+                materials: new Set(),
+                tags: new Set(),
+                certainOnly: false,
+                view: 'fundorte',
+                search: ''
+            };
+
+            // Reset UI
+            document.querySelectorAll('.dropdown-item.checked').forEach(item => {
+                item.classList.remove('checked');
+            });
+            certaintyToggle.classList.remove('active');
+            const searchEl = document.getElementById('toolbarSearch');
+            if (searchEl) searchEl.value = '';
+
+            // Clear URL parameters to remove ids filter
+            const url = new URL(window.location);
+            url.searchParams.delete('ids');
+            url.searchParams.delete('search');
+            url.searchParams.delete('tags');
+            url.searchParams.delete('material');
+            url.searchParams.delete('type');
+            url.searchParams.delete('gender');
+            window.history.replaceState({}, '', url);
+
+            FilterToolbar.reset();
+        });
+
+        // Global Search
+        const globalSearch = document.getElementById('toolbarSearch');
+        let searchTimeout;
+        globalSearch?.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                selectedFilters.search = e.target.value;
+                // Search is handled by FilterToolbar
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sarcophagus Details Modal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }.custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: #94a3b8;
+        }.dark .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+        }
+        .dark .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen w-full overflow-hidden flex items-center justify-center p-4">
+<header class="fixed top-0 left-0 w-full h-16 bg-white dark:bg-[#101622] border-b border-gray-200 dark:border-gray-800 flex items-center justify-between px-6 z-10 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary dark:bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
+<span class="material-symbols-outlined text-[20px]">museum</span>
+</div>
+<span class="text-lg font-black text-gray-900 dark:text-white tracking-tight">Aeternitas Carnunti</span>
+</div>
+<nav class="hidden md:flex items-center gap-1">
+<a class="px-3 py-2 text-sm font-bold text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 rounded-lg transition-colors" href="#">Start</a>
+<a class="px-3 py-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors" href="#">Fundkarte</a>
+<a class="px-3 py-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors" href="#">Steinzelt</a>
+<a class="px-3 py-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors" href="#">Vergleich</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center relative group">
+<span class="material-symbols-outlined absolute left-3 text-gray-400 group-focus-within:text-primary dark:group-focus-within:text-blue-400 transition-colors text-[18px]">search</span>
+<input class="pl-9 pr-4 py-1.5 h-9 bg-gray-100 dark:bg-gray-800/50 border-none rounded-full text-sm text-gray-800 dark:text-gray-200 focus:ring-2 focus:ring-primary dark:focus:ring-blue-500 w-48 transition-all" placeholder="Suchen..." type="text"/>
+</div>
+<div class="h-6 w-px bg-gray-200 dark:bg-gray-700 hidden lg:block"></div>
+<button class="flex items-center gap-1.5 text-xs font-bold text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-1.5 rounded-full transition-colors border border-gray-200 dark:border-gray-700">
+            DE <span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+</div>
+</header>
+<div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"></div>
+<div class="relative w-full max-w-5xl h-[90vh] bg-white dark:bg-[#1a202c] rounded-xl shadow-2xl flex flex-col z-50 overflow-hidden border border-gray-100 dark:border-gray-700">
+<div class="flex flex-col border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-[#1a202c] z-20 shrink-0">
+<div class="flex justify-between items-start p-6 pb-2">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-1 opacity-90">
+<span class="w-1.5 h-1.5 rounded-full bg-primary dark:bg-blue-400"></span>
+<span class="text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-widest leading-none">Aeternitas Carnunti</span>
+</div>
+<h1 class="text-[#111318] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">
+                        Sarkophag des Gaius
+                    </h1>
+<div class="flex items-center gap-2 text-[#616f89] dark:text-gray-400 text-sm font-medium">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Carnuntum West, Feld 4</span>
+<span class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600 mx-1"></span>
+<span class="text-primary dark:text-blue-400 font-bold">INV-29384</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-[#616f89] dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 hover:bg-primary/10 dark:hover:bg-blue-500/10 rounded-full transition-colors" title="Teilen">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="p-2 text-[#616f89] dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 hover:bg-primary/10 dark:hover:bg-blue-500/10 rounded-full transition-colors" title="Link kopieren">
+<span class="material-symbols-outlined">link</span>
+</button>
+<button class="p-2 text-[#111318] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors" title="Schließen">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center px-6 pb-4 pt-2 gap-4">
+<div class="flex gap-2 order-2 md:order-1 w-full md:w-auto">
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white text-xs font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex-1 md:flex-none justify-center border border-transparent dark:border-gray-700">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span class="truncate">Vorheriges</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-lg bg-[#f0f2f4] dark:bg-gray-800 text-[#111318] dark:text-white text-xs font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex-1 md:flex-none justify-center border border-transparent dark:border-gray-700">
+<span class="truncate">Nächstes</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex h-10 w-full md:w-auto items-center justify-center rounded-lg bg-[#f0f2f4] dark:bg-gray-800 p-1 order-1 md:order-2 border border-transparent dark:border-gray-700">
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-md px-6 text-[#616f89] dark:text-gray-400 text-sm font-bold leading-normal transition-all hover:text-gray-900 dark:hover:text-gray-200">
+<span class="truncate">Kurz erklärt</span>
+<input class="invisible w-0 absolute" name="view-mode" type="radio" value="public"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-md px-6 bg-white dark:bg-gray-700 shadow-sm text-primary dark:text-blue-400 text-sm font-bold leading-normal transition-all">
+<span class="truncate">Forschung / Details</span>
+<input checked="" class="invisible w-0 absolute" name="view-mode" type="radio" value="research"/>
+</label>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto custom-scroll p-6 bg-white dark:bg-[#1a202c]">
+<div class="max-w-[960px] mx-auto flex flex-col gap-8">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="flex flex-col gap-3 group">
+<div class="relative w-full h-80 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-inner">
+<div class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs px-2 py-1 rounded font-medium flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-[14px]">photo_camera</span>
+                                Foto
+                            </div>
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="High resolution photograph of the limestone sarcophagus showing relief carvings of mythological scenes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBMhP1Dpe2VZ4IIQOjPlfBDkBYTAJhQCrjB5IeXX8ncxuaDClc8DY53eqG0RrBh0vTPZEh9aoXPHWYBehjm5fWgLWOEIpYW-9ksGcSuzLvAUUwJmBrvgYLdWnt8eiKoT2CwgUjFy3vlEDOXhkFBdkk1kKAkxSJXeEuL8RkGM24YxYwQds5pVKDdzI_bgYuXqjkcSpk-N10MpVZKRF0dmsPDYDdeaTUkLmvQMAe5zcU4RQjEP48l9wj7a_hQss0L390k0nZjKMpHJc79");'>
+</div>
+</div>
+<div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 px-1">
+<span>Ansicht: Frontseite</span>
+<a class="flex items-center gap-1 hover:text-primary dark:hover:text-blue-400 transition-colors" href="#">
+<span class="material-symbols-outlined text-[14px]">fullscreen</span>
+                                Vollbild
+                            </a>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="relative w-full h-80 rounded-xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 flex items-center justify-center">
+<div class="absolute top-3 left-3 bg-primary/10 dark:bg-blue-500/10 text-primary dark:text-blue-400 text-xs px-2 py-1 rounded font-bold flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-[14px] icon-filled">architecture</span>
+                                Zeichnung
+                            </div>
+<img alt="Line drawing showing the dimensions and relief details of the sarcophagus" class="max-h-full max-w-full opacity-80 mix-blend-multiply dark:mix-blend-normal dark:invert dark:opacity-70 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDVsUDsDvwIwfdHCGGI1dwX_nqhqgmLyBXZRZh_exO-oCIoRDbjmIxnHsKOie3aqR8CbV1fgEgebi1WreLwBuyD8e33Kb6BR1kdVLgK4ch_5DHHTT7ajC6v7yv7hizwXFSPS4uLVTX24XtwJjCKxpXIu5mbDveWZ5a9k8pSYCgdEVWjKtCEVt2xuImqnRwujGf3797GzFpmbxiqp8WOTEv1JwyFsaI_Eo0wlri4T6U617sTDK1Ik6B1gObOxlglxF8LkHfMG8kDKG-"/>
+</div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-lg p-2">
+<span class="block text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Länge</span>
+<span class="block text-sm font-bold text-gray-900 dark:text-white">224 cm</span>
+</div>
+<div class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-lg p-2">
+<span class="block text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Breite</span>
+<span class="block text-sm font-bold text-gray-900 dark:text-white">110 cm</span>
+</div>
+<div class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700 rounded-lg p-2">
+<span class="block text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Höhe</span>
+<span class="block text-sm font-bold text-gray-900 dark:text-white">95 cm</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 border-t border-gray-100 dark:border-gray-700 pt-8">
+<div class="col-span-1 flex flex-col gap-6">
+<h3 class="text-sm uppercase tracking-wider font-bold text-gray-400 dark:text-gray-500">Datierung &amp; Kontext</h3>
+<div class="bg-blue-50/50 dark:bg-blue-900/20 border-l-4 border-primary dark:border-blue-500 p-4 rounded-r-lg">
+<span class="text-xs font-bold text-primary dark:text-blue-400 uppercase mb-1 block">Zeitstellung</span>
+<div class="flex items-baseline gap-2">
+<span class="text-2xl font-black text-gray-900 dark:text-white">150 – 180</span>
+<span class="text-sm font-medium text-gray-600 dark:text-gray-300">n. Chr.</span>
+</div>
+<div class="mt-2 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-green-600 dark:text-green-400">check_circle</span>
+<span class="text-xs font-bold text-green-700 dark:text-green-400">Datierung gesichert</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
+                                Basiert auf stilistischen Merkmalen der Reliefs und Grabbeigaben (Münzdatierung).
+                            </p>
+</div>
+<div class="space-y-4">
+<div>
+<span class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Material</span>
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Leithakalkstein (lokal)</p>
+</div>
+<div>
+<span class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Erhaltungszustand</span>
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Deckel gebrochen, Kasten vollständig. Reliefs stark verwittert.</p>
+</div>
+</div>
+</div>
+<div class="col-span-1 lg:col-span-2 flex flex-col gap-8">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<h3 class="text-sm uppercase tracking-wider font-bold text-gray-400 dark:text-gray-500">Individuen (Bestattungen)</h3>
+<span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-[10px] font-bold px-2 py-0.5 rounded-full">2</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex items-start gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50 dark:hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(19,91,236,0.15)] transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-primary dark:text-blue-400 shrink-0 group-hover:bg-primary group-hover:text-white dark:group-hover:bg-blue-500 transition-colors">
+<span class="material-symbols-outlined">man</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-blue-400 transition-colors">Individuum A</h4>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Männlich, adult (40-50 J.)</p>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-gray-600 dark:text-gray-300">Körperbestattung</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary/50 dark:hover:border-blue-500/50 hover:shadow-[0_0_15px_rgba(19,91,236,0.15)] transition-all cursor-pointer group">
+<div class="w-10 h-10 rounded-full bg-pink-50 dark:bg-pink-900/30 flex items-center justify-center text-pink-500 dark:text-pink-400 shrink-0 group-hover:bg-pink-500 group-hover:text-white dark:group-hover:bg-pink-500 transition-colors">
+<span class="material-symbols-outlined">woman</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-gray-900 dark:text-white group-hover:text-pink-500 dark:group-hover:text-pink-400 transition-colors">Individuum B</h4>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Weiblich, adult (20-30 J.)</p>
+<div class="flex gap-2 mt-2">
+<span class="text-[10px] bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-gray-600 dark:text-gray-300">Nachbestattung</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-4">
+<h3 class="text-sm uppercase tracking-wider font-bold text-gray-400 dark:text-gray-500">Beigaben</h3>
+<span class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-[10px] font-bold px-2 py-0.5 rounded-full">3 Gruppen</span>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="flex items-center gap-2 pl-2 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary/40 dark:hover:border-blue-500/40 hover:bg-primary/5 dark:hover:bg-blue-500/10 transition-all cursor-pointer bg-white dark:bg-gray-800">
+<div class="w-8 h-8 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-gray-600 dark:text-gray-300">local_bar</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-800 dark:text-gray-200">Glasflasche</span>
+<span class="text-[10px] text-gray-500 dark:text-gray-400">Blaugrünes Glas</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-2 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary/40 dark:hover:border-blue-500/40 hover:bg-primary/5 dark:hover:bg-blue-500/10 transition-all cursor-pointer bg-white dark:bg-gray-800">
+<div class="w-8 h-8 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-gray-600 dark:text-gray-300">monetization_on</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-800 dark:text-gray-200">Münze (Sesterz)</span>
+<span class="text-[10px] text-gray-500 dark:text-gray-400">Marc Aurel</span>
+</div>
+</div>
+<div class="flex items-center gap-2 pl-2 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-primary/40 dark:hover:border-blue-500/40 hover:bg-primary/5 dark:hover:bg-blue-500/10 transition-all cursor-pointer bg-white dark:bg-gray-800">
+<div class="w-8 h-8 rounded bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-gray-600 dark:text-gray-300">restaurant</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-gray-800 dark:text-gray-200">Keramikschale</span>
+<span class="text-[10px] text-gray-500 dark:text-gray-400">Terra Sigillata</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-100 dark:border-gray-700 pt-6 pb-12 mt-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h4 class="text-xs font-bold text-gray-900 dark:text-white uppercase mb-3">Bibliographie</h4>
+<ul class="space-y-2">
+<li class="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-gray-200 dark:border-gray-700">
+<span class="font-semibold text-gray-800 dark:text-gray-300">Kandler, M. (2004)</span>. 
+                                    <span class="italic">Die Sarkophage von Carnuntum</span>. Wien: ÖAI. S. 112, Abb. 3.
+                                </li>
+<li class="text-sm text-gray-600 dark:text-gray-400 pl-4 border-l-2 border-gray-200 dark:border-gray-700">
+<span class="font-semibold text-gray-800 dark:text-gray-300">Gassner, V. (1998)</span>. 
+                                    <span class="italic">Das Gräberfeld an der Bernsteinstraße</span>. Carnuntum Jahrbuch.
+                                </li>
+</ul>
+</div>
+<div class="flex flex-col md:items-end justify-end gap-2">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full w-fit">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Status: Publiziert</span>
+</div>
+<p class="text-[11px] text-gray-400 dark:text-gray-500">
+                                Zuletzt bearbeitet: <time datetime="2024-03-12">12. März 2024</time> von Dr. A. Müller
+                            </p>
+<p class="text-[11px] text-gray-400 dark:text-gray-500">
+                                Objekt-UUID: <span class="font-mono">3c091a4d-c2c7...</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

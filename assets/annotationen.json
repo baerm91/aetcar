@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "description": "Annotationen für Fundkarte (Overlays/Marker)",
+    "total_count": 6
+  },
+  "items": [
+    {
+      "lat": 48.1040508637402,
+      "lng": 16.85426107226264,
+      "title": "Heidentor"
+    },
+    {
+      "lat": 48.12682332370787,
+      "lng": 16.892633238449847,
+      "title": "Amphitheater I"
+    },
+    {
+      "lat": 48.11008958988804,
+      "lng": 16.850899037479827,
+      "title": "Amphitheater II"
+    },
+    {
+      "lat": 48.13409021606421,
+      "lng": 16.915936255575378,
+      "title": "Pfaffenberg"
+    },
+    {
+      "lat": 48.112504593790106,
+      "lng": 16.858185721907976,
+      "title": "Archäologischer Park Carnuntum"
+    },
+    {
+      "lat": 48.13990649040784,
+      "lng": 16.90338822835894,
+      "title": "Museum Carnuntinum"
+    }
+  ]
+}

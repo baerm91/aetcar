@@ -1,0 +1,548 @@
+/**
+ * Shared Filter Toolbar Styles
+ * Used by fundkarte.html, steinzelt.html, panorama_optimized.html
+ */
+
+/* Filter Toolbar Container */
+.filter-toolbar {
+    position: sticky;
+    top: 64px;
+    z-index: 120;
+    height: 52px;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 16px;
+}
+
+/* Fixed position variant (for map pages) */
+.filter-toolbar.fixed {
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+/* Toolbar Section */
+.toolbar-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toolbar-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+/* Toolbar Divider */
+.toolbar-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 0 8px;
+}
+
+/* Toolbar Dropdown */
+.toolbar-dropdown {
+    position: relative;
+}
+
+.toolbar-dropdown-btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.toolbar-dropdown-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.toolbar-dropdown-btn.has-selection {
+    background: rgba(246, 177, 93, 0.12);
+    border-color: rgba(246, 177, 93, 0.3);
+}
+
+.toolbar-dropdown-btn .arrow {
+    font-size: 8px;
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+}
+
+.toolbar-dropdown.open .toolbar-dropdown-btn .arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.toolbar-dropdown-menu {
+    position: fixed;
+    min-width: 220px;
+    max-height: 280px;
+    overflow-y: auto;
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 12px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    padding: 8px;
+    display: none;
+    z-index: 10000;
+}
+
+/* Menu display is now controlled via JavaScript when moved to body */
+.toolbar-dropdown.open .toolbar-dropdown-menu {
+    display: block;
+}
+
+/* Menus moved to body are controlled via inline styles */
+body > .toolbar-dropdown-menu {
+    display: none;
+}
+
+/* Dropdown Item */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Dropdown Checkbox */
+.dropdown-checkbox {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.dropdown-item.checked .dropdown-checkbox {
+    background: #f6b15d;
+    border-color: #f6b15d;
+}
+
+.dropdown-checkbox::after {
+    content: '✓';
+    font-size: 10px;
+    color: #000;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.dropdown-item.checked .dropdown-checkbox::after {
+    opacity: 1;
+}
+
+/* Dropdown Label */
+.dropdown-label {
+    flex: 1;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Dropdown Count Badge */
+.dropdown-count {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.62);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Object Count */
+.toolbar-count {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f6b15d;
+    white-space: nowrap;
+}
+
+/* Search Input */
+.toolbar-search {
+    margin-left: auto;
+}
+
+.toolbar-search-input {
+    width: 200px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.toolbar-search-input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(246, 177, 93, 0.5);
+    box-shadow: 0 0 0 2px rgba(246, 177, 93, 0.15);
+    width: 240px;
+}
+
+.toolbar-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Reset Button */
+.toolbar-reset-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: transparent;
+    color: rgba(246, 177, 93, 0.92);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+}
+
+.toolbar-reset-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* View Toggle (for pages that use it) */
+.view-toggle {
+    display: flex;
+    gap: 4px;
+}
+
+.view-toggle-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.view-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.view-toggle-btn.active {
+    background: rgba(246, 177, 93, 0.16);
+    border-color: rgba(246, 177, 93, 0.38);
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.view-toggle-btn .icon {
+    font-size: 13px;
+}
+
+/* Toolbar Toggle (certainty toggle etc.) */
+.toolbar-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toolbar-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.toolbar-toggle.active {
+    background: rgba(246, 177, 93, 0.16);
+    border-color: rgba(246, 177, 93, 0.38);
+}
+
+.toolbar-toggle-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+}
+
+.toolbar-toggle-switch {
+    width: 32px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 9px;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.toolbar-toggle.active .toolbar-toggle-switch {
+    background: #f6b15d;
+}
+
+.toolbar-toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.toolbar-toggle.active .toolbar-toggle-switch::after {
+    transform: translateX(14px);
+}
+
+/* Layout Toggle (for panorama) */
+.layout-toggle {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    padding: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.layout-btn {
+    padding: 6px 10px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.62);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.layout-btn:hover {
+    color: #fff;
+}
+
+.layout-btn.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f6b15d;
+}
+
+/* Sort Select */
+.sort-select {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+}
+
+.sort-select:hover {
+    color: #fff;
+    border-color: #f6b15d;
+}
+
+.sort-select option {
+    background: #0a0a0a;
+    color: #fff;
+}
+
+/* Toggle Switch (for panorama upright) */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-track {
+    width: 36px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.toggle-thumb {
+    width: 16px;
+    height: 16px;
+    background: #888;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s;
+}
+
+.toggle-switch input:checked + .toggle-track {
+    background: rgba(246, 177, 93, 0.2);
+    border: 1px solid #f6b15d;
+}
+
+.toggle-switch input:checked + .toggle-track .toggle-thumb {
+    transform: translateX(16px);
+    background: #f6b15d;
+}
+
+.toggle-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.62);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.toggle-switch:hover .toggle-label {
+    color: #fff;
+}
+
+/* Size Control (for panorama) */
+.size-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.size-control label {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.size-control input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 120px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    outline: none;
+}
+
+.size-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #f6b15d;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.size-control input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-toolbar {
+        padding: 0 12px;
+        gap: 8px;
+        overflow-x: auto;
+        height: auto;
+        min-height: 52px;
+        flex-wrap: wrap;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .toolbar-label {
+        display: none;
+    }
+
+    .toolbar-divider {
+        display: none;
+    }
+
+    .view-toggle-btn {
+        padding: 8px 10px;
+    }
+
+    .view-toggle-btn .icon {
+        display: none;
+    }
+
+    .toolbar-search-input {
+        width: 140px;
+    }
+
+    .toolbar-search-input:focus {
+        width: 180px;
+    }
+}
+
+/* Dropdown scrollbar styling */
+.toolbar-dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.toolbar-dropdown-menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 3px;
+}
+
+.toolbar-dropdown-menu::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+.toolbar-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Selected Tags Styling */
+.toolbar-dropdown-btn.has-selection {
+    background: rgba(246, 177, 93, 0.12);
+    border-color: rgba(246, 177, 93, 0.3);
+    color: #f6b15d;
+    font-weight: 700;
+}
+
+.toolbar-dropdown-btn.has-selection:hover {
+    background: rgba(246, 177, 93, 0.2);
+    border-color: rgba(246, 177, 93, 0.6);
+}
+
+/* Individual selected tag styling */
+.toolbar-dropdown-btn.has-selection .arrow {
+    color: #f6b15d;
+    opacity: 0.8;
+}

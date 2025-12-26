@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AETERNITAS CARNUNTI - Steinzelt</title>
+    <meta name="description" content="Interaktive Karte der Sarkophage von Carnuntum">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="filterToolbar.css">
+    <link rel="stylesheet" href="objectModal.css">
+</head>
+
+<body>
+    <script src="i18n.js"></script>
+    <div id="site-nav"></div>
+    <script src="nav-loader.js"></script>
+
+    <!-- Filter Toolbar -->
+    <div class="filter-toolbar" id="filterToolbar">
+        <!-- Facet dropdowns loaded from partial -->
+        <div id="filterFacetsPartial"></div>
+        <!-- Count, Search, Reset loaded from partial -->
+        <div id="filterToolbarPartial"></div>
+    </div>
+    <script src="filterToolbar-loader.js"></script>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <p data-i18n="loading.message" data-i18n-page="_global">Daten werden geladen ...</p>
+    </div>
+
+    <!-- Map -->
+    <div id="map"></div>
+
+    <!-- Themen Panel -->
+    <div class="themes-panel" id="themesPanel">
+        <div class="themes-header">
+            <h2 data-i18n="themes.title" data-i18n-page="_global">📚 Themen erkunden</h2>
+            <button class="themes-close-btn" id="themesCloseBtn">×</button>
+        </div>
+        <div class="themes-body" id="themesBody">
+            <div id="themesList"></div>
+            <div class="theme-detail" id="themeDetail">
+                <button class="theme-detail-back" id="themeBackBtn" data-i18n="themes.back" data-i18n-page="_global">← Zurück zur Übersicht</button>
+                <div class="theme-detail-title" id="themeDetailTitle"></div>
+                <div class="theme-detail-description" id="themeDetailDescription"></div>
+                <div class="theme-detail-stats" id="themeDetailStats"></div>
+                <div class="theme-detail-actions">
+                    <button class="theme-action-btn primary" id="themeFilterObjects" data-i18n="themes.filter" data-i18n-page="_global">Objekte filtern</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Details Panel -->
+    <div class="details-panel panel" id="details-panel" style="display:none;">
+        <button id="close-details" data-i18n-title="btn.close" title="Details schließen">&times;</button>
+        <h2 id="detail-title"></h2>
+        <div id="detail-content"></div>
+    </div>
+
+    <!-- Mobile list toggle -->
+    <div id="toggle-list" class="toggle-btn" data-i18n-title="btn.toggle_list" title="Liste ein-/ausblenden">☰</div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="objectModal.js"></script>
+    <script src="filterToolbar.js"></script>
+    <script src="steinzelt.js"></script>
+</body>
+
+</html>
