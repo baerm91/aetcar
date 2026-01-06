@@ -969,3 +969,139 @@
     font-weight: 600;
     letter-spacing: -0.01em;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .aetcar-modal {
+        height: 100vh;
+        max-width: 100vw;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .aetcar-modal-backdrop {
+        padding: 0;
+    }
+    
+    .aetcar-modal-header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+    }
+    
+    /* Reorganize top bar: buttons only in first row */
+    .aetcar-modal-top-bar {
+        padding: 1rem 1rem 0;
+        gap: 0.5rem;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    /* First row: all buttons */
+    .aetcar-modal-controls {
+        gap: 0.25rem;
+        flex-shrink: 0;
+        order: 1;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+    
+    /* Second row: title */
+    .aetcar-modal-info {
+        order: 2;
+        width: 100%;
+        margin-top: 0.75rem;
+    }
+    
+    .aetcar-modal-brand {
+        display: none;
+    }
+    
+    .aetcar-modal-title {
+        font-size: 1.375rem;
+        line-height: 1.3;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Third row: location and inventory side by side */
+    .aetcar-modal-subtitle {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        font-size: 0.8125rem;
+    }
+    
+    .aetcar-icon-btn {
+        width: 2.5rem;
+        height: 2.5rem;
+        min-width: 2.5rem;
+    }
+    
+    .aetcar-close-btn {
+        position: relative !important;
+        z-index: 31 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    .aetcar-modal-nav-bar {
+        padding: 0 1rem 1rem;
+    }
+    
+    .aetcar-modal-content {
+        padding: 1rem;
+    }
+    
+    .aetcar-nav-actions {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .aetcar-nav-btn {
+        flex: 1;
+        min-width: 0;
+        font-size: 0.625rem;
+        padding: 0.5rem 0.5rem;
+    }
+    
+    .aetcar-view-toggles {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+    
+    .aetcar-view-toggle {
+        font-size: 0.75rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .aetcar-modal-title {
+        font-size: 1.125rem;
+        line-height: 1.25;
+    }
+    
+    .aetcar-modal-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .aetcar-nav-buttons {
+        margin-right: 0.25rem;
+        padding-right: 0.25rem;
+    }
+    
+    .aetcar-nav-counter {
+        font-size: 0.625rem;
+        min-width: 2.5rem;
+    }
+    
+    .aetcar-icon-btn {
+        width: 2.25rem;
+        height: 2.25rem;
+        min-width: 2.25rem;
+    }
+}

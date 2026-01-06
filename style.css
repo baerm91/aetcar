@@ -252,7 +252,7 @@ body {
     left: 0;
     right: 0;
     height: 52px;
-    z-index: 340;
+    z-index: 45;
     background: rgba(10, 14, 24, 0.92);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
@@ -454,7 +454,7 @@ body {
     left: 20px;
     width: 320px;
     max-height: calc(100vh - 176px);
-    z-index: 330;
+    z-index: 40;
     background: var(--glass-bg);
     border-radius: 16px;
     border: 1px solid var(--glass-border);
