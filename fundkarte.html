@@ -8,7 +8,9 @@
     <meta name="description" content="Interaktive Fundkarte der Sarkophage von Carnuntum">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
@@ -76,8 +78,15 @@
             right: 0;
             bottom: 0;
             z-index: 1;
+            /* Initial state for fade-in animation */
+            opacity: 0;
+            transition: opacity 0.8s ease-out;
         }
 
+        /* Map visible state after loading */
+        #map.loaded {
+            opacity: 1;
+        }
 
         /* Filter Toolbar */
         .filter-toolbar {
@@ -95,6 +104,14 @@
             align-items: center;
             padding: 0 24px;
             gap: 16px;
+            /* Initial state - invisible, appears from nothing */
+            opacity: 0;
+            transition: opacity 1.8s ease-out;
+        }
+
+        /* Toolbar visible state after loading */
+        .filter-toolbar.loaded {
+            opacity: 1;
         }
 
         .toolbar-section {
@@ -627,6 +644,75 @@
                 width: auto;
                 max-height: 45vh;
             }
+
+            /* Map Legend - Mobile Optimierung */
+            .map-legend {
+                bottom: 70px;
+                right: 8px;
+                left: 8px;
+                padding: 10px 12px;
+                border-radius: 8px;
+                max-width: none;
+                width: auto;
+            }
+
+            .legend-item {
+                font-size: 11px;
+                padding: 3px 0;
+                gap: 8px;
+            }
+
+            .legend-marker {
+                width: 12px;
+                height: 12px;
+            }
+
+            .legend-marker.landmark {
+                width: 16px;
+                height: 16px;
+                font-size: 10px;
+            }
+
+            /* Result Count Button - Mobile */
+            .result-count-btn {
+                bottom: 16px;
+                left: 8px;
+                right: 8px;
+                padding: 12px 16px;
+                font-size: 13px;
+                border-radius: 8px;
+                justify-content: center;
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            /* Map Controls - Mobile */
+            .leaflet-control-zoom {
+                margin-bottom: 60px !important;
+                margin-right: 8px !important;
+            }
+
+            .leaflet-control-zoom a {
+                width: 36px !important;
+                height: 36px !important;
+                line-height: 34px !important;
+                font-size: 16px !important;
+                touch-action: manipulation;
+            }
+
+            /* Filter Toolbar - Mobile (überschreibt globale Styles) */
+            .filter-toolbar {
+                padding: 8px 8px !important;
+                gap: 4px !important;
+                min-height: 56px !important;
+                top: 68px !important;
+            }
+
+            /* Themes Panel - Mobile Anpassung */
+            .themes-panel {
+                bottom: 70px !important;
+                max-height: 50vh !important;
+            }
         }
 
         /* Map Legend */
@@ -688,6 +774,25 @@
             align-items: center;
             justify-content: center;
             font-size: 12px;
+        }
+
+        .legend-marker.area {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            border: none;
+        }
+
+        .legend-marker.area-military {
+            background: #1F4E79;
+        }
+
+        .legend-marker.area-civil {
+            background: #B35A3D;
+        }
+
+        .legend-marker.area-cemetery {
+            background: #C2B280;
         }
 
         /* Result Count Button */
@@ -898,11 +1003,13 @@
             background: rgba(100, 100, 100, 0.4);
             border-color: rgba(255, 255, 255, 0.3);
             opacity: 0.5;
+            box-shadow: none;
         }
 
         .custom-marker.dimmed.uncertain {
             border-color: rgba(255, 255, 255, 0.2);
             opacity: 0.35;
+            box-shadow: none;
         }
 
         .annotation-icon {
@@ -926,6 +1033,7 @@
         .marker-cluster-large.dimmed {
             background: rgba(100, 100, 100, 0.4) !important;
             opacity: 0.5;
+            box-shadow: none !important;
         }
 
         .marker-cluster-small div,
@@ -945,50 +1053,6 @@
             background: rgba(100, 100, 100, 0.6) !important;
             color: rgba(255, 255, 255, 0.7) !important;
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .filter-toolbar {
-                padding: 0 12px;
-                gap: 8px;
-                overflow-x: auto;
-            }
-
-            .toolbar-label {
-                display: none;
-            }
-
-            .toolbar-divider {
-                display: none;
-            }
-
-            .view-toggle-btn {
-                padding: 8px 10px;
-            }
-
-            .view-toggle-btn .icon {
-                display: none;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .nav-search-input {
-                width: 140px;
-            }
-
-            .map-legend {
-                bottom: 80px;
-                right: 10px;
-            }
-
-            .result-count-btn {
-                left: 10px;
-                right: 10px;
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 
@@ -999,26 +1063,8 @@
 
     <!-- Filter Toolbar -->
     <div class="filter-toolbar" id="filterToolbar">
-        <!-- Page-specific: View Toggle -->
-        <div class="toolbar-section">
-            <span class="toolbar-label">Ansicht</span>
-            <div class="view-toggle">
-                <button class="view-toggle-btn active" data-view="fundorte">
-                    <span class="icon">📍</span> Fundorte
-                </button>
-                <button class="view-toggle-btn" data-view="bestattung">
-                    <span class="icon">🏛️</span> Bestattungsräume
-                </button>
-            </div>
-        </div>
-
-        <div class="toolbar-divider"></div>
-
-        <!-- Page-specific: Certainty Toggle -->
-        <div class="toolbar-toggle" id="certaintyToggle">
-            <span class="toolbar-toggle-label">Nur sichere Fundorte</span>
-            <div class="toolbar-toggle-switch"></div>
-        </div>
+        <!-- Page-specific: Themen Toggle -->
+        <button class="toolbar-reset-btn" id="themesToggleBtn">Themen anzeigen</button>
 
         <div class="toolbar-divider"></div>
 
@@ -1034,7 +1080,7 @@
     <!-- Themen Panel -->
     <div class="themes-panel" id="themesPanel">
         <div class="themes-header">
-            <h2 data-i18n="themes.title" data-i18n-page="_global">📚 Themen erkunden</h2>
+            <h2 data-i18n="themes.title" data-i18n-page="_global">Themen erkunden</h2>
             <button class="themes-close-btn" id="themesCloseBtn">×</button>
         </div>
         <div class="themes-body" id="themesBody">
@@ -1044,13 +1090,16 @@
             </div>
             <!-- Theme Detail View -->
             <div class="theme-detail" id="themeDetail">
-                <button class="theme-detail-back" id="themeBackBtn" data-i18n="themes.back" data-i18n-page="_global">← Zurück zur Übersicht</button>
+                <button class="theme-detail-back" id="themeBackBtn" data-i18n="themes.back" data-i18n-page="_global">←
+                    Zurück zur Übersicht</button>
                 <div class="theme-detail-title" id="themeDetailTitle"></div>
                 <div class="theme-detail-description" id="themeDetailDescription"></div>
                 <div class="theme-detail-stats" id="themeDetailStats"></div>
                 <div class="theme-detail-actions">
-                    <button class="theme-action-btn primary" id="themeShowOnMap" data-i18n="themes.show_on_map" data-i18n-page="_global">Auf Karte zeigen</button>
-                    <button class="theme-action-btn secondary" id="themeExploreAll" data-i18n="themes.explore_all" data-i18n-page="_global">Alle ansehen</button>
+                    <button class="theme-action-btn primary" id="themeShowOnMap" data-i18n="themes.show_on_map"
+                        data-i18n-page="_global">Auf Karte zeigen</button>
+                    <button class="theme-action-btn secondary" id="themeExploreAll" data-i18n="themes.explore_all"
+                        data-i18n-page="_global">Alle ansehen</button>
                 </div>
             </div>
         </div>
@@ -1071,8 +1120,21 @@
             <span data-i18n="map.legend.cluster" data-i18n-page="_global">Cluster (Anzahl)</span>
         </div>
         <div class="legend-item">
-            <div class="legend-marker landmark">🏛️</div>
+            <div class="legend-marker landmark">⭐</div>
             <span data-i18n="map.legend.landmark" data-i18n-page="_global">Landmarke</span>
+        </div>
+        <div style="height: 8px;"></div>
+        <div class="legend-item">
+            <div class="legend-marker area area-military"></div>
+            <span>Militärische Bereiche</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker area area-civil"></div>
+            <span>Zivile Bereiche</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker area area-cemetery"></div>
+            <span>Gräberfelder bzw. -straße</span>
         </div>
     </div>
 
@@ -1082,24 +1144,24 @@
     <script src="objectModal.js"></script>
     <script src="filterToolbar.js"></script>
     <script>
+        // Map Configuration
+        const CONFIG = {
+            CENTER: [48.115, 16.865],
+            ZOOM: 13,
+            MIN_ZOOM: 10,
+            MAX_ZOOM: 18
+        };
+
         // Check for embed mode
         if (new URLSearchParams(window.location.search).has('embed')) {
             document.body.classList.add('embed');
         }
 
-        // Configuration
-        const CONFIG = {
-            CENTER: [48.115, 16.865], // Carnuntum area
-            ZOOM: 12,
-            MIN_ZOOM: 10,
-            MAX_ZOOM: 18,
-            DATE_MIN: 100,
-            DATE_MAX: 400
-        };
-
         // State
         let allData = [];
         let filteredData = [];
+        let themesData = null;
+        let themesLoaded = false;
         let markers = L.markerClusterGroup({
             maxClusterRadius: 30,
             spiderfyOnMaxZoom: true,
@@ -1135,89 +1197,59 @@
             types: new Set(),
             materials: new Set(),
             tags: new Set(),
-            certainOnly: false,
-            view: 'fundorte',
             search: '',
             ids: null
         };
 
-        // Themen-Daten
-        const THEMES = [
-            {
-                id: 'grabstaetten',
-                icon: '⚱️',
-                title: 'Grabstätten & Nekropolen',
-                subtitle: 'Die Totenstadt von Carnuntum',
-                description: 'Die Nekropolen von Carnuntum erstrecken sich entlang der Ausfallstraßen der antiken Stadt. Hier wurden über Jahrhunderte die Verstorbenen bestattet – von einfachen Soldaten bis zu wohlhabenden Bürgern. Die Sarkophage zeugen von unterschiedlichen Bestattungsriten und sozialen Schichten.',
-                filter: obj => true,
-                center: [48.115, 16.865],
-                zoom: 13
-            },
-            {
-                id: 'militaer',
-                icon: '⚔️',
-                title: 'Militärische Bestattungen',
-                subtitle: 'Soldaten der Legionen',
-                description: 'Carnuntum war Standort der Legio XV Apollinaris und später der Legio XIV Gemina. Viele Sarkophage und Grabsteine stammen von Legionären, Centurionen und deren Familien. Die Inschriften verraten oft Rang, Dienstzeit und Herkunft.',
-                filter: obj => {
-                    const text = [obj['Titel / Darstellung'], obj.Beschreibung, obj.Inschrift].filter(Boolean).join(' ').toLowerCase();
-                    return text.includes('legion') || text.includes('milit') || text.includes('soldat') || text.includes('centurio') || text.includes('veteran');
-                },
-                center: [48.112, 16.858],
-                zoom: 14
-            },
-            {
-                id: 'zivilisten',
-                icon: '👨‍👩‍👧',
-                title: 'Zivile Bestattungen',
-                subtitle: 'Bürger und Familien',
-                description: 'Neben dem Militär lebte in Carnuntum eine bedeutende Zivilbevölkerung. Händler, Handwerker und ihre Familien hinterließen ebenfalls Grabdenkmäler. Familienszenen auf Sarkophagen zeigen das alltägliche Leben.',
-                filter: obj => {
-                    const text = [obj['Titel / Darstellung'], obj.Beschreibung].filter(Boolean).join(' ').toLowerCase();
-                    return text.includes('familie') || text.includes('frau') || text.includes('kind') || text.includes('ehepaar');
-                },
-                center: [48.118, 16.870],
-                zoom: 14
-            },
-            {
-                id: 'mythologie',
-                icon: '🏛️',
-                title: 'Mythologische Darstellungen',
-                subtitle: 'Götter und Helden',
-                description: 'Viele Sarkophage zeigen mythologische Szenen: Götter, Helden und Fabelwesen. Diese Darstellungen sollten den Verstorbenen im Jenseits schützen oder ihre Tugenden symbolisieren.',
-                filter: obj => {
-                    const text = [obj['Titel / Darstellung'], obj.Beschreibung].filter(Boolean).join(' ').toLowerCase();
-                    return text.includes('gott') || text.includes('göttin') || text.includes('jupiter') || text.includes('mars') || text.includes('venus') || text.includes('hercules') || text.includes('mytho');
-                },
-                center: [48.110, 16.862],
-                zoom: 14
-            },
-            {
-                id: 'inschriften',
-                icon: '📜',
-                title: 'Inschriften & Texte',
-                subtitle: 'Stimmen aus der Antike',
-                description: 'Die lateinischen Inschriften auf den Sarkophagen sind wertvolle historische Quellen. Sie nennen Namen, Berufe, Lebensalter und familiäre Beziehungen – und lassen uns die Menschen hinter den Steinen kennenlernen.',
-                filter: obj => obj.Inschrift && obj.Inschrift.length > 10,
-                center: [48.115, 16.865],
-                zoom: 13
-            },
-            {
-                id: 'handwerk',
-                icon: '🔨',
-                title: 'Steinmetzkunst',
-                subtitle: 'Techniken und Materialien',
-                description: 'Die Sarkophage zeigen verschiedene Bearbeitungstechniken und Materialien. Lokaler Kalkstein, importierter Marmor und unterschiedliche Reliefstile verraten viel über Handwerk und Handel in der Antike.',
-                filter: obj => {
-                    const material = obj['Material / Technik (für Objektbeschriftung)'] || '';
-                    return material.toLowerCase().includes('marmor') || material.toLowerCase().includes('kalkstein');
-                },
-                center: [48.115, 16.865],
-                zoom: 13
-            }
-        ];
-
+        // Themen-Daten - werden dynamisch aus themes.json geladen
+        let THEMES = [];
         let currentTheme = null;
+
+        // Themen aus themes.json laden
+        function loadThemesFromJson() {
+            return fetch('assets/themes.json')
+                .then(res => res.json())
+                .then(data => {
+                    themesData = data;
+                    themesLoaded = true;
+
+                    // Themen für Fundkarte filtern (pages enthält "fundkarte" oder "fundkarte.html")
+                    const fundkarteThemeIds = data.by_page?.fundkarte || [];
+
+                    THEMES = fundkarteThemeIds.map(themeId => {
+                        const theme = data.themes[themeId];
+                        if (!theme) return null;
+
+                        // Filter-Funktion basierend auf inv-Array erstellen
+                        const invSet = new Set(theme.inv || []);
+                        const filterFn = invSet.size > 0
+                            ? (obj => obj.Inventarnummer && invSet.has(obj.Inventarnummer))
+                            : (obj => true);
+
+                        return {
+                            id: theme.theme_id,
+                            icon: '📍',  // Default Icon
+                            title: theme.title,
+                            subtitle: theme.subtitle || '',
+                            description: theme.story || '',
+                            filter: filterFn,
+                            center: (theme.center_lat && theme.center_lng)
+                                ? [theme.center_lat, theme.center_lng]
+                                : [48.115, 16.865],  // Default Carnuntum
+                            zoom: theme.zoom || 13,
+                            inv: theme.inv || []
+                        };
+                    }).filter(Boolean);
+
+                    console.log(`Themen für Fundkarte geladen: ${THEMES.length}`);
+                    return THEMES;
+                })
+                .catch(err => {
+                    console.error('Fehler beim Laden der Themen:', err);
+                    THEMES = [];
+                    return THEMES;
+                });
+        }
 
         // Initialize Map with dark tiles
         const map = L.map('map', {
@@ -1238,15 +1270,50 @@
         map.addLayer(markers);
         map.addLayer(annotationLayer);
 
+        // Karten-Daten Layer (archäologische Bereiche aus karten_daten.json)
+        let kartenDatenLayers = {};
+        let kartenDatenLayerGroup = L.layerGroup().addTo(map);
+
+        // Lade karten_daten.json und erstelle GeoJSON-Layer
+        fetch('assets/karten_daten.json')
+            .then(res => res.json())
+            .then(data => {
+                if (data.layers) {
+                    Object.entries(data.layers).forEach(([layerName, layerData]) => {
+                        const color = layerData.color || '#3498db';
+                        const geojsonLayer = L.geoJSON(layerData.geojson, {
+                            style: {
+                                color: color,
+                                weight: 2,
+                                opacity: 0.8,
+                                fillColor: color,
+                                fillOpacity: 0.2
+                            },
+                            onEachFeature: (feature, layer) => {
+                                layer.bindPopup(`<div class="popup-content"><div class="popup-body"><div class="popup-title">${layerName}</div></div></div>`, {
+                                    maxWidth: 250,
+                                    minWidth: 200
+                                });
+                            }
+                        });
+                        kartenDatenLayers[layerName] = geojsonLayer;
+                        geojsonLayer.addTo(kartenDatenLayerGroup);
+                    });
+                    console.log('Karten-Daten Layer geladen:', Object.keys(kartenDatenLayers));
+                }
+            })
+            .catch(err => console.error('Fehler beim Laden der Karten-Daten:', err));
+
         // Move zoom control to right
         map.zoomControl.setPosition('topright');
 
-        // Load Data (Sarkophage) + Annotationen parallel
+        // Load Data (Sarkophage) + Annotationen + Themen parallel
         Promise.all([
             fetch('data.json').then(res => res.json()),
-            fetch('assets/annotationen.json').then(res => res.json()).catch(() => null)
+            fetch('assets/annotationen.json').then(res => res.json()).catch(() => null),
+            loadThemesFromJson()
         ])
-            .then(([data, annotations]) => {
+            .then(([data, annotations, themes]) => {
                 allData = (Array.isArray(data) ? data : [])
                     .map(obj => {
                         if (!obj) return null;
@@ -1266,40 +1333,60 @@
                     })
                     .filter(Boolean);
 
+                // Themen-Liste rendern (THEMES wurde durch loadThemesFromJson befüllt)
                 renderThemesList();
 
                 // Handle ids parameter (comma-separated inventory numbers)
                 const urlParams = new URLSearchParams(window.location.search);
                 const idsParam = urlParams.get('ids');
                 let idsFilter = null;
+                let idsSet = null;
                 if (idsParam) {
-                    const ids = new Set(idsParam.split(',').map(id => decodeURIComponent(id.trim())));
-                    idsFilter = obj => obj.Inventarnummer && ids.has(obj.Inventarnummer);
+                    idsSet = new Set(idsParam.split(',').map(id => decodeURIComponent(id.trim())));
+                    idsFilter = obj => obj.Inventarnummer && idsSet.has(obj.Inventarnummer);
+                    console.log('IDs Filter aktiv:', idsSet);
                 }
 
                 // Initialize FilterToolbar with central logic
                 FilterToolbar.init({
                     facets: ['material', 'type', 'tags', 'gender', 'beigaben'],
                     onFilterChange: (filtered, state) => {
-                        filteredData = filtered;
+                        // Apply idsFilter on top of toolbar filtering
+                        if (idsFilter) {
+                            filteredData = filtered.filter(idsFilter);
+                        } else {
+                            filteredData = filtered;
+                        }
                         updateMarkers();
                         updateResultCount();
+
+                        // Zoom to filtered objects if ids parameter is set
+                        if (idsSet && filteredData.length > 0) {
+                            zoomToObjects(filteredData);
+
+                            // Open popup for first matching object after a short delay
+                            setTimeout(() => {
+                                const firstObj = filteredData.find(obj => obj.lat && obj.lng);
+                                if (firstObj) {
+                                    // Find and click the marker for this object
+                                    markers.eachLayer(marker => {
+                                        const markerLatLng = marker.getLatLng();
+                                        if (Math.abs(markerLatLng.lat - firstObj.lat) < 0.0001 &&
+                                            Math.abs(markerLatLng.lng - firstObj.lng) < 0.0001) {
+                                            showPopup(firstObj, marker);
+                                        }
+                                    });
+                                }
+                            }, 1500); // Wait 1.5 seconds after zoom
+                        }
                     },
                     onReset: () => {
-                        // Reset idsFilter when toolbar is reset
-                        idsFilter = null;
+                        // Don't reset idsFilter - keep URL parameter active
                     }
                 });
 
-                // Additional filter for certainty toggle and IDs
-                const getAdditionalFilter = () => (obj) => {
-                    if (selectedFilters.certainOnly && !obj.certain) return false;
-                    if (idsFilter && !idsFilter(obj)) return false;
-                    return true;
-                };
-
-                // Set data and let FilterToolbar handle filtering
-                FilterToolbar.setData(allData, getAdditionalFilter());
+                // Set data - FilterToolbar will trigger onFilterChange
+                FilterToolbar.setData(allData);
 
                 if (annotations && annotations.items) {
                     renderAnnotations(annotations.items);
@@ -1373,12 +1460,31 @@
                 if (!Number.isFinite(lat) || !Number.isFinite(lng)) return;
 
                 const color = item.color || '#f6b15d';
-                const title = item.title || item.label || 'Annotation';
+                const title = item.title || item.label || 'Landmarke';
+                const description = item.kurzbeschreibung || item.description || '';
+
+                // 3D-Modell Links verarbeiten (kann Array oder String sein)
+                let modelLinksHtml = '';
+                if (item['3d_modell']) {
+                    const modelLinks = Array.isArray(item['3d_modell']) ? item['3d_modell'] : [item['3d_modell']];
+                    if (modelLinks.length > 0) {
+                        modelLinksHtml = '<div style="margin-bottom: 12px;">';
+                        modelLinks.forEach((link, index) => {
+                            const linkText = modelLinks.length > 1 ? `3D-Modell ${index + 1}` : '3D-Modell';
+                            modelLinksHtml += `<a href="${link}" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-right: 8px; margin-bottom: 6px; padding: 6px 12px; background: rgba(246, 177, 93, 0.16); color: #f6b15d; border-radius: 6px; text-decoration: none; font-size: 12px; font-weight: 600; transition: background 0.2s;" onmouseover="this.style.background='rgba(246, 177, 93, 0.25)'" onmouseout="this.style.background='rgba(246, 177, 93, 0.16)'">${linkText}</a>`;
+                        });
+                        modelLinksHtml += '</div>';
+                    }
+                }
+
                 const popupHtml = `
-                    <div style="min-width:200px">
-                        <strong>${title}</strong><br>
-                        ${item.description ? `<div style="margin-top:6px">${item.description}</div>` : ''}
-                        ${item.link ? `<div style="margin-top:6px"><a href="${item.link}" target="_blank" rel="noopener">Mehr</a></div>` : ''}
+                    <div class="popup-content">
+                        <div class="popup-body">
+                            <div class="popup-title">${title}</div>
+                            ${description ? `<div class="popup-location" style="margin-bottom: 12px; line-height: 1.5;">${description}</div>` : ''}
+                            ${modelLinksHtml}
+                            ${item.link ? `<button class="popup-details-btn" onclick="window.open('${item.link}', '_blank', 'noopener,noreferrer')">Mehr erfahren</button>` : ''}
+                        </div>
                     </div>
                 `;
 
@@ -1389,6 +1495,8 @@
                     iconAnchor: [13, 13]
                 });
 
+                const popupOpts = { maxWidth: 300, minWidth: 280, closeButton: true, autoClose: true, closeOnClick: true };
+
                 if (item.radius) {
                     const radius = Number(item.radius) || 40;
                     L.circle([lat, lng], {
@@ -1397,10 +1505,10 @@
                         weight: item.line_width || 2,
                         fillColor: color,
                         fillOpacity: 0.2
-                    }).bindPopup(popupHtml).addTo(annotationLayer);
+                    }).bindPopup(popupHtml, popupOpts).addTo(annotationLayer);
                 }
 
-                L.marker([lat, lng], { icon }).bindPopup(popupHtml).addTo(annotationLayer);
+                L.marker([lat, lng], { icon }).bindPopup(popupHtml, popupOpts).addTo(annotationLayer);
             });
         }
 
@@ -1528,6 +1636,23 @@
             }
         }
 
+        // Zoom to filtered objects
+        function zoomToObjects(objects) {
+            if (!objects || objects.length === 0) return;
+
+            const validObjects = objects.filter(obj => obj.lat && obj.lng);
+            if (validObjects.length === 0) return;
+
+            if (validObjects.length === 1) {
+                // Single object: zoom to it
+                map.setView([validObjects[0].lat, validObjects[0].lng], 16);
+            } else {
+                // Multiple objects: fit bounds
+                const bounds = L.latLngBounds(validObjects.map(obj => [obj.lat, obj.lng]));
+                map.fitBounds(bounds, { padding: [50, 50], maxZoom: 16 });
+            }
+        }
+
         // ========== THEMEN PANEL ==========
 
         // Render Themes List
@@ -1610,7 +1735,6 @@
             // Update filtered data
             filteredData = matchingObjects.filter(obj => {
                 // Still apply other filters
-                if (selectedFilters.certainOnly && !obj.certain) return false;
                 if (selectedFilters.search) {
                     const searchText = [
                         obj['Titel / Darstellung'],
@@ -1667,28 +1791,21 @@
             document.getElementById('themesPanel').style.display = 'none';
         });
 
+        // Themen Toggle Button
+        document.getElementById('themesToggleBtn')?.addEventListener('click', () => {
+            document.getElementById('themesPanel').style.display = 'flex';
+        });
+
         // ========== END THEMEN PANEL ==========
 
+        // Helper function to get additional filters for FilterToolbar
+        function getAdditionalFilter() {
+            return {
+                search: selectedFilters.search
+            };
+        }
+
         // Dropdown toggle is now handled by FilterToolbar.js
-
-        // Certainty Toggle
-        const certaintyToggle = document.getElementById('certaintyToggle');
-        certaintyToggle.addEventListener('click', () => {
-            certaintyToggle.classList.toggle('active');
-            selectedFilters.certainOnly = certaintyToggle.classList.contains('active');
-            // Re-apply filters with updated certainty
-            FilterToolbar.setData(allData, getAdditionalFilter());
-        });
-
-        // View Toggle
-        document.querySelectorAll('.view-toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                selectedFilters.view = btn.dataset.view;
-                // View change doesn't affect filtering, just UI
-            });
-        });
 
         // Reset Filters
         document.getElementById('toolbarResetFilters')?.addEventListener('click', () => {
@@ -1698,8 +1815,6 @@
                 types: new Set(),
                 materials: new Set(),
                 tags: new Set(),
-                certainOnly: false,
-                view: 'fundorte',
                 search: ''
             };
 
@@ -1707,7 +1822,6 @@
             document.querySelectorAll('.dropdown-item.checked').forEach(item => {
                 item.classList.remove('checked');
             });
-            certaintyToggle.classList.remove('active');
             const searchEl = document.getElementById('toolbarSearch');
             if (searchEl) searchEl.value = '';
 
@@ -1732,6 +1846,23 @@
             searchTimeout = setTimeout(() => {
                 selectedFilters.search = e.target.value;
                 // Search is handled by FilterToolbar
+            }, 300);
+        });
+
+        // Start animations after page load
+        window.addEventListener('load', () => {
+            // Start fade-in animation for map
+            const mapElement = document.getElementById('map');
+            if (mapElement) {
+                mapElement.classList.add('loaded');
+            }
+
+            // Start slide-in animation for filter toolbar after a short delay
+            setTimeout(() => {
+                const filterToolbar = document.getElementById('filterToolbar');
+                if (filterToolbar) {
+                    filterToolbar.classList.add('loaded');
+                }
             }, 300);
         });
     </script>

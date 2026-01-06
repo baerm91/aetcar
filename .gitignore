@@ -4,6 +4,10 @@ __pycache__/
 *$py.class
 *.so
 .Python
+*.py
+
+# Batch scripts
+*.bat
 
 # Excel/CSV backups
 *.xlsx
@@ -32,4 +36,8 @@ venv/
 # Temporary files
 *.tmp
 *.temp
+
+# Large image directories (can be regenerated)
+extracted_sarcophagi/
+extracted_sarcophagi_smart/
 

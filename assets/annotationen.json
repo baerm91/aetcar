@@ -7,32 +7,46 @@
     {
       "lat": 48.1040508637402,
       "lng": 16.85426107226264,
-      "title": "Heidentor"
+      "title": "Heidentor",
+      "kurzbeschreibung": "Monumentaler römischer Vierpfeiler aus dem 4. Jh. n. Chr., weithin sichtbares Wahrzeichen Carnuntums und Teil der antiken Gräberlandschaft außerhalb der Stadt.",
+      "3d_modell": [
+        "https://sketchfab.com/3d-models/the-heidentor-in-petronell-carnuntum-807a34403d12449ea667f3c586d47a98",
+        "https://sketchfab.com/3d-models/reconstruction-of-the-heidentor-22205a58cf704a78af0e9ce644d06436",
+        "https://sketchfab.com/3d-models/the-heidentor-at-the-end-of-the-19th-century-94e413899ba84860b749f89ebb3f5145",
+        "https://sketchfab.com/3d-models/the-heidentor-in-the-early-19th-century-f2bc6f224321401a88ff13fc43db2951"
+      ]
     },
     {
       "lat": 48.12682332370787,
       "lng": 16.892633238449847,
-      "title": "Amphitheater I"
+      "title": "Amphitheater I",
+      "kurzbeschreibung": "Militärisches Amphitheater beim Legionslager, genutzt für Vorführungen und Übungen im Umfeld der römischen Truppenstationierung."
     },
     {
       "lat": 48.11008958988804,
       "lng": 16.850899037479827,
-      "title": "Amphitheater II"
+      "title": "Amphitheater II",
+      "kurzbeschreibung": "Ziviles Amphitheater der Stadt Carnuntum, eingebunden in das städtische Umfeld und genutzt für öffentliche Veranstaltungen."
     },
     {
       "lat": 48.13409021606421,
       "lng": 16.915936255575378,
-      "title": "Pfaffenberg"
+      "title": "Pfaffenberg",
+      "kurzbeschreibung": "Zentraler römischer Kultort mit Heiligtümern und Weihinschriften, eng mit Militär und Stadt Carnuntum verbunden; das Areal ist heute nicht mehr zugänglich, da der Berg im 20.-21. Jahrhundert durch industriellen Steinabbau weitestgehend abgetragen wurde."
     },
     {
       "lat": 48.112504593790106,
       "lng": 16.858185721907976,
-      "title": "Archäologischer Park Carnuntum"
+      "title": "Archäologischer Park Carnuntum",
+      "kurzbeschreibung": "Freilichtareal mit rekonstruierten Gebäuden der römischen Stadt, das das Alltagsleben und die urbane Struktur Carnuntums vermittelt.",
+      "link": "https://www.carnuntum.at/"
     },
     {
       "lat": 48.13990649040784,
       "lng": 16.90338822835894,
-      "title": "Museum Carnuntinum"
+      "title": "Museum Carnuntinum",
+      "kurzbeschreibung": "Zentrales Museum zur römischen Stadt Carnuntum mit Sammlungen zu Architektur, Alltagskultur und Bestattungswesen.",
+      "link": "https://www.carnuntum.at/en/museumcarnuntinum"
     }
   ]
 }

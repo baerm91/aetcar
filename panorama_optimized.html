@@ -73,6 +73,14 @@
             align-items: stretch;
             padding: 12px 20px 14px;
             gap: 10px;
+            /* Initial state - invisible, appears from nothing */
+            opacity: 0;
+            transition: opacity 1.8s ease-out;
+        }
+
+        /* Toolbar visible state after loading */
+        .filter-toolbar.loaded {
+            opacity: 1;
         }
 
         .toolbar-main {
@@ -597,6 +605,26 @@
             margin-bottom: 0;
             transform: scaleY(-1); /* Flip cards back to normal */
         }
+
+        /* Shelf layout: keep card sizes unchanged, only apply hover overlay */
+        .panorama-container.shelf .sarcophagus-card:hover {
+            transform: scaleY(-1) translateY(2px); /* Keep flip, slight lift */
+        }
+
+        .panorama-container.shelf .sarcophagus-card:hover img {
+            transform: none; /* No zoom in shelf mode to preserve size comparison */
+            filter: brightness(0.85);
+        }
+
+        /* Fix for shelf layout: card-info needs scaleY(-1) to counteract card's flip,
+           and animation direction must be inverted (use negative translateY) */
+        .panorama-container.shelf .sarcophagus-card .card-info {
+            transform: scaleY(-1) translateY(calc(-100% + 52px));
+        }
+
+        .panorama-container.shelf .sarcophagus-card:hover .card-info {
+            transform: scaleY(-1) translateY(0);
+        }
         
         /* Custom scrollbar for the shelf container */
         .panorama-container.shelf::-webkit-scrollbar {
@@ -614,7 +642,7 @@
             border-radius: 6px;
         }
 
-        /* Cards */
+        /* Cards - Collection-style with hover reveal */
         .sarcophagus-card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -622,15 +650,14 @@
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
-            display: flex;
-            flex-direction: column;
+            display: block;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .sarcophagus-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-2px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: var(--primary-glow);
+            border-color: rgba(246, 177, 93, 0.65);
             z-index: 2;
         }
 
@@ -647,17 +674,14 @@
         .image-wrapper::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,0.6) 100%);
-            opacity: 0.6;
-            transition: opacity 0.3s;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%);
+            z-index: 2;
+            transition: background 0.4s ease;
         }
         
         .sarcophagus-card:hover .image-wrapper::after {
-            opacity: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.5) 100%);
         }
         
         .image-wrapper.no-image {
@@ -679,34 +703,60 @@
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 0.7s ease;
+            transition: transform 0.6s ease, filter 0.4s ease;
         }
 
         .sarcophagus-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
+            filter: brightness(0.85);
         }
 
+        /* Card info overlay - positioned at bottom */
         .card-info {
-            padding: 16px;
-            background: var(--card-bg);
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            position: relative;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            padding: 20px;
+            background: transparent;
+            transform: translateY(calc(100% - 80px));
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sarcophagus-card:hover .card-info {
+            transform: translateY(0);
         }
 
         .card-title {
             font-size: 15px;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
             letter-spacing: 0.5px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .card-meta {
             font-size: 12px;
-            color: var(--text-secondary);
+            color: rgba(255,255,255,0.7);
             display: flex;
             flex-direction: column;
             gap: 4px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+        }
+
+        .sarcophagus-card:hover .card-meta {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .badge {
@@ -722,141 +772,76 @@
             letter-spacing: 0.5px;
         }
 
-        /* Modal (Lightbox) */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            padding: 40px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
+        /* Keyword Chips */
+        .keyword-chips {
             display: flex;
-            opacity: 1;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 8px;
         }
 
-        .modal-content {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            background: #0f0f0f;
-            border-radius: 16px;
-            overflow: hidden;
-            max-width: 1400px;
-            width: 95%;
-            height: 85vh;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.7);
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #333;
-        }
-
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-image-container {
-            background: #0a0a0a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            position: relative;
-        }
-
-        .modal-image-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .modal-details {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            border-left: 1px solid var(--border-color);
-            overflow-y: auto;
-            background: #0f0f0f;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .modal-title {
-            font-size: 28px;
-            font-weight: 700;
+        .keyword-chip {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 12px;
+            background: rgba(246, 177, 93, 0.15);
+            border: 1px solid rgba(246, 177, 93, 0.3);
             color: var(--primary-color);
-            font-family: 'Playfair Display', serif; /* Elegant font for titles if available, fallback sans */
-        }
-
-        .close-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 28px;
+            font-size: 9px;
+            font-weight: 600;
             cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            transition: color 0.2s;
-            margin-left: 20px;
+            transition: all 0.2s ease;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
         }
 
-        .close-btn:hover {
-            color: #fff;
-            transform: rotate(90deg);
-            transition: all 0.3s;
+        .keyword-chip:hover {
+            background: rgba(246, 177, 93, 0.25);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(246, 177, 93, 0.2);
         }
 
-        .detail-row {
-            margin-bottom: 20px;
+        .keyword-more {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 8px;
+            font-weight: 600;
+            opacity: 0.7;
         }
 
-        .detail-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: var(--primary-color);
-            letter-spacing: 1.5px;
-            margin-bottom: 6px;
-            opacity: 0.8;
+        /* Compact layout adjustments for hover cards */
+        .panorama-container.compact .card-info {
+            position: relative;
+            transform: none;
+            padding: 10px 15px;
         }
 
-        .detail-value {
-            font-size: 15px;
-            color: #e0e0e0;
-            line-height: 1.6;
+        .panorama-container.compact .card-meta {
+            opacity: 1;
+            transform: none;
         }
 
-        /* Responsive */
-        @media (max-width: 900px) {
-            .modal-content {
-                grid-template-columns: 1fr;
-                grid-template-rows: 1fr auto;
-                height: 90vh;
+        .panorama-container.compact .sarcophagus-card:hover .card-info {
+            transform: none;
+        }
+
+        /* Fade-in animation for sarcophagus cards */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-
-            .modal-details {
-                border-left: none;
-                border-top: 1px solid var(--border-color);
-                max-height: 40vh;
-                padding: 20px;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
 
         @media (max-width: 768px) {
             .header {
@@ -893,7 +878,7 @@
             }
         }
 
-        .loading {
+            .loading {
             grid-column: 1 / -1;
             text-align: center;
             padding: 80px;
@@ -902,104 +887,6 @@
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-
-            .close-btn {
-                background: transparent;
-                border: none;
-                color: var(--text-secondary);
-                font-size: 28px;
-                cursor: pointer;
-                padding: 0;
-                line-height: 1;
-                transition: color 0.2s;
-                margin-left: 20px;
-            }
-
-            .close-btn:hover {
-                color: #fff;
-                transform: rotate(90deg);
-                transition: all 0.3s;
-            }
-
-            .detail-row {
-                margin-bottom: 20px;
-            }
-
-            .detail-label {
-                font-size: 11px;
-                text-transform: uppercase;
-                color: var(--primary-color);
-                letter-spacing: 1.5px;
-                margin-bottom: 6px;
-                opacity: 0.8;
-            }
-
-            .detail-value {
-                font-size: 15px;
-                color: #e0e0e0;
-                line-height: 1.6;
-            }
-
-            /* Responsive */
-            @media (max-width: 900px) {
-                .modal-content {
-                    grid-template-columns: 1fr;
-                    grid-template-rows: 1fr auto;
-                    height: 90vh;
-                }
-
-                .modal-details {
-                    border-left: none;
-                    border-top: 1px solid var(--border-color);
-                    max-height: 40vh;
-                    padding: 20px;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .header {
-                    padding: 15px 20px;
-                }
-                
-                .header-top {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-                
-                .controls {
-                    width: 100%;
-                }
-
-                .search-box {
-                    width: 100%;
-                }
-                
-                .toolbar {
-                    flex-direction: column;
-                    gap: 15px;
-                    align-items: flex-start;
-                    padding: 15px 20px;
-                }
-                
-                .view-options {
-                    width: 100%;
-                    justify-content: space-between;
-                }
-                
-                .panorama-container {
-                    padding: 20px;
-                }
-            }
-
-            .loading {
-                grid-column: 1 / -1;
-                text-align: center;
-                padding: 80px;
-                color: var(--text-secondary);
-                font-size: 16px;
-                letter-spacing: 1px;
-                text-transform: uppercase;
-            }
         </style>
     </head>
     <body>
@@ -1054,7 +941,7 @@
         </div>
         <script src="filterToolbar.js"></script>
 
-        <div class="panorama-container" id="panoramaContainer">
+        <div class="panorama-container masonry" id="panoramaContainer">
         <div class="loading" data-i18n="loading.images" data-i18n-page="_global">Lade Sarkophag-Bilder</div>
     </div>
 

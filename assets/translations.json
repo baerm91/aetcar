@@ -1,13 +1,26 @@
 {
   "meta": {
     "description": "UI-Übersetzungen für AETCAR",
-    "languages": ["de", "en", "mp"],
-    "pages": ["_global", "index", "fundkarte", "steinzelt", "panorama"],
-    "total_keys": 85,
-    "version": "1.1",
-    "note": "Editiere diese Datei oder nutze Google Sheets + convert_translations.py"
+    "languages": [
+      "de",
+      "en",
+      "mp"
+    ],
+    "pages": [
+      "_global",
+      "index",
+      "fundkarte",
+      "steinzelt",
+      "panorama"
+    ],
+    "total_keys": 67,
+    "version": "1.0"
   },
-  "languages": ["de", "en", "mp"],
+  "languages": [
+    "de",
+    "en",
+    "mp"
+  ],
   "pages": {
     "_global": {
       "nav.brand": {
@@ -36,9 +49,9 @@
         "mp": "Sehr teure Kisten"
       },
       "footer.copyright": {
-        "de": "Archäologischer Park Carnuntum",
-        "en": "Archaeological Park Carnuntum",
-        "mp": "Die Ritter die Ni sagen"
+        "de": "MMXXVI • Roman Cultural Heritage of Carnuntum",
+        "en": "MMXXVI • Roman Cultural Heritage of Carnuntum",
+        "mp": "MMXXVI • Roman Cultural Heritage of Carnuntum (as determined by a committee)"
       },
       "footer.links": {
         "de": "Archiv · Info · Rechtliches",
@@ -96,9 +109,9 @@
         "mp": "Papageien-Lagerhaus"
       },
       "themes.title": {
-        "de": "📚 Themen erkunden",
-        "en": "📚 Explore Themes",
-        "mp": "📚 Drei Fragen!"
+        "de": "Themen erkunden",
+        "en": "Explore Themes",
+        "mp": "Drei Fragen!"
       },
       "themes.back": {
         "de": "← Zurück zur Übersicht",
@@ -208,14 +221,14 @@
         "mp": "Sehr teure Steinkisten"
       },
       "hero.subtitle": {
-        "de": "aus dem Raum Carnuntum",
-        "en": "from the Carnuntum Region",
+        "de": "aus Carnuntum",
+        "en": "from Carnuntum",
         "mp": "für Leute die noch nicht ganz tot sind"
       },
       "hero.description": {
         "de": "Im Folgenden sehen Sie steinerne Behältnisse für die Toten. Sie liegen im Dunkel der Erde, wurden aus bereits genutztem Material gefertigt, bewegt, geöffnet und wieder verschlossen. Erhalten haben sich in ihnen Zeugnisse römischen Kulturerbes, von Handlung, Ritual und Zeit.",
         "en": "Below you will see stone containers for the dead. They lie in the darkness of the earth, crafted from already used material, moved, opened and closed again. Preserved within them are testimonies of Roman cultural heritage, of action, ritual and time.",
-        "mp": "Bringt eure Toten raus! *klong* Bringt eure Toten raus! Das sind Steinkisten für Leute die definitiv, höchst aufrichtig tot sind. Naja, größtenteils tot. Manchen ging's wieder besser!"
+        "mp": "Im Folgenden sehen Sie sehr alte Steinkisten.\nEinige sind monumental. Andere sind… ebenfalls Steinkisten.\nSie dienten der römischen Praxis, Verstorbene außerhalb der Stadt zu bestatten –\nalso Menschen, die zweifellos tot waren.\nGrößtenteils jedenfalls."
       },
       "section.entry_points": {
         "de": "Einstiegspunkte",

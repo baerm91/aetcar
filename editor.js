@@ -1,25 +1,29 @@
-const MAP_IMAGE_PATH = 'assets/map.jpg';
+const MAP_IMAGE_PATH = 'assets/Steinzelt_Ortho_klein_mit TMS-Nummern.jpg';
+const EXPORT_IMAGE_PATH = 'assets/map.jpg'; // Use map.jpg for image export
 const EXPORT_MARGIN = 30;
 const EXPORT_ZIP_NAME = 'sarcophagi_export.zip';
+
+// Image Dimensions (actual image: 7069w x 8192h)
+const IMG_WIDTH = 7069;
+const IMG_HEIGHT = 8192;
+
+// Leaflet CRS.Simple uses [y, x] format
+const bounds = L.latLngBounds([[0, 0], [IMG_HEIGHT, IMG_WIDTH]]);
 
 // Initialize Map
 const map = L.map('map', {
     crs: L.CRS.Simple,
-    minZoom: -2,
-    maxZoom: 2,
-    zoomSnap: 0.5,
-    zoomDelta: 0.5
+    minZoom: -5,
+    maxZoom: 2
 });
 
-// Image Dimensions
-const bounds = [[0, 0], [8192, 7069]]; // Height, Width
-const image = L.imageOverlay(MAP_IMAGE_PATH, bounds, { crossOrigin: true }).addTo(map);
+const image = L.imageOverlay(MAP_IMAGE_PATH, bounds).addTo(map);
 map.fitBounds(bounds);
 
-// Load source image for canvas exports
+// Load source image for canvas exports (use map.jpg, not the display image)
 const sourceImage = new Image();
 sourceImage.crossOrigin = 'anonymous';
-sourceImage.src = MAP_IMAGE_PATH;
+sourceImage.src = EXPORT_IMAGE_PATH;
 const sourceImageReady = new Promise((resolve, reject) => {
     sourceImage.onload = () => resolve(sourceImage);
     sourceImage.onerror = (err) => reject(err || new Error('Quelle konnte nicht geladen werden.'));
@@ -267,8 +271,11 @@ function computeBoundingBox(latlngs) {
     let maxY = -Infinity;
 
     latlngs.forEach(point => {
+        // lng = x coordinate (horizontal)
+        // lat = y coordinate in Leaflet (from bottom), but image has y from top
+        // So we need to flip: imageY = IMG_HEIGHT - lat
         const x = point.lng;
-        const y = point.lat;
+        const y = IMG_HEIGHT - point.lat;
         if (Number.isFinite(x) && Number.isFinite(y)) {
             minX = Math.min(minX, x);
             minY = Math.min(minY, y);

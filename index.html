@@ -10,6 +10,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="objectModal.css">
+    
+    <!-- Prefetch resources for other pages (cached in background) -->
+    <!-- Data files -->
+    <link rel="prefetch" href="data.json" as="fetch" crossorigin>
+    <link rel="prefetch" href="assets/themes.json" as="fetch" crossorigin>
+    <link rel="prefetch" href="assets/coordinates.json" as="fetch" crossorigin>
+    
+    <!-- CSS for other pages -->
+    <link rel="prefetch" href="filterToolbar.css" as="style">
+    <link rel="prefetch" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style" crossorigin>
+    <link rel="prefetch" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" as="style" crossorigin>
+    <link rel="prefetch" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" as="style" crossorigin>
+    
+    <!-- JavaScript for other pages -->
+    <link rel="prefetch" href="i18n.js" as="script">
+    <link rel="prefetch" href="nav-loader.js" as="script">
+    <link rel="prefetch" href="filterToolbar.js" as="script">
+    <link rel="prefetch" href="filterToolbar-loader.js" as="script">
+    <link rel="prefetch" href="objectModal.js" as="script">
+    <link rel="prefetch" href="steinzelt.js" as="script">
+    <link rel="prefetch" href="panorama.js" as="script">
+    <link rel="prefetch" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" as="script" crossorigin>
+    <link rel="prefetch" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js" as="script" crossorigin>
+    
+    <!-- Steinzelt map image -->
+    <link rel="prefetch" href="assets/Steinzelt_Ortho_klein_mit TMS-Nummern.jpg" as="image">
+    
     <style>
         :root {
             --bg: #0a0a0a;
@@ -71,6 +98,90 @@
                 linear-gradient(to bottom, black 0%, black 50%, transparent 100%),
                 linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
             -webkit-mask-composite: source-in;
+            animation: breathingLight 8s ease-in-out infinite;
+        }
+
+        @keyframes breathingLight {
+            0%, 100% {
+                opacity: 0.75;
+                filter: brightness(0.95);
+            }
+            50% {
+                opacity: 0.92;
+                filter: brightness(1.08);
+            }
+        }
+
+        @keyframes heroFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sectionFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating Particles */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(246, 177, 93, 0.9) 0%, rgba(246, 177, 93, 0) 70%);
+            border-radius: 50%;
+            opacity: 0;
+            --wind-x: 0px;
+            --wind-y: 0px;
+            transform: translate(var(--wind-x), var(--wind-y));
+            animation: 
+                particleLife var(--life-duration, 12s) ease-in-out forwards,
+                floatY var(--float-y-duration, 10s) ease-in-out infinite alternate;
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes particleLife {
+            0% { 
+                opacity: 0;
+                filter: blur(1px);
+            }
+            15% { 
+                opacity: var(--p-opacity-max, 0.8);
+                filter: blur(0);
+            }
+            85% { 
+                opacity: var(--p-opacity-max, 0.8);
+                filter: blur(0);
+            }
+            100% { 
+                opacity: 0;
+                filter: blur(1px);
+            }
+        }
+
+        @keyframes floatY {
+            0% { top: var(--drift-y-start, 20%); }
+            100% { top: var(--drift-y-end, 80%); }
         }
 
         .container {
@@ -83,6 +194,9 @@
 
         .hero {
             display: block;
+            margin-top: 8em;
+            opacity: 0;
+            animation: heroFadeIn 2s ease-out 0.5s forwards;
         }
 
         .pill {
@@ -224,14 +338,10 @@
         }
 
         .section {
-            margin-top: 42px;
+            margin-top: 10em;
             padding-top: 18px;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section.fade-in {
-            opacity: 1;
+            opacity: 0;
+            animation: sectionFadeIn 2s ease-out 1.2s forwards;
             transform: translateY(0);
         }
 
@@ -367,6 +477,129 @@
             font-size: 13px;
         }
 
+        /* ============================================
+           COLLECTION CARDS - Image-filled with hover reveal
+           ============================================ */
+        .cards.collection-cards .card {
+            position: relative !important;
+            min-height: 280px !important;
+            overflow: hidden !important;
+            display: block !important;
+        }
+
+        .cards.collection-cards .card .card-media {
+            position: absolute !important;
+            inset: 0 !important;
+            height: 100% !important;
+            z-index: 1;
+            display: block !important;
+        }
+
+        .cards.collection-cards .card .card-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%);
+            z-index: 2;
+            transition: background 0.4s ease;
+        }
+
+        .cards.collection-cards .card:hover .card-media::after {
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.5) 100%);
+        }
+
+        .cards.collection-cards .card .card-media img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            opacity: 1 !important;
+            transition: transform 0.6s ease, filter 0.4s ease;
+        }
+
+        .cards.collection-cards .card:hover .card-media img {
+            transform: scale(1.08);
+            filter: brightness(0.85);
+        }
+
+        .cards.collection-cards .card .card-body {
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 3;
+            padding: 24px !important;
+            transform: translateY(calc(100% - 80px));
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent !important;
+        }
+
+        .cards.collection-cards .card:hover .card-body {
+            transform: translateY(0);
+        }
+
+        .cards.collection-cards .card .card-title {
+            font-size: 28px !important;
+            color: #fff !important;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+            margin-bottom: 12px;
+        }
+
+        .cards.collection-cards .card .card-text {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+            color: rgba(255,255,255,0.62) !important;
+            font-size: 14px !important;
+            line-height: 1.65;
+            margin-top: 8px;
+        }
+
+        .cards.collection-cards .card:hover .card-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cards.collection-cards .card .card-link {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s;
+            margin-top: 16px;
+            display: inline-block;
+            color: #fff !important;
+            background: none !important;
+            -webkit-background-clip: unset !important;
+            -webkit-text-fill-color: unset !important;
+            background-clip: unset !important;
+            animation: cardLinkPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cardLinkPulse {
+            0%, 100% {
+                opacity: 0.85;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .cards.collection-cards .card:hover .card-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 980px) {
+            .cards.collection-cards .card {
+                min-height: 260px !important;
+            }
+            .cards.collection-cards .card .card-body {
+                transform: translateY(calc(100% - 70px));
+                padding: 20px !important;
+            }
+            .cards.collection-cards .card .card-title {
+                font-size: 24px !important;
+            }
+        }
+
         .card:focus-visible {
             outline: 2px solid rgba(246, 177, 93, 0.55);
             outline-offset: 3px;
@@ -474,6 +707,19 @@
             text-transform: uppercase;
             color: #f6b15d;
             margin-bottom: 12px;
+        }
+
+        .hero .pill {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #f6b15d;
+            margin-bottom: 12px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            width: auto;
         }
 
         .focus-title {
@@ -680,6 +926,84 @@
             margin-top: 20px;
             padding-top: 16px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Collapsible content styles */
+        .focus-cards-wrapper {
+            position: relative;
+        }
+
+        .focus-cards-expanded {
+            max-height: 5000px;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .focus-cards-collapsed {
+            max-height: 800px;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .focus-cards-collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(20, 16, 12, 0.3) 30%,
+                rgba(20, 16, 12, 0.85) 70%,
+                rgba(20, 16, 12, 0.95) 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .additional-stories {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .focus-cards-expanded .additional-stories {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .focus-btn-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: 1px solid #f6b15d;
+            background: transparent;
+            color: #f6b15d;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .focus-btn-toggle:hover {
+            background: rgba(224, 120, 80, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .focus-btn-toggle svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .focus-btn-toggle.expanded svg {
+            transform: rotate(45deg);
         }
 
         .focus-card-link {
@@ -893,6 +1217,8 @@
             justify-content: space-between;
             gap: 18px;
             flex-wrap: wrap;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
         }
 
         /* Card Actions */
@@ -962,6 +1288,9 @@
 </head>
 
 <body>
+    <!-- Floating Particles -->
+    <div class="particles-container" id="particlesContainer"></div>
+    
     <script src="i18n.js"></script>
     <div id="site-nav"></div>
     <script src="nav-loader.js"></script>
@@ -985,7 +1314,7 @@
                     <p class="focus-description" data-i18n="section.collection_desc">Drei Wege in die Sammlung: Erkunden Sie die Fundorte auf der Karte, vergleichen Sie Objekte im Steinzelt oder stöbern Sie durch alle Sarkophage.</p>
                 </div>
             </div>
-            <div class="cards">
+            <div class="cards collection-cards">
                 <a class="card" href="fundkarte.html">
                     <div class="card-media"><img src="assets/fundkarte.webp" alt="Fundkarte"></div>
                     <div class="card-body">
@@ -1038,61 +1367,96 @@
                     <div class="focus-header-left">
                         <div class="focus-eyebrow" data-i18n="focus.eyebrow">Kuratierte Einblicke</div>
                         <h2 class="focus-title" id="feature-title" data-i18n="focus.title">Objekte im Fokus</h2>
-                        <p class="focus-description" data-i18n="focus.description">Fünf kuratierte Objektgeschichten machen sichtbar: Diese Sammlung erzählt Geschichte – Sarkophag für Sarkophag. Themen erscheinen hier als Schlagwörter, der Einstieg bleibt bewusst objektzentriert.</p>
+                        <p class="focus-description" data-i18n="focus.description">Acht kuratierte Objektgeschichten machen sichtbar: Diese Sammlung erzählt Geschichte – Sarkophag für Sarkophag. Themen erscheinen hier als Schlagwörter, der Einstieg bleibt bewusst objektzentriert.</p>
                     </div>
                     <div class="focus-header-right">
-                        <a href="panorama_optimized.html" class="focus-btn">
-                            <span data-i18n="focus.btn">Alle Objekte ansehen</span>
+                        <button class="focus-btn-toggle" id="toggleStoriesBtn" onclick="toggleStories()">
+                            <span id="toggleBtnText">Alle Objekte ansehen</span>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        </a>
+                        </button>
                     </div>
                 </div>
-                <div class="focus-cards" id="featureCards"></div>
+                <div class="focus-cards-wrapper focus-cards-collapsed" id="focusCardsWrapper">
+                    <div class="focus-cards" id="featureCards"></div>
+                </div>
             </div>
         </section>
 
         <footer>
-            <div data-i18n="footer.copyright" data-i18n-page="_global">Archäologischer Park Carnuntum</div>
+            <div data-i18n="footer.copyright" data-i18n-page="_global">MMXXVI • AETCAR • pro aeternitate Carnunti</div>
             <div data-i18n="footer.links" data-i18n-page="_global">Archiv · Info · Rechtliches</div>
         </footer>
     </main>
 
     <script src="objectModal.js"></script>
     <script>
-        const FEATURE_OBJECTS = [
-            {
-                title: 'Sarkophag der Herennia Rufina',
-                story: 'Eine junge Frau, namentlich bekannt, gestorben mit 20 Jahren – ihr Sarkophag erzählt von Liebe, Erinnerung und Status in der römischen Provinz.',
-                tags: ['Herennia', 'Rufina'],
-                inv: 'CAR-S-1845',
-                image: 'extracted_sarcophagi/CAR-S-1845.jpg',
-                target: { page: 'steinzelt.html', search: 'herennia rufina' }
-            },
-            {
-                title: 'Sarkophag mit weiblicher Mumie',
-                story: 'Ein außergewöhnlich erhaltener Körper eröffnet Einblicke in Krankheit, Konservierung und Tod – jenseits literarischer Quellen.',
-                tags: ['Mumie', 'Konservierung'],
-                inv: 'CAR-S-2065',
-                image: 'extracted_sarcophagi/CAR-S-2065.jpg',
-                target: { page: 'steinzelt.html', search: 'mumie' }
-            },
-            {
-                title: 'Spolien & umgearbeitete Sarkophage',
-                story: 'Grabdenkmäler wurden weiterverwendet – als Baumaterial, Wasserbecken oder Tröge. Eine Geschichte der Transformation.',
-                tags: ['Transformation', 'Spolien'],
-                inv: 'CAR-S-1964',
-                image: 'extracted_sarcophagi/CAR-S-1964.jpg',
-                target: { page: 'steinzelt.html', tags: ['spolie'] }
-            }
-        ];
+        // FEATURE_OBJECTS wird jetzt aus Google Sheets geladen (assets/themes.json)
+        // Das hartcodierte Array wurde entfernt und wird durch loadThemesData() ersetzt
 
         // Global data storage
         let objectLookup = {};
         let steinzeltInvSet = new Set();
         let dataLoaded = false;
+        let themesData = null;
+        let themesLoaded = false;
 
+        // Load themes data
+        async function loadThemesData() {
+            try {
+                const response = await fetch('assets/themes.json');
+                themesData = await response.json();
+                themesLoaded = true;
+                console.log('Themen geladen:', themesData.meta.total_themes, 'Themen');
+                
+                // Update featured objects with themes data
+                updateFeatureObjectsFromThemes();
+                
+                // Re-render if data already loaded
+                if (dataLoaded) {
+                    renderFeatureCards();
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Themen:', error);
+                themesLoaded = false;
+            }
+        }
+        
+        // Update FEATURE_OBJECTS with themes data
+        function updateFeatureObjectsFromThemes() {
+            if (!themesData || !themesData.themes) return;
+            
+            // Initialize FEATURE_OBJECTS array
+            window.FEATURE_OBJECTS = [];
+            
+            // Convert themes to FEATURE_OBJECTS format
+            Object.values(themesData.themes).forEach(theme => {
+                const featureObj = {
+                    title: theme.title,
+                    story: theme.story,
+                    tags: theme.tags || [],
+                    inv: theme.inv_display || (theme.inv.length > 0 ? theme.inv[0] : ''),
+                    image: theme.image,
+                    target: {
+                        page: theme.target_page || 'steinzelt.html',
+                        ...theme.target_params
+                    },
+                    featured: theme.featured || false
+                };
+                
+                window.FEATURE_OBJECTS.push(featureObj);
+            });
+            
+            // Nur die ersten 3 als featured markieren für die Anzeige
+            window.FEATURE_OBJECTS.forEach((obj, index) => {
+                obj.featured = index < 3;
+            });
+            
+            console.log('FEATURE_OBJECTS aktualisiert mit', window.FEATURE_OBJECTS.length, 'Themen');
+            console.log('Erste 3 als featured markiert');
+        }
+        
         function buildTargetUrl(target, baseUrl) {
             if (!target) return baseUrl;
             const params = new URLSearchParams();
@@ -1116,7 +1480,7 @@
 
         function renderFeatureCards() {
             const host = document.getElementById('featureCards');
-            if (!host) return;
+            if (!host || !window.FEATURE_OBJECTS) return;
             host.innerHTML = '';
 
             // SVG icons for footer links
@@ -1126,12 +1490,17 @@
                 steinzelt: '<svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><rect x="9" y="13" width="6" height="8"/></svg>'
             };
 
-            FEATURE_OBJECTS.forEach(feature => {
+            window.FEATURE_OBJECTS.forEach((feature, index) => {
                 const objData = objectLookup[feature.inv];
 
                 // Card container
                 const card = document.createElement('div');
                 card.className = 'focus-card';
+                
+                // Add additional-stories class for non-featured items
+                if (!feature.featured) {
+                    card.classList.add('additional-stories');
+                }
 
                 // Image wrapper with link
                 const primaryUrl = buildTargetUrl({ ...feature.target, inv: feature.inv }, feature.target.page || 'steinzelt.html');
@@ -1251,9 +1620,39 @@
             });
         }
 
-        // Initial render (basic links only, or empty if we wait)
-        renderFeatureCards();
+        // Toggle function for collapsible stories
+        function toggleStories() {
+            const wrapper = document.getElementById('focusCardsWrapper');
+            const btn = document.getElementById('toggleStoriesBtn');
+            const btnText = document.getElementById('toggleBtnText');
+            
+            if (wrapper.classList.contains('focus-cards-collapsed')) {
+                // Expand
+                wrapper.classList.remove('focus-cards-collapsed');
+                wrapper.classList.add('focus-cards-expanded');
+                btn.classList.add('expanded');
+                btnText.textContent = 'Weniger anzeigen';
+            } else {
+                // Collapse
+                wrapper.classList.remove('focus-cards-expanded');
+                wrapper.classList.add('focus-cards-collapsed');
+                btn.classList.remove('expanded');
+                btnText.textContent = 'Alle Objekte ansehen';
+                
+                // Scroll to focus section
+                const focusSection = document.querySelector('.focus-section');
+                if (focusSection) {
+                    focusSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
 
+        // Initial render (basic links only, or empty if we wait)
+        // renderFeatureCards(); // Wait for themes to load first
+        
+        // Load themes data first, then other data
+        loadThemesData();
+        
         // Load Data
         Promise.all([
             fetch('data.json').then(res => res.json()),
@@ -1370,6 +1769,171 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
+        })();
+
+        // Floating Particles - Brightness based on distance to light source
+        (function() {
+            const container = document.getElementById('particlesContainer');
+            if (!container) return;
+            
+            const particleCount = 80;
+            const particleData = []; // Store particle elements and their data
+            
+            // Light source position: top edge at 2/3 width (66.67% X, 0% Y)
+            const lightSourceX = 66.67;
+            const lightSourceY = 0;
+            
+            // Mouse tracking
+            let mouseX = -1000;
+            let mouseY = -1000;
+            const windRadius = 100; // Pixels - radius of wind effect
+            const windStrength = 5; // Gentle push strength
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            document.addEventListener('mouseleave', () => {
+                mouseX = -1000;
+                mouseY = -1000;
+            });
+            
+            function getBrightness(xPercent, yPercent) {
+                // Calculate distance from light source (in percentage units)
+                const dx = xPercent - lightSourceX;
+                const dy = yPercent - lightSourceY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Use a smaller radius for more concentrated light effect
+                const lightRadius = 50;
+                const normalizedDistance = Math.min(distance / lightRadius, 1);
+                
+                // Steeper exponential falloff for point light effect
+                const brightness = Math.pow(1 - normalizedDistance, 2.5);
+                
+                return brightness;
+            }
+            
+            // Create particles with staggered initial appearance
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(container, getBrightness, 12);
+            }
+            
+            function createParticle(container, getBrightness, initialDelay = 0) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position anywhere on screen
+                const posX = Math.random() * 100;
+                const posY = 10 + Math.random() * 60;
+                
+                // Store base position for wind calculations
+                const data = {
+                    element: particle,
+                    baseX: posX,
+                    baseY: posY,
+                    currentOffsetX: 0,
+                    currentOffsetY: 0,
+                    velocityX: 0,
+                    velocityY: 0
+                };
+                particleData.push(data);
+                
+                particle.style.left = posX + '%';
+                
+                // Calculate brightness/distance factor
+                const brightnessFactor = getBrightness(posX, posY);
+                
+                // Size based on distance to light source (closer = larger, 3-10px range)
+                const baseSize = 2 + Math.random() * 2;
+                const size = baseSize + brightnessFactor * 6;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random drift ranges - some drift more, some less
+                const driftXRange = 15 + Math.random() * 40;
+                const driftYRange = 8 + Math.random() * 20;
+                
+                particle.style.setProperty('--drift-x-start', -driftXRange + 'px');
+                particle.style.setProperty('--drift-x-end', driftXRange + 'px');
+                particle.style.setProperty('--drift-y-start', posY + '%');
+                particle.style.setProperty('--drift-y-end', (posY + driftYRange) + '%');
+                
+                // Life duration: 8-16 seconds
+                const lifeDuration = 8 + Math.random() * 8;
+                particle.style.setProperty('--life-duration', lifeDuration + 's');
+                particle.style.setProperty('--float-x-duration', (6 + Math.random() * 10) + 's');
+                particle.style.setProperty('--float-y-duration', (8 + Math.random() * 12) + 's');
+                
+                // Opacity based on distance to light source (closer = brighter)
+                const maxOpacity = 0.15 + brightnessFactor * 0.7 + Math.random() * 0.15;
+                particle.style.setProperty('--p-opacity-max', Math.min(0.95, maxOpacity));
+                
+                // Staggered start - initial particles spread out, respawns start immediately
+                const lifeDelay = initialDelay > 0 ? Math.random() * initialDelay : 0;
+                particle.style.animationDelay = 
+                    `${lifeDelay}s, ${-Math.random() * 10}s, ${-Math.random() * 12}s`;
+                
+                container.appendChild(particle);
+                
+                // Remove and recreate particle after its life ends
+                const totalDuration = (lifeDelay + lifeDuration) * 1000;
+                setTimeout(() => {
+                    // Remove from data array
+                    const idx = particleData.findIndex(d => d.element === particle);
+                    if (idx > -1) particleData.splice(idx, 1);
+                    particle.remove();
+                    createParticle(container, getBrightness, 0);
+                }, totalDuration);
+            }
+            
+            // Wind effect animation loop - mouse speed acceleration disabled
+            function updateWindEffect() {
+                particleData.forEach(data => {
+                    const particle = data.element;
+                    if (!particle.isConnected) return;
+                    
+                    // Get particle position in pixels
+                    const particleRect = particle.getBoundingClientRect();
+                    const particleCenterX = particleRect.left + particleRect.width / 2;
+                    const particleCenterY = particleRect.top + particleRect.height / 2;
+                    
+                    // Calculate distance from mouse
+                    const dx = particleCenterX - mouseX;
+                    const dy = particleCenterY - mouseY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < windRadius && distance > 0) {
+                        // Gentle push force - no speed-based acceleration
+                        const force = Math.pow(1 - distance / windRadius, 1.0);
+                        const pushX = (dx / distance) * force * windStrength;
+                        const pushY = (dy / distance) * force * windStrength;
+                        
+                        // Fixed gentle impulse - no mouse speed influence
+                        data.velocityX += pushX * 0.04;
+                        data.velocityY += pushY * 0.04;
+                    }
+                    
+                    // Apply velocity to position (particles drift in pushed direction)
+                    data.currentOffsetX += data.velocityX;
+                    data.currentOffsetY += data.velocityY;
+                    
+                    // Stronger velocity decay to prevent excessive drifting
+                    data.velocityX *= 0.97;
+                    data.velocityY *= 0.97;
+                    
+                    // No position reset - particles stay where they drifted
+                    
+                    // Apply offset via CSS custom property
+                    particle.style.setProperty('--wind-x', data.currentOffsetX + 'px');
+                    particle.style.setProperty('--wind-y', data.currentOffsetY + 'px');
+                });
+                
+                requestAnimationFrame(updateWindEffect);
+            }
+            
+            updateWindEffect();
         })();
     </script>
 </body>

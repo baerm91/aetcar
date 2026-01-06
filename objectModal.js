@@ -29,6 +29,31 @@
 
     async function loadIndividuenData() {
         if (individuenData !== null) return individuenData;
+        
+        // Check if steinzelt.js already loaded or is loading the data
+        if (window.__steinzeltIndividuenData) {
+            individuenData = window.__steinzeltIndividuenData;
+            return individuenData;
+        }
+        
+        // If steinzelt.js is loading, wait for it
+        if (window.__steinzeltDataLoading) {
+            await new Promise(resolve => {
+                const check = () => {
+                    if (!window.__steinzeltDataLoading && window.__steinzeltIndividuenData) {
+                        individuenData = window.__steinzeltIndividuenData;
+                        resolve();
+                    } else if (!window.__steinzeltDataLoading) {
+                        resolve(); // Loading done but no data, fall through to fetch
+                    } else {
+                        setTimeout(check, 50);
+                    }
+                };
+                check();
+            });
+            if (individuenData) return individuenData;
+        }
+        
         if (individuenLoading) return null;
         individuenLoading = true;
         try {
@@ -52,6 +77,31 @@
 
     async function loadBeigabenData() {
         if (beigabenData !== null) return beigabenData;
+        
+        // Check if steinzelt.js already loaded the data
+        if (window.__steinzeltBeigabenData) {
+            beigabenData = window.__steinzeltBeigabenData;
+            return beigabenData;
+        }
+        
+        // If steinzelt.js is loading, wait for it
+        if (window.__steinzeltDataLoading) {
+            await new Promise(resolve => {
+                const check = () => {
+                    if (!window.__steinzeltDataLoading && window.__steinzeltBeigabenData) {
+                        beigabenData = window.__steinzeltBeigabenData;
+                        resolve();
+                    } else if (!window.__steinzeltDataLoading) {
+                        resolve();
+                    } else {
+                        setTimeout(check, 50);
+                    }
+                };
+                check();
+            });
+            if (beigabenData) return beigabenData;
+        }
+        
         if (beigabenLoading) return null;
         beigabenLoading = true;
         try {
@@ -136,10 +186,6 @@
             <div class="aetcar-modal-header">
                 <div class="aetcar-modal-top-bar">
                     <div class="aetcar-modal-info">
-                        <div class="aetcar-modal-brand">
-                            <span class="aetcar-brand-dot"></span>
-                            <span class="aetcar-brand-text">AETERNITAS CARNUNTI</span>
-                        </div>
                         <h1 class="aetcar-modal-title" id="aetcarModalTitle"></h1>
                         <div class="aetcar-modal-subtitle" id="aetcarModalSubtitle"></div>
                     </div>
@@ -502,7 +548,32 @@
 
     async function loadCoordinatesData() {
         if (coordinatesData !== null) return coordinatesData;
-        if (coordinatesLoading) return null; // Simple debounce/lock
+        
+        // Check if steinzelt.js already loaded the data
+        if (window.__steinzeltCoordinatesData) {
+            coordinatesData = window.__steinzeltCoordinatesData;
+            return coordinatesData;
+        }
+        
+        // If steinzelt.js is loading, wait for it
+        if (window.__steinzeltDataLoading) {
+            await new Promise(resolve => {
+                const check = () => {
+                    if (!window.__steinzeltDataLoading && window.__steinzeltCoordinatesData) {
+                        coordinatesData = window.__steinzeltCoordinatesData;
+                        resolve();
+                    } else if (!window.__steinzeltDataLoading) {
+                        resolve();
+                    } else {
+                        setTimeout(check, 50);
+                    }
+                };
+                check();
+            });
+            if (coordinatesData) return coordinatesData;
+        }
+        
+        if (coordinatesLoading) return null;
         coordinatesLoading = true;
         try {
             const response = await fetch('assets/coordinates.json');
@@ -1014,6 +1085,23 @@
         lastActiveElement = null;
     }
 
+    // Preload all data on page load for faster modal opening
+    function preloadAllData() {
+        // On steinzelt page, steinzelt.js loads all data - skip preloading
+        if (window.location.pathname.includes('steinzelt')) {
+            return;
+        }
+        loadIndividuenData();
+        loadBeigabenData();
+        loadCoordinatesData();
+    }
+
+    // Start preloading after page is fully loaded (not on steinzelt)
+    window.addEventListener('load', () => {
+        setTimeout(preloadAllData, 200);
+    });
+
     window.openObjectModal = openObjectModal;
     window.closeObjectModal = closeObjectModal;
+    window.preloadModalData = preloadAllData;
 })();

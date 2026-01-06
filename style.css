@@ -191,6 +191,11 @@ body {
     gap: 14px;
 }
 
+/* Mobile menu toggle - auf Desktop ausblenden */
+.mobile-menu-toggle {
+    display: none;
+}
+
 .nav-search-input {
     width: 220px;
     padding: 8px 16px;
@@ -665,6 +670,66 @@ body {
 }
 
 @media (max-width: 768px) {
+    .top-nav {
+        padding: 0 16px;
+        height: auto;
+        min-height: 64px;
+        flex-wrap: wrap;
+    }
+
+    .nav-brand {
+        order: 1;
+        flex: 1;
+    }
+
+    .nav-links {
+        order: 3;
+        flex-basis: 100%;
+        gap: 16px;
+        height: auto;
+        padding: 16px 0;
+        display: none;
+    }
+
+    .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-link {
+        height: auto;
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .nav-actions {
+        order: 2;
+        gap: 8px;
+    }
+
+    .nav-lang {
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .nav-lang a {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+
+    /* Mobile menu toggle */
+    .mobile-menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 20px;
+        cursor: pointer;
+        padding: 8px;
+        order: 2;
+    }
+
     .filter-toolbar {
         padding: 0 12px;
         gap: 8px;
@@ -744,6 +809,28 @@ body {
     height: 100%;
     z-index: 0;
     background-color: var(--color-bg-dark);
+    /* Initial state for fade-in animation */
+    opacity: 0;
+    transition: opacity 2.5s ease-out;
+}
+
+/* Map visible state after loading */
+#map.loaded {
+    opacity: 1;
+}
+
+/* Sarcophagi Outer Glow Effect */
+#map .leaflet-interactive {
+    filter: drop-shadow(0 0 8px rgba(246, 177, 93, 0.6))
+            drop-shadow(0 0 16px rgba(246, 177, 93, 0.4))
+            drop-shadow(0 0 24px rgba(246, 177, 93, 0.2));
+    transition: filter 0.3s ease;
+}
+
+#map .leaflet-interactive:hover {
+    filter: drop-shadow(0 0 10px rgba(246, 177, 93, 0.8))
+            drop-shadow(0 0 20px rgba(246, 177, 93, 0.6))
+            drop-shadow(0 0 35px rgba(246, 177, 93, 0.4));
 }
 
 /* UI Layer */

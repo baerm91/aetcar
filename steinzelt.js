@@ -3,10 +3,10 @@ const CONFIG = {
     BASE_WIDTH: 7069,
     IMAGE_PATH: 'assets/map.jpg',
     LAYER_STYLES: {
-        DEFAULT: { color: '#f6b15d', weight: 1, fillOpacity: 0.18 },
-        HOVER: { weight: 3, fillOpacity: 0.35 },
-        HIGHLIGHT: { weight: 4, fillOpacity: 0.45, color: '#f6b15d' },
-        DIM: { color: '#777', weight: 0.7, opacity: 0.2, fillOpacity: 0.02 }
+        DEFAULT: { color: '#f6b15d', weight: 0, fillOpacity: 0.01, fill: true, stroke: false, opacity: 0 },
+        HOVER: { weight: 2, fillOpacity: 0.2, fill: true, stroke: true, opacity: 0.5 },
+        HIGHLIGHT: { weight: 3, fillOpacity: 0.3, fill: true, color: '#f6b15d', stroke: true, opacity: 0.8 },
+        DIM: { color: '#777', weight: 0, opacity: 0, fillOpacity: 0.01, fill: true, stroke: false }
     }
 };
 
@@ -19,8 +19,8 @@ const map = L.map('map', {
     crs: L.CRS.Simple,
     minZoom: -2,
     maxZoom: 2,
-    zoomSnap: 0.5,
-    zoomDelta: 0.5,
+    zoomSnap: 0.25,
+    zoomDelta: 0.25,
     zoomControl: false
 });
 
@@ -59,6 +59,12 @@ let steinzeltInvSet = new Set(); // Set of inventory numbers in Steinzelt
 let objectLookup = {};
 let mapLayers = {};
 let currentVisibleInvs = null; // null = no active filter-dimming, otherwise Set of visible invs
+
+// Share loaded data globally for objectModal.js to use
+window.__steinzeltDataLoading = true; // Flag to indicate steinzelt.js is loading data
+window.__steinzeltCoordinatesData = null;
+window.__steinzeltIndividuenData = null;
+window.__steinzeltBeigabenData = null;
 
 // Old search elements (for backwards compatibility)
 const searchInput = document.getElementById('searchInput');
@@ -142,12 +148,28 @@ function setDimmedExcept(allowedSet) {
     });
 }
 
-function flyToInventory(inv) {
+const FLY_DURATION = 1.2; // Animation duration in seconds
+
+function flyToInventory(inv, callback) {
     const layer = mapLayers[inv];
-    if (!layer) return;
+    if (!layer) {
+        if (callback) callback();
+        return;
+    }
     const bounds = layer.getBounds ? layer.getBounds() : null;
     if (bounds && bounds.isValid()) {
-        map.fitBounds(bounds, { padding: [40, 40], animate: true, duration: 0.8 });
+        // Smooth multi-step zoom animation
+        map.flyToBounds(bounds, { 
+            padding: [40, 40], 
+            animate: true, 
+            duration: FLY_DURATION,
+            easeLinearity: 0.15
+        });
+        if (callback) {
+            setTimeout(callback, FLY_DURATION * 1000 + 50);
+        }
+    } else if (callback) {
+        callback();
     }
 }
 
@@ -223,6 +245,7 @@ function renderLayers() {
         layer.addTo(map);
         mapLayers[inv] = layer;
 
+        // Hover effects
         layer.on('mouseover', () => {
             if (layer.__hoverLocked) return;
 
@@ -249,10 +272,18 @@ function renderLayers() {
                 resetAllLayerStyles();
             }
             setLayerStyle(layer, CONFIG.LAYER_STYLES.HIGHLIGHT);
-            flyToInventory(inv);
+            
             const obj = objectLookup[inv] || { Inventarnummer: inv };
+            const imageUrl = inv ? `extracted_sarcophagi/${inv}.jpg` : '';
+            
+            // Preload image while zooming
+            if (imageUrl) {
+                const preloadImg = new Image();
+                preloadImg.src = imageUrl;
+            }
+            
+            // Open modal immediately without zoom
             if (typeof window.openObjectModal === 'function') {
-                const imageUrl = inv ? `extracted_sarcophagi/${inv}.jpg` : '';
                 window.openObjectModal(obj, { imageUrl });
             } else {
                 layer.bindPopup(buildPopup(inv), { maxWidth: 320 }).openPopup();
@@ -304,10 +335,12 @@ async function loadData() {
     });
     image.src = CONFIG.IMAGE_PATH;
 
-    const [dims, dataRes, coordRes] = await Promise.all([
+    const [dims, dataRes, coordRes, individuenRes, beigabenRes] = await Promise.all([
         imageReady,
         fetch('data.json'),
-        fetch('assets/coordinates.json')
+        fetch('assets/coordinates.json'),
+        fetch('assets/individuen.json'),
+        fetch('assets/beigaben.json')
     ]);
 
     const height = Number(dims && dims.height) || CONFIG.BASE_HEIGHT;
@@ -321,6 +354,22 @@ async function loadData() {
 
     sarcophagiData = await dataRes.json();
     coordinatesData = await coordRes.json();
+    
+    // Parse individuen and beigaben data
+    let individuenData = { by_sarkophag: {}, all: [] };
+    let beigabenData = { by_sarkophag: {}, all: [] };
+    try {
+        if (individuenRes.ok) individuenData = await individuenRes.json();
+    } catch (e) { }
+    try {
+        if (beigabenRes.ok) beigabenData = await beigabenRes.json();
+    } catch (e) { }
+    
+    // Share data globally for objectModal.js to avoid duplicate fetches
+    window.__steinzeltCoordinatesData = coordinatesData;
+    window.__steinzeltIndividuenData = individuenData;
+    window.__steinzeltBeigabenData = beigabenData;
+    window.__steinzeltDataLoading = false; // Data loading complete
 
     // Build set of inventory numbers that have coordinates in Steinzelt
     steinzeltInvSet = new Set();
@@ -344,13 +393,20 @@ async function loadData() {
 
     renderLayers();
 
-    // Hide loading screen
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-        setTimeout(() => {
-            loadingScreen.classList.add('hidden');
-        }, 300);
+    // Start animations after data is loaded
+    // Start fade-in animation for map
+    const mapElement = document.getElementById('map');
+    if (mapElement) {
+        mapElement.classList.add('loaded');
     }
+    
+    // Start slide-in animation for filter toolbar after a short delay
+    setTimeout(() => {
+        const filterToolbar = document.getElementById('filterToolbar');
+        if (filterToolbar) {
+            filterToolbar.classList.add('loaded');
+        }
+    }, 300);
 
     const ids = parseIdsFromParams();
     if (ids) {
@@ -439,23 +495,35 @@ function updateMapVisibility(data) {
 // THEMES PANEL FUNCTIONALITY
 // ============================================
 
+// Add themes variables to existing global scope
+let themesData = null;
+let themesLoaded = false;
+
 const themesPanel = document.getElementById('themesPanel');
 const themesCloseBtn = document.getElementById('themesCloseBtn');
 const themesList = document.getElementById('themesList');
 const themeDetail = document.getElementById('themeDetail');
 const themeBackBtn = document.getElementById('themeBackBtn');
 
+// Load themes data
+async function loadThemesData() {
+    try {
+        const response = await fetch('assets/themes.json');
+        themesData = await response.json();
+        themesLoaded = true;
+        console.log('Themen geladen für steinzelt.html:', themesData.meta.total_themes, 'Themen');
+        
+        // Update themes panel
+        updateThemesPanel();
+    } catch (error) {
+        console.error('Fehler beim Laden der Themen:', error);
+        themesLoaded = false;
+        if (themesPanel) themesPanel.style.display = 'none';
+    }
+}
+
 function initThemesPanel() {
-    // Currently there are no curated "Themen" on this page.
-    // The panel exists in the markup but should remain hidden until real themes are implemented.
-    if (themesPanel) themesPanel.style.display = 'none';
-    return;
-
-    // Panel is visible by default in CSS, don't hide it here
-    // if (themesPanel) {
-    //    themesPanel.style.display = 'none';
-    // }
-
+    // Panel now works with themes data
     if (themesCloseBtn) {
         themesCloseBtn.addEventListener('click', () => {
             if (themesPanel) themesPanel.style.display = 'none';
@@ -468,6 +536,19 @@ function initThemesPanel() {
             if (themeDetail) themeDetail.classList.remove('active');
         });
     }
+    
+    // Themen Toggle Button
+    const themesToggleBtn = document.getElementById('themesToggleBtn');
+    if (themesToggleBtn) {
+        themesToggleBtn.addEventListener('click', () => {
+            if (themesPanel) {
+                themesPanel.style.display = themesPanel.style.display === 'none' ? 'flex' : 'none';
+            }
+        });
+    }
+    
+    // Load themes data
+    loadThemesData();
 }
 
 function getFacetIcon(type) {
@@ -489,9 +570,148 @@ function getFacetLabel(type) {
 }
 
 function updateThemesPanel() {
-    // Themes are not implemented yet.
-    // Keep this function as a no-op until curated themes exist.
-    if (themesPanel) themesPanel.style.display = 'none';
+    if (!themesLoaded || !themesData || !themesPanel) {
+        if (themesPanel) themesPanel.style.display = 'none';
+        return;
+    }
+    
+    // Get themes for steinzelt page
+    const steinzeltThemes = themesData.by_page.steinzelt || [];
+    
+    if (steinzeltThemes.length === 0) {
+        themesPanel.style.display = 'none';
+        return;
+    }
+    
+    // Show panel
+    themesPanel.style.display = 'block';
+    
+    // Clear current themes
+    if (themesList) themesList.innerHTML = '';
+    
+    // Render theme cards
+    steinzeltThemes.forEach(themeId => {
+        const theme = themesData.themes[themeId];
+        if (!theme) return;
+        
+        const themeCard = createThemeCard(theme);
+        themesList.appendChild(themeCard);
+    });
+}
+
+function createThemeCard(theme) {
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    
+    // Count objects for this theme
+    const objectCount = countThemeObjects(theme);
+    
+    card.innerHTML = `
+        <div class="theme-card-header">
+            <div class="theme-icon">${getThemeIcon(theme)}</div>
+            <div>
+                <div class="theme-title">${theme.title}</div>
+                <div class="theme-subtitle">${theme.story.substring(0, 100)}...</div>
+            </div>
+        </div>
+        <div class="theme-count">${objectCount} Objekt${objectCount !== 1 ? 'e' : ''}</div>
+    `;
+    
+    // Click handler
+    card.addEventListener('click', () => {
+        showThemeDetail(theme);
+    });
+    
+    return card;
+}
+
+function getThemeIcon(theme) {
+    // Use icon from theme data or default based on tags
+    if (theme.icon) return theme.icon;
+    
+    const tags = theme.tags || [];
+    if (tags.includes('Mumie') || tags.includes('Konservierung')) return '🧬';
+    if (tags.includes('Spolien') || tags.includes('Transformation')) return '🔄';
+    if (tags.includes('Kind') || tags.includes('Trauer')) return '👶';
+    if (tags.includes('Inschrift') || tags.includes('Epigraphik')) return '📜';
+    if (tags.includes('Mythologie') || tags.includes('Ikonographie')) return '🏛️';
+    if (tags.includes('Architektur') || tags.includes('Dekor')) return '🏗️';
+    if (tags.includes('Handwerk') || tags.includes('Herstellung')) return '🔨';
+    
+    return '📋'; // Default icon
+}
+
+function countThemeObjects(theme) {
+    if (!theme.inv || theme.inv.length === 0) return 0;
+    
+    let count = 0;
+    theme.inv.forEach(inv => {
+        if (steinzeltInvSet.has(inv)) {
+            count++;
+        }
+    });
+    
+    return count;
+}
+
+function showThemeDetail(theme) {
+    if (!themesList || !themeDetail) return;
+    
+    // Hide list, show detail
+    themesList.style.display = 'none';
+    themeDetail.classList.add('active');
+    
+    // Update detail content
+    const detailTitle = document.getElementById('themeDetailTitle');
+    const detailDescription = document.getElementById('themeDetailDescription');
+    const detailStats = document.getElementById('themeDetailStats');
+    
+    if (detailTitle) detailTitle.textContent = theme.title;
+    if (detailDescription) detailDescription.textContent = theme.story;
+    
+    if (detailStats) {
+        const objectCount = countThemeObjects(theme);
+        detailStats.innerHTML = `
+            <div class="theme-stat">
+                <div class="theme-stat-value">${objectCount}</div>
+                <div class="theme-stat-label">Objekte</div>
+            </div>
+            <div class="theme-stat">
+                <div class="theme-stat-value">${theme.tags ? theme.tags.length : 0}</div>
+                <div class="theme-stat-label">Schlagworte</div>
+            </div>
+        `;
+    }
+    
+    // Setup filter button
+    const filterBtn = document.getElementById('themeFilterObjects');
+    if (filterBtn) {
+        filterBtn.onclick = () => {
+            filterByTheme(theme);
+        };
+    }
+}
+
+function filterByTheme(theme) {
+    if (!theme.inv || theme.inv.length === 0) return;
+    
+    // Filter to show only objects in this theme
+    const themeInvs = theme.inv.filter(inv => steinzeltInvSet.has(inv));
+    
+    if (themeInvs.length > 0) {
+        // Update FilterToolbar to show theme objects
+        const currentFilters = {
+            inv: themeInvs
+        };
+        
+        // Apply filter through FilterToolbar
+        FilterToolbar.setFilters(currentFilters);
+        
+        // Close themes panel
+        if (themesPanel) themesPanel.style.display = 'none';
+        
+        console.log('Gefiltert nach Thema:', theme.title, 'mit', themeInvs.length, 'Objekten');
+    }
 }
 
 // ============================================

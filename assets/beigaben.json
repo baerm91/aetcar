@@ -8,55 +8,66 @@
     "CAR-S-1926": [
       {
         "sarkophag_id": "CAR-S-1926",
-        "titel": "3 kleine Glasfragmente",
+        "titel": "Glas",
         "kategorie": "Glas",
+        "beschreibung": "3 kleine Glasfragmente",
         "material": "Glas"
       },
       {
         "sarkophag_id": "CAR-S-1926",
-        "titel": "Eisennadel",
-        "kategorie": "Metall"
+        "titel": "Nadel",
+        "kategorie": "Metall",
+        "beschreibung": "Eisennadel",
+        "material": "Eisen"
       },
       {
         "sarkophag_id": "CAR-S-1926",
-        "titel": "1 kleiner Silberring",
-        "kategorie": "Schmuck"
-      },
-      {
-        "sarkophag_id": "CAR-S-1926",
-        "titel": "1 goldenes Schmuckobjekt",
+        "titel": "Silberring",
         "kategorie": "Schmuck",
+        "beschreibung": "1 kleiner Silberring",
         "material": "Silber"
       },
       {
         "sarkophag_id": "CAR-S-1926",
-        "id": "114/2011",
-        "titel": "1 Eisenblech",
-        "kategorie": "Metall"
+        "titel": "Schmuckobjekt",
+        "kategorie": "Schmuck",
+        "beschreibung": "1 goldenes Schmuckobjekt",
+        "material": "Gold"
       },
       {
         "sarkophag_id": "CAR-S-1926",
-        "titel": "mehrere Fragmente eines Armreifs aus Elfenbein",
+        "id": "114/2011",
+        "titel": "Eisenblech",
+        "kategorie": "Metall",
+        "beschreibung": "1 Eisenblech",
+        "material": "Eisen"
+      },
+      {
+        "sarkophag_id": "CAR-S-1926",
+        "titel": "Armreif",
         "kategorie": "Schmuck",
+        "beschreibung": "mehrere Fragmente eines Armreifs aus Elfenbein",
         "material": "Elfenbein"
       },
       {
         "sarkophag_id": "CAR-S-1926",
-        "titel": "Firmalampe CDESSI",
+        "titel": "Lampe",
         "kategorie": "Keramik",
+        "beschreibung": "Firmalampe CDESSI",
         "datierung": "2.-3. Jh. n. Chr.",
         "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1926",
-        "titel": "1 Schlüssel",
-        "kategorie": "Metall"
+        "titel": "Schlüssel",
+        "kategorie": "Metall",
+        "beschreibung": "1 Schlüssel"
       }
     ],
     "CAR-S-1927": [
       {
         "sarkophag_id": "CAR-S-1927",
-        "titel": "RGK: 1 Topf Ganzform",
+        "titel": "Topf",
         "kategorie": "Keramik",
         "beschreibung": "RGK-Topf, Ganzform; Typ Petznek 8.2",
         "datierung": "100–180 n. Chr.",
@@ -72,29 +83,33 @@
       },
       {
         "sarkophag_id": "CAR-S-1927",
-        "titel": "2 kleine Silberblättchen",
+        "titel": "Silberblättchen",
         "kategorie": "Schmuck",
+        "beschreibung": "2 kleine Silberblättchen",
         "material": "Silber"
       },
       {
         "sarkophag_id": "CAR-S-1927",
         "id": "FN 112/2011",
-        "titel": "Silberne Nadeldose",
+        "titel": "Nadeldose",
         "kategorie": "Metall",
+        "beschreibung": "Silberne Nadeldose",
         "material": "Silber"
       },
       {
         "sarkophag_id": "CAR-S-1927",
         "id": "FN 111/2011",
-        "titel": "Nagelfragmente",
+        "titel": "Nagel",
         "kategorie": "Metall",
+        "beschreibung": "Nagelfragmente",
         "material": "Eisen"
       },
       {
         "sarkophag_id": "CAR-S-1927",
         "id": "FN 113/2011",
-        "titel": "Fragmente von 2 Glasbalsamaren",
+        "titel": "Glasbalsamare",
         "kategorie": "Glas",
+        "beschreibung": "Fragmente von 2 Glasbalsamaren",
         "material": "Glas"
       },
       {
@@ -103,13 +118,13 @@
         "titel": "Theriomorphes Rhyton",
         "kategorie": "Gefäß",
         "beschreibung": "Theriomorphes Rhyton aus dem RGK-Topf",
-        "material": "Keramik"
+        "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1927",
-        "titel": "Firmalampe FORTIS mit Graffito „N“",
+        "titel": "Lampe",
         "kategorie": "Keramik",
-        "beschreibung": "Graffito „N“, Loeschcke Typ X",
+        "beschreibung": "Firmalampe FORTIS mit Graffito „N“, Loeschcke Typ X",
         "datierung": "2.–3. Jh. n. Chr.",
         "material": "Ton"
       },
@@ -123,108 +138,122 @@
       {
         "sarkophag_id": "CAR-S-1927",
         "titel": "Skelette von 9 Mäusen",
-        "kategorie": "Knochen"
+        "kategorie": "Organisches"
       }
     ],
     "CAR-S-1925": [
       {
         "sarkophag_id": "CAR-S-1925",
-        "titel": "9 Wandfragmente von zwei Gefäßen",
+        "titel": "Gefäße",
         "kategorie": "Keramik",
         "beschreibung": "Neun Wandfragmente, zu mindestens zwei Gefäßen gehörig, gelbtonige Keramik",
         "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1925",
-        "titel": "15 Fragmente Topf",
+        "titel": "Topf",
         "kategorie": "Keramik",
-        "beschreibung": "15 Fragmente eines RGK-Topfes; Typ Petznek 8.4; reduzierend gebrannte Keramik",
+        "beschreibung": "15 Fragmente eines reduzierend gebrannten Topfes; Typ Petznek 8.4",
         "datierung": "100–180 n. Chr.",
         "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1925",
-        "titel": "Boden eines weiteren Topfes",
+        "titel": "Topf",
         "kategorie": "Keramik",
         "beschreibung": "Bodenfragment eines weiteren Topfes; reduzierend gebrannte Keramik",
         "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1925",
-        "titel": "Ziegel mit Stempel LEG XIII G",
+        "titel": "Ziegel",
         "kategorie": "Ziegel",
+        "beschreibung": "Ziegel mit Stempel LEG XIII G",
         "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1925",
-        "titel": "Imbrex mit unleserlichem Stempel",
+        "titel": "Imbrex",
         "kategorie": "Bauteil",
         "beschreibung": "Keramischer Imbrex mit unleserlichem Stempel",
         "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1925",
-        "titel": "3 kleine Fragmente Lampe",
+        "titel": "Lampe",
         "kategorie": "Keramik",
+        "beschreibung": "3 kleine Fragmente Lampe",
         "material": "Ton"
       },
       {
         "sarkophag_id": "CAR-S-1925",
-        "titel": "15 Schneckenhäuser (Beigabe / sekundär?)",
-        "kategorie": "Naturmaterial"
+        "titel": "Schneckenhäuser",
+        "kategorie": "Naturmaterial",
+        "beschreibung": "15 Schneckenhäuser (Beigabe / sekundär?)"
       }
     ]
   },
   "all": [
     {
       "sarkophag_id": "CAR-S-1926",
-      "titel": "3 kleine Glasfragmente",
+      "titel": "Glas",
       "kategorie": "Glas",
+      "beschreibung": "3 kleine Glasfragmente",
       "material": "Glas"
     },
     {
       "sarkophag_id": "CAR-S-1926",
-      "titel": "Eisennadel",
-      "kategorie": "Metall"
+      "titel": "Nadel",
+      "kategorie": "Metall",
+      "beschreibung": "Eisennadel",
+      "material": "Eisen"
     },
     {
       "sarkophag_id": "CAR-S-1926",
-      "titel": "1 kleiner Silberring",
-      "kategorie": "Schmuck"
-    },
-    {
-      "sarkophag_id": "CAR-S-1926",
-      "titel": "1 goldenes Schmuckobjekt",
+      "titel": "Silberring",
       "kategorie": "Schmuck",
+      "beschreibung": "1 kleiner Silberring",
       "material": "Silber"
     },
     {
       "sarkophag_id": "CAR-S-1926",
-      "id": "114/2011",
-      "titel": "1 Eisenblech",
-      "kategorie": "Metall"
+      "titel": "Schmuckobjekt",
+      "kategorie": "Schmuck",
+      "beschreibung": "1 goldenes Schmuckobjekt",
+      "material": "Gold"
     },
     {
       "sarkophag_id": "CAR-S-1926",
-      "titel": "mehrere Fragmente eines Armreifs aus Elfenbein",
+      "id": "114/2011",
+      "titel": "Eisenblech",
+      "kategorie": "Metall",
+      "beschreibung": "1 Eisenblech",
+      "material": "Eisen"
+    },
+    {
+      "sarkophag_id": "CAR-S-1926",
+      "titel": "Armreif",
       "kategorie": "Schmuck",
+      "beschreibung": "mehrere Fragmente eines Armreifs aus Elfenbein",
       "material": "Elfenbein"
     },
     {
       "sarkophag_id": "CAR-S-1926",
-      "titel": "Firmalampe CDESSI",
+      "titel": "Lampe",
       "kategorie": "Keramik",
+      "beschreibung": "Firmalampe CDESSI",
       "datierung": "2.-3. Jh. n. Chr.",
       "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1926",
-      "titel": "1 Schlüssel",
-      "kategorie": "Metall"
+      "titel": "Schlüssel",
+      "kategorie": "Metall",
+      "beschreibung": "1 Schlüssel"
     },
     {
       "sarkophag_id": "CAR-S-1927",
-      "titel": "RGK: 1 Topf Ganzform",
+      "titel": "Topf",
       "kategorie": "Keramik",
       "beschreibung": "RGK-Topf, Ganzform; Typ Petznek 8.2",
       "datierung": "100–180 n. Chr.",
@@ -240,29 +269,33 @@
     },
     {
       "sarkophag_id": "CAR-S-1927",
-      "titel": "2 kleine Silberblättchen",
+      "titel": "Silberblättchen",
       "kategorie": "Schmuck",
+      "beschreibung": "2 kleine Silberblättchen",
       "material": "Silber"
     },
     {
       "sarkophag_id": "CAR-S-1927",
       "id": "FN 112/2011",
-      "titel": "Silberne Nadeldose",
+      "titel": "Nadeldose",
       "kategorie": "Metall",
+      "beschreibung": "Silberne Nadeldose",
       "material": "Silber"
     },
     {
       "sarkophag_id": "CAR-S-1927",
       "id": "FN 111/2011",
-      "titel": "Nagelfragmente",
+      "titel": "Nagel",
       "kategorie": "Metall",
+      "beschreibung": "Nagelfragmente",
       "material": "Eisen"
     },
     {
       "sarkophag_id": "CAR-S-1927",
       "id": "FN 113/2011",
-      "titel": "Fragmente von 2 Glasbalsamaren",
+      "titel": "Glasbalsamare",
       "kategorie": "Glas",
+      "beschreibung": "Fragmente von 2 Glasbalsamaren",
       "material": "Glas"
     },
     {
@@ -271,13 +304,13 @@
       "titel": "Theriomorphes Rhyton",
       "kategorie": "Gefäß",
       "beschreibung": "Theriomorphes Rhyton aus dem RGK-Topf",
-      "material": "Keramik"
+      "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1927",
-      "titel": "Firmalampe FORTIS mit Graffito „N“",
+      "titel": "Lampe",
       "kategorie": "Keramik",
-      "beschreibung": "Graffito „N“, Loeschcke Typ X",
+      "beschreibung": "Firmalampe FORTIS mit Graffito „N“, Loeschcke Typ X",
       "datierung": "2.–3. Jh. n. Chr.",
       "material": "Ton"
     },
@@ -291,53 +324,56 @@
     {
       "sarkophag_id": "CAR-S-1927",
       "titel": "Skelette von 9 Mäusen",
-      "kategorie": "Knochen"
+      "kategorie": "Organisches"
     },
     {
       "sarkophag_id": "CAR-S-1925",
-      "titel": "9 Wandfragmente von zwei Gefäßen",
+      "titel": "Gefäße",
       "kategorie": "Keramik",
       "beschreibung": "Neun Wandfragmente, zu mindestens zwei Gefäßen gehörig, gelbtonige Keramik",
       "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1925",
-      "titel": "15 Fragmente Topf",
+      "titel": "Topf",
       "kategorie": "Keramik",
-      "beschreibung": "15 Fragmente eines RGK-Topfes; Typ Petznek 8.4; reduzierend gebrannte Keramik",
+      "beschreibung": "15 Fragmente eines reduzierend gebrannten Topfes; Typ Petznek 8.4",
       "datierung": "100–180 n. Chr.",
       "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1925",
-      "titel": "Boden eines weiteren Topfes",
+      "titel": "Topf",
       "kategorie": "Keramik",
       "beschreibung": "Bodenfragment eines weiteren Topfes; reduzierend gebrannte Keramik",
       "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1925",
-      "titel": "Ziegel mit Stempel LEG XIII G",
+      "titel": "Ziegel",
       "kategorie": "Ziegel",
+      "beschreibung": "Ziegel mit Stempel LEG XIII G",
       "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1925",
-      "titel": "Imbrex mit unleserlichem Stempel",
+      "titel": "Imbrex",
       "kategorie": "Bauteil",
       "beschreibung": "Keramischer Imbrex mit unleserlichem Stempel",
       "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1925",
-      "titel": "3 kleine Fragmente Lampe",
+      "titel": "Lampe",
       "kategorie": "Keramik",
+      "beschreibung": "3 kleine Fragmente Lampe",
       "material": "Ton"
     },
     {
       "sarkophag_id": "CAR-S-1925",
-      "titel": "15 Schneckenhäuser (Beigabe / sekundär?)",
-      "kategorie": "Naturmaterial"
+      "titel": "Schneckenhäuser",
+      "kategorie": "Naturmaterial",
+      "beschreibung": "15 Schneckenhäuser (Beigabe / sekundär?)"
     }
   ]
 }

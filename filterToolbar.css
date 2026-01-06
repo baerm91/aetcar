@@ -17,6 +17,15 @@
     align-items: center;
     padding: 0 24px;
     gap: 16px;
+    /* Initial state - invisible, appears from nothing */
+    opacity: 0;
+    transform: translateY(0);
+    transition: opacity 1.8s ease-out;
+}
+
+/* Toolbar visible state after loading */
+.filter-toolbar.loaded {
+    opacity: 1;
 }
 
 /* Fixed position variant (for map pages) */
@@ -69,6 +78,12 @@
     gap: 8px;
     transition: all 0.2s ease;
     white-space: nowrap;
+}
+
+/* Icon im Dropdown-Button auf Desktop ausblenden */
+.toolbar-dropdown-btn .icon,
+.toolbar-dropdown-btn .btn-icon {
+    display: none;
 }
 
 .toolbar-dropdown-btn:hover {
@@ -266,6 +281,7 @@ body > .toolbar-dropdown-menu {
 
 .view-toggle-btn .icon {
     font-size: 13px;
+    display: none; /* Icon auf Desktop ausblenden */
 }
 
 /* Toolbar Toggle (certainty toggle etc.) */
@@ -474,14 +490,26 @@ body > .toolbar-dropdown-menu {
 /* Responsive */
 @media (max-width: 768px) {
     .filter-toolbar {
-        padding: 0 12px;
-        gap: 8px;
+        padding: 8px 12px;
+        gap: 6px;
         overflow-x: auto;
         height: auto;
-        min-height: 52px;
-        flex-wrap: wrap;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        min-height: 56px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .toolbar-main {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: nowrap;
+    }
+
+    .toolbar-section {
+        flex-shrink: 0;
     }
 
     .toolbar-label {
@@ -492,8 +520,23 @@ body > .toolbar-dropdown-menu {
         display: none;
     }
 
+    .toolbar-dropdown-btn {
+        padding: 10px 12px;
+        font-size: 11px;
+        min-height: 36px;
+        border-radius: 8px;
+        flex-shrink: 0;
+        max-width: 110px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     .view-toggle-btn {
-        padding: 8px 10px;
+        padding: 10px;
+        min-height: 36px;
+        min-width: 36px;
+        flex-shrink: 0;
     }
 
     .view-toggle-btn .icon {
@@ -501,11 +544,115 @@ body > .toolbar-dropdown-menu {
     }
 
     .toolbar-search-input {
-        width: 140px;
+        width: 100px;
+        min-height: 36px;
+        padding: 8px 12px;
+        font-size: 12px;
+        flex-shrink: 0;
     }
 
     .toolbar-search-input:focus {
-        width: 180px;
+        width: 140px;
+    }
+
+    .toolbar-reset-btn {
+        padding: 10px 12px;
+        min-height: 36px;
+        font-size: 11px;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    /* Layout Toggle für Panorama */
+    .layout-toggle {
+        flex-shrink: 0;
+    }
+
+    .layout-btn {
+        padding: 8px 10px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    /* Toggle Switch */
+    .toggle-switch {
+        flex-shrink: 0;
+    }
+
+    .toggle-label {
+        font-size: 11px;
+    }
+
+    /* Sort Select */
+    .sort-select {
+        padding: 8px 10px;
+        font-size: 11px;
+        min-height: 36px;
+        max-width: 120px;
+    }
+
+    /* Bessere Touch-Targets */
+    .toolbar-dropdown-btn,
+    .view-toggle-btn,
+    .toolbar-search-input,
+    .toolbar-reset-btn,
+    .layout-btn,
+    .sort-select {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(246, 177, 93, 0.2);
+    }
+
+    /* Horizontales Scrollen verbessern */
+    .filter-toolbar::-webkit-scrollbar {
+        height: 3px;
+    }
+
+    .filter-toolbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .filter-toolbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 2px;
+    }
+}
+
+/* Extra kleine Bildschirme */
+@media (max-width: 480px) {
+    .filter-toolbar {
+        padding: 6px 8px;
+        gap: 4px;
+        min-height: 56px;
+    }
+
+    .toolbar-dropdown-btn {
+        padding: 8px 10px;
+        font-size: 10px;
+        min-height: 32px;
+        max-width: 100px;
+    }
+
+    .toolbar-search-input {
+        width: 100px;
+        min-height: 32px;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .toolbar-search-input:focus {
+        width: 140px;
+    }
+
+    .view-toggle-btn {
+        padding: 8px;
+        min-height: 32px;
+        min-width: 32px;
+    }
+
+    .toolbar-reset-btn {
+        padding: 8px 10px;
+        min-height: 32px;
+        font-size: 10px;
     }
 }
 

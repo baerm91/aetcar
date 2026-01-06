@@ -192,20 +192,22 @@
     function updateNavLinksWithLang() {
         var currentLang = 'de';
         try {
-            var urlParams = new URLSearchParams(window.location.search);
-            var urlLang = urlParams.get('lang');
-            if (urlLang) {
-                currentLang = urlLang.toLowerCase();
+            // Verwende I18n-Modul wenn verfügbar, sonst Fallback
+            if (window.I18n && typeof window.I18n.getLang === 'function') {
+                currentLang = window.I18n.getLang();
             } else {
-                var storedLang = localStorage.getItem('aetcar_lang');
-                if (storedLang) {
-                    currentLang = storedLang;
+                var urlParams = new URLSearchParams(window.location.search);
+                var urlLang = urlParams.get('lang');
+                if (urlLang) {
+                    currentLang = urlLang.toLowerCase();
+                } else {
+                    var storedLang = localStorage.getItem('aetcar_lang');
+                    if (storedLang) {
+                        currentLang = storedLang;
+                    }
                 }
             }
         } catch(e) {}
-
-        // Nur Links aktualisieren wenn nicht Default-Sprache
-        if (currentLang === 'de') return;
 
         var navLinks = document.querySelectorAll('.nav-link[href], .nav-brand[href]');
         navLinks.forEach(function(link) {
@@ -218,44 +220,129 @@
                 var basePath = parts[0];
                 var params = new URLSearchParams(parts[1] || '');
                 
-                // Sprache hinzufügen wenn nicht schon vorhanden
-                if (!params.has('lang')) {
+                // Immer aktualisieren: Parameter setzen oder entfernen je nach aktueller Sprache
+                if (currentLang === 'de') {
+                    // Bei Default-Sprache Parameter entfernen
+                    params.delete('lang');
+                } else {
+                    // Bei nicht-Default-Sprache Parameter setzen/aktualisieren
                     params.set('lang', currentLang);
-                    link.setAttribute('href', basePath + '?' + params.toString());
                 }
+                
+                var newHref = basePath;
+                if (params.toString()) {
+                    newHref += '?' + params.toString();
+                }
+                link.setAttribute('href', newHref);
             } catch(e) {}
         });
+    }
+    
+    // Exportiere Funktion für I18n-Modul
+    window.updateNavLinksWithLang = updateNavLinksWithLang;
+
+    /**
+     * Initialisiert das mobile Menü
+     */
+    function initMobileMenu() {
+        var mobileToggle = document.getElementById('mobileMenuToggle');
+        var navLinks = document.getElementById('navLinks');
+        
+        if (!mobileToggle || !navLinks) return;
+        
+        mobileToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            var isOpen = navLinks.classList.contains('mobile-open');
+            
+            if (isOpen) {
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.textContent = '☰';
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            } else {
+                navLinks.classList.add('mobile-open');
+                mobileToggle.textContent = '✕';
+                mobileToggle.setAttribute('aria-expanded', 'true');
+            }
+        });
+        
+        // Schließe Menü wenn außerhalb geklickt wird
+        document.addEventListener('click', function(e) {
+            if (navLinks.classList.contains('mobile-open') && 
+                !navLinks.contains(e.target) && 
+                !mobileToggle.contains(e.target)) {
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.textContent = '☰';
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Schließe Menü wenn Link geklickt wird
+        var navItems = navLinks.querySelectorAll('.nav-link');
+        navItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                navLinks.classList.remove('mobile-open');
+                mobileToggle.textContent = '☰';
+                mobileToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    function initializeNav() {
+        var page = getCurrentPage();
+        setActiveNavLink(page);
+        configureNavForPage(page);
+        initNavLight();
+        initLanguageSelector();
+        initMobileMenu();
+        updateNavLinksWithLang();
+        
+        // Wenn I18n geladen ist, Navigation übersetzen und Links aktualisieren
+        if (window.I18n && typeof window.I18n.translatePage === 'function') {
+            window.I18n.translatePage();
+            // Warte kurz, damit I18n vollständig initialisiert ist
+            setTimeout(function() {
+                updateNavLinksWithLang();
+                initNavLight(); // Re-initialize nav light after translations
+            }, 100);
+        } else {
+            // Wenn I18n noch nicht geladen ist, warte darauf
+            var checkI18n = setInterval(function() {
+                if (window.I18n && typeof window.I18n.translatePage === 'function') {
+                    clearInterval(checkI18n);
+                    window.I18n.translatePage();
+                    setTimeout(function() {
+                        updateNavLinksWithLang();
+                        initNavLight(); // Re-initialize nav light after translations
+                    }, 100);
+                }
+            }, 50);
+            // Stoppe nach 5 Sekunden
+            setTimeout(function() {
+                clearInterval(checkI18n);
+            }, 5000);
+        }
     }
 
     function loadPartialIntoPlaceholder() {
         var placeholder = document.getElementById('site-nav');
         if (!placeholder) return;
 
-        try {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'partials/nav.html?v=' + new Date().getTime(), false);
-            xhr.send(null);
-
-            if (xhr.status >= 200 && xhr.status < 300) {
-                placeholder.outerHTML = xhr.responseText;
-            } else {
-                return;
-            }
-        } catch (e) {
-            return;
-        }
-
-        var page = getCurrentPage();
-        setActiveNavLink(page);
-        configureNavForPage(page);
-        initNavLight();
-        initLanguageSelector();
-        updateNavLinksWithLang();
-        
-        // Wenn I18n geladen ist, Navigation übersetzen
-        if (window.I18n && typeof window.I18n.translatePage === 'function') {
-            window.I18n.translatePage();
-        }
+        fetch('partials/nav.html?v=' + new Date().getTime())
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(function(html) {
+                placeholder.outerHTML = html;
+                initializeNav();
+            })
+            .catch(function(e) {
+                console.error('Failed to load navigation:', e);
+            });
     }
 
     loadPartialIntoPlaceholder();

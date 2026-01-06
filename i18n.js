@@ -127,6 +127,11 @@ window.I18n = (function() {
                 // Alle internen Links mit Sprachparameter aktualisieren
                 updateInternalLinks();
                 
+                // Auch Navigation-Links aktualisieren (falls nav-loader.js bereits geladen ist)
+                if (typeof window.updateNavLinksWithLang === 'function') {
+                    window.updateNavLinksWithLang();
+                }
+                
                 // Callbacks ausführen
                 readyCallbacks.forEach(cb => {
                     try { cb(); } catch(e) { console.error('[i18n] Callback-Fehler:', e); }
@@ -266,6 +271,13 @@ window.I18n = (function() {
             translatePage();
             updateLangSelector();
             updateInternalLinks();
+            
+            // Auch Navigation-Links aktualisieren (falls nav-loader.js bereits geladen ist)
+            // Diese Funktion wird auch von nav-loader.js aufgerufen, aber wir rufen sie hier auch auf
+            // um sicherzustellen, dass alle Links aktualisiert werden
+            if (typeof window.updateNavLinksWithLang === 'function') {
+                window.updateNavLinksWithLang();
+            }
         }
         
         if (CONFIG.debug) {
@@ -359,20 +371,19 @@ window.I18n = (function() {
      * Aktualisiert alle internen Links mit dem Sprachparameter
      */
     function updateInternalLinks() {
-        if (currentLang === CONFIG.defaultLang) return; // Kein Parameter nötig
-        
         // Erfasse alle Links die auf interne Seiten verweisen
         const allLinks = document.querySelectorAll('a[href]');
         
         allLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (!href || href.startsWith('#') || href.startsWith('javascript:') || href.startsWith('http://') || href.startsWith('https://')) {
-                // Externe Links oder Anker überspringen
-                // Aber lokale absolute URLs (http://localhost:8080/...) sollten aktualisiert werden
-                if (href && (href.startsWith('http://localhost') || href.startsWith('https://localhost'))) {
-                    // Lokale absolute URL - behandeln
-                } else {
-                    return;
+            if (!href || href.startsWith('#') || href.startsWith('javascript:')) {
+                return; // Anker oder JavaScript-Links überspringen
+            }
+            
+            // Externe Links überspringen (außer localhost)
+            if (href.startsWith('http://') || href.startsWith('https://')) {
+                if (!href.startsWith('http://localhost') && !href.startsWith('https://localhost')) {
+                    return; // Echte externe Links überspringen
                 }
             }
             
@@ -386,10 +397,17 @@ window.I18n = (function() {
             
             try {
                 const url = new URL(href, window.location.origin);
-                if (!url.searchParams.has(CONFIG.urlParam)) {
+                
+                // Immer aktualisieren: Parameter setzen oder entfernen je nach aktueller Sprache
+                if (currentLang === CONFIG.defaultLang) {
+                    // Bei Default-Sprache Parameter entfernen
+                    url.searchParams.delete(CONFIG.urlParam);
+                } else {
+                    // Bei nicht-Default-Sprache Parameter setzen/aktualisieren
                     url.searchParams.set(CONFIG.urlParam, currentLang);
-                    link.setAttribute('href', url.pathname + url.search);
                 }
+                
+                link.setAttribute('href', url.pathname + url.search);
             } catch(e) {
                 if (CONFIG.debug) console.warn('[i18n] Link-Update fehlgeschlagen:', href, e);
             }

@@ -451,6 +451,12 @@ class PanoramaManager {
         const card = document.createElement('div');
         card.className = 'sarcophagus-card';
         
+        // Add random fade-in animation
+        const randomDuration = 0.8 + Math.random() * 1.7; // 0.8s to 2.5s
+        const randomDelay = Math.random() * 0.3; // Small random delay for staggered effect
+        card.style.opacity = '0';
+        card.style.animation = `fadeIn ${randomDuration}s ease-out ${randomDelay}s forwards`;
+        
         const invNum = item.Inventarnummer || 'Unbekannt';
         const imagePath = `extracted_sarcophagi/${invNum}.jpg`;
         const externalImageUrl = item && item.foto_url ? String(item.foto_url).trim() : '';
@@ -574,23 +580,106 @@ class PanoramaManager {
         // Badge for Material (optional)
         const materialBadge = item.Material ? `<span class="badge">${item.Material}</span>` : '';
 
+        // Generate keyword chips
+        const keywordChips = this.generateKeywordChips(item.Schlagworte);
+
         cardInfo.innerHTML = `
-            <div class="card-title">${invNum}</div>
+            <div class="card-title">${this.getObjectTitle(item)}</div>
             <div class="card-meta">
-                <span>${item.Maße || 'Typ unbekannt'}</span>
+                <span>${invNum}</span>
+                <span>${item.Maße || 'Maße nicht erfasst'}</span>
                 ${materialBadge}
+                ${keywordChips}
             </div>
         `;
 
         card.appendChild(imgWrapper);
         card.appendChild(cardInfo);
+        
+        // Store reference to cardInfo for shelf layout text fix
+        card._cardInfo = cardInfo;
+        card._needsRotation = false; // Will be set by applyImageStyles
+        
         card.onclick = () => this.openModal(item, item.hasImage ? imagePath : '');
         
         return card;
     }
 
-    optimizeMasonryLayout() {
-        // Not needed with CSS columns
+    generateKeywordChips(keywords) {
+        if (!keywords) return '';
+        
+        const keywordList = String(keywords).split(',').map(k => k.trim()).filter(k => k.length > 0);
+        if (keywordList.length === 0) return '';
+        
+        // Limit to first 3 keywords to avoid overcrowding
+        const displayKeywords = keywordList.slice(0, 3);
+        const hasMore = keywordList.length > 3;
+        
+        const chips = displayKeywords.map(keyword => {
+            const normalizedKeyword = this.normalizeTag(keyword);
+            return `<span class="keyword-chip" data-tag="${normalizedKeyword}" onclick="panoramaManager.filterByKeyword('${keyword.replace(/'/g, "\\'")}', event)">${keyword}</span>`;
+        }).join('');
+        
+        const moreIndicator = hasMore ? `<span class="keyword-more">+${keywordList.length - 3}</span>` : '';
+        
+        return `<div class="keyword-chips">${chips}${moreIndicator}</div>`;
+    }
+
+    filterByKeyword(keyword, event) {
+        event.stopPropagation(); // Prevent card click
+        
+        if (window.FilterToolbar && typeof FilterToolbar.addFacetValue === 'function') {
+            // Use FilterToolbar to add the tag - keyword is now the original label
+            FilterToolbar.addFacetValue('tags', keyword);
+        } else {
+            // Fallback: add to local selected tags (use normalized version)
+            this.selectedTags.add(this.normalizeTag(keyword));
+            this.renderPanorama();
+        }
+    }
+
+    getTagLabel(normalizedKeyword) {
+        // Find the original label for the normalized keyword
+        if (this.tagLabels && this.tagLabels.has(normalizedKeyword)) {
+            return this.tagLabels.get(normalizedKeyword);
+        }
+        
+        // Fallback: search through tag counts to find the original label
+        if (this.tagCounts) {
+            for (const [norm, info] of Object.entries(this.tagCounts)) {
+                if (norm === normalizedKeyword && info.label) {
+                    return info.label;
+                }
+            }
+        }
+        
+        // Final fallback: return the normalized keyword as-is
+        return normalizedKeyword;
+    }
+
+    getObjectTitle(item) {
+        return this.firstNonEmpty(
+            item && item['Titel / Darstellung'],
+            item && item.Titel,
+            item && item.title,
+            item && item.Bezeichnung,
+            item && item.Objektname,
+            item && item.Typ,
+            item && item.Inventarnummer
+        );
+    }
+
+    firstNonEmpty(...values) {
+        for (const v of values) {
+            const s = this.normalizeText(v);
+            if (s) return s;
+        }
+        return '';
+    }
+
+    normalizeText(value) {
+        if (value === null || value === undefined) return '';
+        return String(value).trim();
     }
     
     // ... (keep applyMasonryLayout empty or remove)
@@ -764,6 +853,11 @@ class PanoramaManager {
         if (uprightToggle) {
             uprightToggle.addEventListener('change', (e) => {
                 this.uprightMode = e.target.checked;
+                // Add/remove upright-mode class for CSS fixes (e.g. shelf layout text orientation)
+                const container = document.getElementById('panoramaContainer');
+                if (container) {
+                    container.classList.toggle('upright-mode', this.uprightMode);
+                }
                 this.renderPanorama();
             });
         }
@@ -779,6 +873,7 @@ class PanoramaManager {
                     
                     const container = document.getElementById('panoramaContainer');
                     const layout = targetBtn.dataset.layout;
+                    this.layoutMode = layout; // Track layout mode for image styling
                     
                     container.classList.remove('compact', 'masonry', 'shelf');
                     if (layout === 'compact') {
@@ -788,6 +883,9 @@ class PanoramaManager {
                     } else if (layout === 'shelf') {
                         container.classList.add('shelf');
                     }
+                    
+                    // Re-render to apply layout-specific styles
+                    this.renderPanorama();
                 });
             });
         }
@@ -900,4 +998,12 @@ function closeModal() {
 document.addEventListener('DOMContentLoaded', () => {
     window.panoramaManager = new PanoramaManager();
     window.panoramaManager.init();
+    
+    // Start slide-in animation for filter toolbar after a short delay
+    setTimeout(() => {
+        const filterToolbar = document.getElementById('filterToolbar');
+        if (filterToolbar) {
+            filterToolbar.classList.add('loaded');
+        }
+    }, 300);
 });

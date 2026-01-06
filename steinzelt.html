@@ -8,41 +8,45 @@
     <meta name="description" content="Interaktive Karte der Sarkophage von Carnuntum">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="style.css" as="style">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="filterToolbar.css">
-    <link rel="stylesheet" href="objectModal.css">
+    <link rel="stylesheet" href="objectModal.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></noscript>
 </head>
 
 <body>
-    <script src="i18n.js"></script>
+    <script src="i18n.js" defer></script>
     <div id="site-nav"></div>
-    <script src="nav-loader.js"></script>
+    <script src="nav-loader.js" defer></script>
 
     <!-- Filter Toolbar -->
     <div class="filter-toolbar" id="filterToolbar">
+        <!-- Page-specific: Themen Toggle -->
+        <button class="toolbar-reset-btn" id="themesToggleBtn">Themen anzeigen</button>
+        
+        <div class="toolbar-divider"></div>
+        
         <!-- Facet dropdowns loaded from partial -->
         <div id="filterFacetsPartial"></div>
+        
+        <div class="toolbar-divider"></div>
+        
         <!-- Count, Search, Reset loaded from partial -->
         <div id="filterToolbarPartial"></div>
     </div>
-    <script src="filterToolbar-loader.js"></script>
-
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader"></div>
-        <p data-i18n="loading.message" data-i18n-page="_global">Daten werden geladen ...</p>
-    </div>
+    <script src="filterToolbar-loader.js" defer></script>
 
     <!-- Map -->
     <div id="map"></div>
 
     <!-- Themen Panel -->
-    <div class="themes-panel" id="themesPanel">
+    <div class="themes-panel" id="themesPanel" style="display: none;">
         <div class="themes-header">
-            <h2 data-i18n="themes.title" data-i18n-page="_global">📚 Themen erkunden</h2>
+            <h2 data-i18n="themes.title" data-i18n-page="_global">Themen erkunden</h2>
             <button class="themes-close-btn" id="themesCloseBtn">×</button>
         </div>
         <div class="themes-body" id="themesBody">
@@ -71,10 +75,10 @@
     <div id="toggle-list" class="toggle-btn" data-i18n-title="btn.toggle_list" title="Liste ein-/ausblenden">☰</div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="objectModal.js"></script>
-    <script src="filterToolbar.js"></script>
-    <script src="steinzelt.js"></script>
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+    <script src="objectModal.js" defer></script>
+    <script src="filterToolbar.js" defer></script>
+    <script src="steinzelt.js" defer></script>
 </body>
 
 </html>
