@@ -38,6 +38,5 @@ venv/
 *.temp
 
 # Large image directories (can be regenerated)
-extracted_sarcophagi/
 extracted_sarcophagi_smart/
 
