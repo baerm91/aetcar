@@ -44,8 +44,8 @@
         "mp": "Camelot! (Nur ein Modell)"
       },
       "nav.sarkophage": {
-        "de": "Sarkophage",
-        "en": "Sarcophagi",
+        "de": "Gräber",
+        "en": "Graves",
         "mp": "Sehr teure Kisten"
       },
       "footer.copyright": {
@@ -104,8 +104,8 @@
         "mp": "Camelot!"
       },
       "card.sarkophage.title": {
-        "de": "Sarkophage",
-        "en": "Sarcophagi",
+        "de": "Gräber",
+        "en": "Graves",
         "mp": "Papageien-Lagerhaus"
       },
       "themes.title": {
@@ -216,8 +216,8 @@
         "mp": "Nur eine Fleischwunde!"
       },
       "hero.title": {
-        "de": "Römische Sarkophage",
-        "en": "Roman Sarcophagi",
+        "de": "Römische Gräber",
+        "en": "Roman Graves",
         "mp": "Sehr teure Steinkisten"
       },
       "hero.subtitle": {
@@ -241,8 +241,8 @@
         "mp": "Die Heilige-Gral-Sammlung"
       },
       "section.collection_desc": {
-        "de": "Drei Wege in die Sammlung: Erkunden Sie die Fundorte auf der Karte, vergleichen Sie Objekte im Steinzelt oder stöbern Sie durch alle Sarkophage.",
-        "en": "Three ways into the collection: Explore the find locations on the map, compare objects in the Stone Tent, or browse through all sarcophagi.",
+        "de": "Drei Wege in die Sammlung: Erkunden Sie die Fundorte auf der Karte, vergleichen Sie Objekte im Steinzelt oder stöbern Sie durch alle bekannten Gräber.",
+        "en": "Three ways into the collection: Explore the find locations on the map, compare objects in the Stone Tent, or browse through all known graves.",
         "mp": "Drei Pfade liegen vor Euch, tapferer Ritter: Die Karte der fragwürdigen Farben, das Schloss (nur ein Modell), oder die Galerie der Noch-nicht-ganz-tot-Lagerung."
       },
       "card.fundkarte.text": {
@@ -276,8 +276,8 @@
         "mp": "↗ Bringt eure Toten!"
       },
       "stats.sarkophage": {
-        "de": "Sarkophage",
-        "en": "Sarcophagi",
+        "de": "Gräber",
+        "en": "Graves",
         "mp": "Papageien-Lager"
       },
       "stats.grabungen": {
@@ -347,8 +347,8 @@
     },
     "panorama": {
       "title": {
-        "de": "Sarkophage",
-        "en": "Sarcophagi",
+        "de": "Gräber",
+        "en": "Graves",
         "mp": "Die Papageien-Sammlung"
       },
       "layout.grid": {

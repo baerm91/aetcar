@@ -1299,7 +1299,7 @@
         <section class="hero">
             <div>
                 <div class="pill" data-i18n="hero.pill">Pro Aeternitate Carnunti</div>
-                <h1><span data-i18n="hero.title">Römische Sarkophage</span><br><span data-i18n="hero.subtitle">aus dem Raum Carnuntum</span></h1>
+                <h1><span data-i18n="hero.title">Römische Gräber</span><br><span data-i18n="hero.subtitle">aus dem Raum Carnuntum</span></h1>
                 <p data-i18n="hero.description">Im Folgenden sehen Sie steinerne Behältnisse für die Toten.
                     Sie liegen im Dunkel der Erde, wurden aus bereits genutztem Material gefertigt, bewegt, geöffnet und wieder verschlossen.
                     Erhalten haben sich in ihnen Zeugnisse römischen Kulturerbes, von Handlung, Ritual und Zeit.</p>
@@ -1311,7 +1311,7 @@
                 <div class="focus-header-left">
                     <div class="focus-eyebrow" data-i18n="section.entry_points">Einstiegspunkte</div>
                     <h2 class="focus-title" data-i18n="section.collection">Sammlung & Kontexte</h2>
-                    <p class="focus-description" data-i18n="section.collection_desc">Drei Wege in die Sammlung: Erkunden Sie die Fundorte auf der Karte, vergleichen Sie Objekte im Steinzelt oder stöbern Sie durch alle Sarkophage.</p>
+                    <p class="focus-description" data-i18n="section.collection_desc">Drei Wege in die Sammlung: Erkunden Sie die Fundorte auf der Karte, vergleichen Sie Objekte im Steinzelt oder stöbern Sie durch alle Gräber.</p>
                 </div>
             </div>
             <div class="cards collection-cards">
@@ -1319,7 +1319,7 @@
                     <div class="card-media"><img src="assets/fundkarte.webp" alt="Fundkarte"></div>
                     <div class="card-body">
                         <div class="card-title" data-i18n="card.fundkarte.title" data-i18n-page="_global">Fundkarte</div>
-                        <div class="card-text" data-i18n="card.fundkarte.text">Die Fundkarte zeigt, wo die Sarkophage gefunden wurden und wie ihre Fundorte in den antiken Raum von Carnuntum eingebettet sind.</div>
+                        <div class="card-text" data-i18n="card.fundkarte.text">Die Fundkarte zeigt, wo die Gräber gefunden wurden und wie ihre Fundorte in den antiken Raum von Carnuntum eingebettet sind.</div>
                         <div class="card-link" data-i18n="card.fundkarte.link">↗ Zur Fundkarte</div>
                     </div>
                 </a>
@@ -1327,15 +1327,15 @@
                     <div class="card-media"><img src="assets/steinzelt.webp" alt="Steinzelt"></div>
                     <div class="card-body">
                         <div class="card-title" data-i18n="card.steinzelt.title" data-i18n-page="_global">Steinzelt</div>
-                        <div class="card-text" data-i18n="card.steinzelt.text">Zwischen Grabung und Forschung werden hier Sarkophage gesichert, geöffnet und ihre Inhalte für die spezialisierte wissenschaftliche Bearbeitung getrennt erfasst.</div>
+                        <div class="card-text" data-i18n="card.steinzelt.text">Zwischen Grabung und Forschung werden hier Gräber gesichert, geöffnet und ihre Inhalte für die spezialisierte wissenschaftliche Bearbeitung getrennt erfasst.</div>
                         <div class="card-link" data-i18n="card.steinzelt.link">↗ Zum Steinzelt</div>
                     </div>
                 </a>
                 <a class="card" href="panorama_optimized.html">
-                    <div class="card-media"><img src="assets/sarkophage.webp" alt="Sarkophage"></div>
+                    <div class="card-media"><img src="assets/sarkophage.webp" alt="Gräber"></div>
                     <div class="card-body">
-                        <div class="card-title" data-i18n="card.sarkophage.title" data-i18n-page="_global">Sarkophage</div>
-                        <div class="card-text" data-i18n="card.sarkophage.text">Die Galerie ermöglicht den Vergleich der Sarkophage und macht Unterschiede in Gestaltung, Dimension und Nutzung sichtbar.</div>
+                        <div class="card-title" data-i18n="card.sarkophage.title" data-i18n-page="_global">Gräber</div>
+                        <div class="card-text" data-i18n="card.sarkophage.text">Die Galerie ermöglicht den Vergleich der Gräber und macht Unterschiede in Gestaltung, Dimension und Nutzung sichtbar.</div>
                         <div class="card-link" data-i18n="card.sarkophage.link">↗ Zur Übersicht</div>
                     </div>
                 </a>
@@ -1344,7 +1344,7 @@
             <div class="stats" aria-label="Projektstatistiken">
                 <div class="stat">
                     <div class="num" id="statsObjectCount">–</div>
-                    <div class="label" data-i18n="stats.sarkophage">Sarkophage</div>
+                    <div class="label" data-i18n="stats.sarkophage">Gräber</div>
                 </div>
                 <div class="stat">
                     <div class="num" id="statsGrabungCount">–</div>
@@ -1599,9 +1599,9 @@
                     return link;
                 };
 
-                // Sarkophage link (always)
+                // Gräber link (always)
                 const urlPanorama = buildTargetUrl({ ...feature.target, inv: feature.inv }, 'panorama_optimized.html');
-                footer.appendChild(createFooterLink(urlPanorama, 'sarkophage', 'Sarkophage'));
+                footer.appendChild(createFooterLink(urlPanorama, 'sarkophage', 'Gräber'));
 
                 // Fundkarte (conditional)
                 if (hasMapCoords) {
