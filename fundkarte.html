@@ -1000,19 +1000,6 @@
             z-index: 1000 !important;
         }
 
-        .custom-marker.dimmed {
-            background: rgba(100, 100, 100, 0.4);
-            border-color: rgba(255, 255, 255, 0.3);
-            opacity: 0.5;
-            box-shadow: none;
-        }
-
-        .custom-marker.dimmed.uncertain {
-            border-color: rgba(255, 255, 255, 0.2);
-            opacity: 0.35;
-            box-shadow: none;
-        }
-
         /* Typ-Farben für Punkte */
         .custom-marker.type-sarkophag { background: #3b82f6; }
         .custom-marker.type-deckel { background: #60a5fa; }
@@ -1029,6 +1016,29 @@
         .custom-marker.type-steinkiste { background: #9ca3af; }
         .custom-marker.type-mumie { background: #10b981; }
         .custom-marker.type-unbekannt { background: #6b7280; }
+
+        /* Dimmed state - must come AFTER type colors to override them */
+        .custom-marker.dimmed {
+            background: #555 !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            opacity: 0.2 !important;
+            box-shadow: none !important;
+            filter: grayscale(100%) !important;
+            z-index: 100 !important; /* Push to back */
+        }
+
+        .custom-marker.dimmed.uncertain {
+            border-color: rgba(255, 255, 255, 0.05) !important;
+            opacity: 0.15 !important;
+        }
+        
+        /* Highlighted state - optional, for emphasis */
+        .custom-marker.highlighted {
+            opacity: 1 !important;
+            z-index: 1000 !important; /* Pull to front */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            border: 2px solid #fff;
+        }
 
         /* Legende Typfarben */
         .legend-marker.type-sarkophag { background: #3b82f6; }
@@ -1238,6 +1248,7 @@
         let allData = [];
         let filteredData = [];
         let hasActiveFilter = false;
+        const DEBUG_FILTERS = new URLSearchParams(window.location.search).has('debugFilters');
         let themesData = null;
         let themesLoaded = false;
         let clusteringEnabled = true;
@@ -1424,88 +1435,128 @@
         map.zoomControl.setPosition('topright');
 
         // Load Data (Sarkophage) + Annotationen + Themen parallel
+        console.log('[Fundkarte] Starting data load...');
         Promise.all([
             fetch('data.json').then(res => res.json()),
             fetch('assets/annotationen.json').then(res => res.json()).catch(() => null),
             loadThemesFromJson()
         ])
             .then(([data, annotations, themes]) => {
-                allData = (Array.isArray(data) ? data : [])
-                    .map(obj => {
-                        if (!obj) return null;
-                        const latRaw = obj.lat;
-                        const lngRaw = obj.lng;
-                        if (latRaw === null || latRaw === undefined || latRaw === '') return null;
-                        if (lngRaw === null || lngRaw === undefined || lngRaw === '') return null;
-                        const lat = Number(latRaw);
-                        const lng = Number(lngRaw);
-                        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
-                        obj.lat = lat;
-                        obj.lng = lng;
-                        if (typeof obj.certain !== 'boolean') {
-                            obj.certain = true;
-                        }
-                        return obj;
-                    })
-                    .filter(Boolean);
+                console.log('[Fundkarte] Data loaded. Processing...');
+                try {
+                    allData = (Array.isArray(data) ? data : [])
+                        .map(obj => {
+                            if (!obj) return null;
+                            const latRaw = obj.lat;
+                            const lngRaw = obj.lng;
+                            if (latRaw === null || latRaw === undefined || latRaw === '') return null;
+                            if (lngRaw === null || lngRaw === undefined || lngRaw === '') return null;
+                            const lat = Number(latRaw);
+                            const lng = Number(lngRaw);
+                            if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+                            obj.lat = lat;
+                            obj.lng = lng;
+                            if (typeof obj.certain !== 'boolean') {
+                                obj.certain = true;
+                            }
+                            return obj;
+                        })
+                        .filter(Boolean);
+                    
+                    console.log(`[Fundkarte] Processed ${allData.length} objects with coordinates.`);
 
-                // Themen-Liste rendern (THEMES wurde durch loadThemesFromJson befüllt)
-                renderThemesList();
-
-                // Handle ids parameter (comma-separated inventory numbers)
-                const urlParams = new URLSearchParams(window.location.search);
-                const idsParam = urlParams.get('ids');
-                let idsFilter = null;
-                let idsSet = null;
-                if (idsParam) {
-                    idsSet = new Set(idsParam.split(',').map(id => decodeURIComponent(id.trim())));
-                    idsFilter = obj => obj.Inventarnummer && idsSet.has(obj.Inventarnummer);
-                    console.log('IDs Filter aktiv:', idsSet);
-                }
-
-                // Initialize FilterToolbar with central logic
-                FilterToolbar.init({
-                    facets: ['material', 'type', 'tags', 'gender', 'beigaben'],
-                    onFilterChange: (filtered, state) => {
-                        // Apply idsFilter on top of toolbar filtering
-                        if (idsFilter) {
-                            filteredData = filtered.filter(idsFilter);
-                        } else {
-                            filteredData = filtered;
-                        }
-                        updateMarkers();
-                        updateResultCount();
-
-                        // Zoom to filtered objects if ids parameter is set
-                        if (idsSet && filteredData.length > 0) {
-                            zoomToObjects(filteredData);
-
-                            // Open popup for first matching object after a short delay
-                            setTimeout(() => {
-                                const firstObj = filteredData.find(obj => obj.lat && obj.lng);
-                                if (firstObj) {
-                                    // Find and click the marker for this object
-                                    markers.eachLayer(marker => {
-                                        const markerLatLng = marker.getLatLng();
-                                        if (Math.abs(markerLatLng.lat - firstObj.lat) < 0.0001 &&
-                                            Math.abs(markerLatLng.lng - firstObj.lng) < 0.0001) {
-                                            showPopup(firstObj, marker);
-                                        }
-                                    });
-                                }
-                            }, 1500); // Wait 1.5 seconds after zoom
-                        }
-                    },
-                    onReset: () => {
-                        // Don't reset idsFilter - keep URL parameter active
+                    // Themen-Liste rendern (THEMES wurde durch loadThemesFromJson befüllt)
+                    renderThemesList();
+    
+                    // Handle ids parameter (comma-separated inventory numbers)
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const idsParam = urlParams.get('ids');
+                    let idsFilter = null;
+                    let idsSet = null;
+                    if (idsParam) {
+                        idsSet = new Set(idsParam.split(',').map(id => decodeURIComponent(id.trim())));
+                        idsFilter = obj => obj.Inventarnummer && idsSet.has(obj.Inventarnummer);
+                        console.log('IDs Filter aktiv:', idsSet);
                     }
-                });
+    
+                    // Initialize FilterToolbar with central logic
+                    const facets = ['material', 'type', 'tags', 'gender', 'beigaben'];
+                    if (typeof FilterToolbar === 'undefined') {
+                        console.error('[Fundkarte] FilterToolbar is not defined! Check script loading.');
+                    } else {
+                        console.log('[Fundkarte] Initializing FilterToolbar...');
+                        FilterToolbar.init({
+                            facets: facets,
+                            onFilterChange: (filtered, state) => {
+                                if (DEBUG_FILTERS) {
+                                    console.groupCollapsed('[Fundkarte] onFilterChange');
+                                    console.log('state:', state);
+                                }
 
-                // Set data - FilterToolbar will trigger onFilterChange
-                FilterToolbar.setData(allData);
+                                // Check if toolbar has active filters (FilterToolbar.getState() returns arrays)
+                                const toolbarHasFilter = facets.some(key => {
+                                    const v = state ? state[key] : null;
+                                    if (v instanceof Set) return v.size > 0;
+                                    if (Array.isArray(v)) return v.length > 0;
+                                    return false;
+                                }) || (typeof state?.search === 'string' && state.search.trim().length > 0);
+        
+                                // Apply idsFilter on top of toolbar filtering
+                                if (idsFilter) {
+                                    filteredData = filtered.filter(idsFilter);
+                                } else {
+                                    filteredData = filtered;
+                                }
+                                
+                                // Set global hasActiveFilter explicitly
+                                hasActiveFilter = toolbarHasFilter || !!idsFilter;
 
-                if (annotations && annotations.items) {
-                    renderAnnotations(annotations.items);
+                                if (DEBUG_FILTERS) {
+                                    console.log('toolbarHasFilter:', toolbarHasFilter);
+                                    console.log('idsFilter:', !!idsFilter);
+                                    console.log('hasActiveFilter:', hasActiveFilter);
+                                    console.log('filteredData.length:', filteredData.length, 'allData.length:', allData.length);
+                                    console.groupEnd();
+                                }
+                                
+                                updateMarkers();
+                                updateResultCount();
+        
+                                // Zoom to filtered objects if ids parameter is set
+                                if (idsSet && filteredData.length > 0) {
+                                    zoomToObjects(filteredData);
+        
+                                    // Open popup for first matching object after a short delay
+                                    setTimeout(() => {
+                                        const firstObj = filteredData.find(obj => obj.lat && obj.lng);
+                                        if (firstObj) {
+                                            // Find and click the marker for this object
+                                            markers.eachLayer(marker => {
+                                                const markerLatLng = marker.getLatLng();
+                                                if (Math.abs(markerLatLng.lat - firstObj.lat) < 0.0001 &&
+                                                    Math.abs(markerLatLng.lng - firstObj.lng) < 0.0001) {
+                                                    showPopup(firstObj, marker);
+                                                }
+                                            });
+                                        }
+                                    }, 1500); // Wait 1.5 seconds after zoom
+                                }
+                            },
+                            onReset: () => {
+                                // Don't reset idsFilter - keep URL parameter active
+                            }
+                        });
+                        
+                        // Set data - FilterToolbar will trigger onFilterChange
+                        console.log('[Fundkarte] Setting data to FilterToolbar...');
+                        FilterToolbar.setData(allData);
+                    }
+    
+                    if (annotations && annotations.items) {
+                        renderAnnotations(annotations.items);
+                    }
+                } catch (e) {
+                    console.error('[Fundkarte] Error during initialization:', e);
                 }
             })
             .catch(err => {
@@ -1532,30 +1583,81 @@
 
         // Update Markers (Sarkophage)
         // Always show ALL markers, highlight filtered ones, dim the rest (like steinzelt.html)
+        function buildMarkerClass(obj, isFiltered) {
+            const typeClass = getTypeClass(obj.Typ);
+            let className = 'custom-marker ' + typeClass;
+            if (!obj.certain) className += ' uncertain';
+            if (hasActiveFilter) {
+                className += isFiltered ? ' highlighted' : ' dimmed';
+            }
+            return className;
+        }
+
+        function reapplyMarkerStyles(reason) {
+            if (!hasActiveFilter) return;
+
+            const filteredInvs = new Set(filteredData.map(o => o.Inventarnummer).filter(Boolean));
+            const group = clusteringEnabled ? markers : unclustered;
+            let changed = 0;
+
+            group.eachLayer(layer => {
+                // For MarkerClusterGroup, eachLayer will iterate child markers (and sometimes clusters). Guard aggressively.
+                const inv = layer && (layer.__aetcarInv || layer.options?.__aetcarInv);
+                if (!inv) return;
+
+                const obj = layer.__aetcarObj;
+                if (!obj) return;
+
+                const isFiltered = filteredInvs.has(inv);
+                const className = buildMarkerClass(obj, isFiltered);
+                const current = layer.options?.icon?.options?.className || '';
+
+                if (current !== className) {
+                    const icon = L.divIcon({
+                        html: '',
+                        className,
+                        iconSize: [24, 24],
+                        iconAnchor: [12, 12]
+                    });
+                    try { layer.setIcon(icon); } catch { /* ignore */ }
+                    changed += 1;
+                }
+            });
+
+            if (clusteringEnabled && typeof markers.refreshClusters === 'function') {
+                markers.refreshClusters();
+            }
+
+            if (DEBUG_FILTERS) {
+                console.log('[Fundkarte] reapplyMarkerStyles', { reason, changed, hasActiveFilter, clusteringEnabled });
+            }
+        }
+
         function updateMarkers() {
             markers.clearLayers();
             unclustered.clearLayers();
 
             // Build set of filtered inventory numbers for quick lookup
-            const filteredInvs = new Set(filteredData.map(obj => obj.Inventarnummer).filter(Boolean));
-            const allWithCoords = allData.filter(o => o.lat && o.lng);
-            const filteredWithCoords = filteredData.filter(o => o.lat && o.lng);
-            hasActiveFilter = filteredWithCoords.length < allWithCoords.length;
+            const filteredInvs = new Set(filteredData.map(o => o.Inventarnummer).filter(Boolean));
+            
+            if (DEBUG_FILTERS) {
+                console.log('[Fundkarte] updateMarkers', {
+                    filtered: filteredData.length,
+                    total: allData.length,
+                    active: hasActiveFilter,
+                    filteredInvs: filteredInvs.size
+                });
+            }
 
             const targetLayer = clusteringEnabled ? markers : unclustered;
 
             allData.forEach(obj => {
                 if (!obj.lat || !obj.lng) return;
 
-                const inv = obj.Inventarnummer || '';
-                const isFiltered = !hasActiveFilter || filteredInvs.has(inv);
+                // Check if this object is in the filtered set
+                const isFiltered = !hasActiveFilter || filteredInvs.has(obj.Inventarnummer);
 
-                const typeClass = getTypeClass(obj.Typ);
-                let className = 'custom-marker ' + typeClass;
-                if (!obj.certain) className += ' uncertain';
-                if (hasActiveFilter) {
-                    className += isFiltered ? ' highlighted' : ' dimmed';
-                }
+                const className = buildMarkerClass(obj, isFiltered);
 
                 const markerIcon = L.divIcon({
                     html: '',
@@ -1565,9 +1667,17 @@
                 });
 
                 const marker = L.marker([obj.lat, obj.lng], { icon: markerIcon });
+                marker.__aetcarInv = obj.Inventarnummer || '';
+                marker.__aetcarObj = obj;
+                marker.options.__aetcarInv = marker.__aetcarInv;
                 marker.on('click', () => showPopup(obj, marker));
                 targetLayer.addLayer(marker);
             });
+
+            // Ensure cluster icons are recalculated after a full rebuild
+            if (clusteringEnabled && typeof markers.refreshClusters === 'function') {
+                markers.refreshClusters();
+            }
         }
 
         // Clustering toggle
@@ -1592,6 +1702,10 @@
         document.getElementById('clusteringToggle')?.addEventListener('click', () => {
             setClustering(!clusteringEnabled);
         });
+
+        // When clusters dissolve/merge due to zoom, ensure styles are consistent with the current filter state
+        map.on('zoomend', () => reapplyMarkerStyles('zoomend'));
+        map.on('moveend', () => reapplyMarkerStyles('moveend'));
 
         // Render annotations (separate layer)
         function renderAnnotations(items) {

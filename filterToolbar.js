@@ -336,17 +336,14 @@ window.FilterToolbar = (function() {
     // ========================================
 
     function applyFilters() {
-        // Some pages (e.g. panorama_optimized.html) use FilterToolbar only as a UI/state component
-        // and do their own filtering. In that case setData() is never called.
-        // We still need to notify about state changes so the page can re-render.
-        if (!hasDataSource) {
-            if (config.onFilterChange) {
-                config.onFilterChange(getState());
-            }
-            return;
+        if (!initialized) return;
+
+        // Debug active filters
+        const activeFacets = config.facets.filter(k => filterState[k] && filterState[k].size > 0);
+        if (activeFacets.length > 0) {
+            console.log('[FilterToolbar] Active filters:', activeFacets.map(k => `${k}=${Array.from(filterState[k])}`));
         }
 
-        // Filter data
         filteredData = allData.filter(obj => {
             // Additional page-specific filter
             if (additionalFilterFn && !additionalFilterFn(obj)) {
@@ -365,6 +362,11 @@ window.FilterToolbar = (function() {
                         return false;
                     }
                 }
+            }
+            
+            // Debug specific object passing all filters
+            if (activeFacets.includes('beigaben') && obj.Inventarnummer === 'CAR-S-1928') {
+                 console.warn('[FilterToolbar] CAR-S-1928 PASSED beigaben filter! This should not happen if it has no beigaben.');
             }
 
             return true;
@@ -402,7 +404,25 @@ window.FilterToolbar = (function() {
             return true;
         }
 
+        // Beigaben is derived from a lazy-loaded index. Until loaded, don't block results.
+        // BUT: if a beigaben filter is active and index is not loaded, we should NOT match.
+        if (facetKey === 'beigaben') {
+            if (!(beigabenCategoryIndex instanceof Map)) {
+                // Index not loaded yet - don't match anything if filter is active
+                return false;
+            }
+        }
+
         const value = def.getValue(obj);
+        
+        // DEBUG: Trace beigaben filtering for a specific object without beigaben (e.g. CAR-S-1928)
+        if (facetKey === 'beigaben' && obj.Inventarnummer === 'CAR-S-1928') {
+             console.log('[FilterToolbar] Checking beigaben for CAR-S-1928:', {
+                 value,
+                 filterState: Array.from(filterState[facetKey]),
+                 hasMatch: def.isMultiValue ? value.some(v => filterState[facetKey].has(v)) : filterState[facetKey].has(value)
+             });
+        }
         
         if (def.isMultiValue) {
             if (facetKey === 'tags') {
@@ -753,6 +773,11 @@ window.FilterToolbar = (function() {
             filterState.gender = new Set(gender.split(',').map(g => decodeURIComponent(g.trim())));
         }
 
+        const beigaben = params.get('beigaben');
+        if (beigaben) {
+            filterState.beigaben = new Set(beigaben.split(',').map(b => decodeURIComponent(b.trim())));
+        }
+
         // Update search input if present
         const searchInput = document.getElementById('toolbarSearch');
         if (searchInput && filterState.search) {
@@ -770,6 +795,7 @@ window.FilterToolbar = (function() {
             type: Array.from(filterState.type),
             tags: Array.from(filterState.tags),
             gender: Array.from(filterState.gender),
+            beigaben: Array.from(filterState.beigaben),
             search: filterState.search
         };
     }
