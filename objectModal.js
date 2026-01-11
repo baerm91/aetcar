@@ -632,15 +632,16 @@
     }
 
     function getObjectTitle(obj) {
-        return firstNonEmpty(
+        const raw = firstNonEmpty(
             obj && obj['Titel / Darstellung'],
             obj && obj.Titel,
             obj && obj.title,
             obj && obj.Bezeichnung,
             obj && obj.Objektname,
-            obj && obj.Typ,
-            obj && obj.Inventarnummer
+            obj && obj.Typ
         );
+        if (!raw) return '';
+        return String(raw).trim();
     }
 
     function getInventory(obj) {
@@ -692,7 +693,10 @@
 
         // Populate Fields
         const invNum = getInventory(obj);
+        const typ = firstNonEmpty(obj && obj.Typ);
         const title = getObjectTitle(obj);
+        const displayTitle = title || typ || 'Objekt';
+        const displayInv = invNum || '';
         const location = firstNonEmpty(obj && obj.Texteingabe, obj && obj.Fundort);
         const description = firstNonEmpty(obj && obj.Beschreibung, obj && obj.description);
         const dating = firstNonEmpty(obj && obj.Datierung, obj && obj.datierung);
@@ -705,7 +709,7 @@
         const tags = parseTags(firstNonEmpty(obj && obj.Schlagworte, obj && obj.tags));
 
         // Header
-        modal.querySelector('#aetcarModalTitle').textContent = title || 'Objekt';
+        modal.querySelector('#aetcarModalTitle').textContent = displayTitle;
 
         const subtitleEl = modal.querySelector('#aetcarModalSubtitle');
         subtitleEl.innerHTML = '';
@@ -714,10 +718,10 @@
             span.innerHTML = `<span class="material-symbols-outlined" style="font-size:14px; vertical-align:text-bottom">location_on</span> ${location}`;
             subtitleEl.appendChild(span);
         }
-        if (invNum) {
+        if (displayInv) {
             const span = document.createElement('span');
             span.className = 'inv';
-            span.textContent = invNum;
+            span.textContent = displayInv;
             if (location) {
                 const dot = document.createElement('span');
                 dot.textContent = '·';
@@ -745,7 +749,7 @@
         setMedia(
             modal.querySelector('#aetcarModalMainImage'),
             resolvedImageUrl,
-            title,
+            displayTitle,
             imageUrl ? normalizedFallback : ''
         );
 

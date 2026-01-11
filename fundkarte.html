@@ -1013,6 +1013,36 @@
             box-shadow: none;
         }
 
+        /* Typ-Farben für Punkte */
+        .custom-marker.type-sarkophag { background: #3b82f6; }
+        .custom-marker.type-deckel { background: #60a5fa; }
+        .custom-marker.type-fragment { background: #7c3aed; }
+        .custom-marker.type-urne { background: #f97316; }
+        .custom-marker.type-koerpergrab,
+        .custom-marker.type-korpergrab { background: #22c55e; }
+        .custom-marker.type-brandgrab { background: #e11d48; }
+        .custom-marker.type-grabbau { background: #a855f7; }
+        .custom-marker.type-grabstein { background: #f59e0b; }
+        .custom-marker.type-ziegelplattengrab,
+        .custom-marker.type-steinplattengrab,
+        .custom-marker.type-ziegelgrab,
+        .custom-marker.type-steinkiste { background: #9ca3af; }
+        .custom-marker.type-mumie { background: #10b981; }
+        .custom-marker.type-unbekannt { background: #6b7280; }
+
+        /* Legende Typfarben */
+        .legend-marker.type-sarkophag { background: #3b82f6; }
+        .legend-marker.type-deckel { background: #60a5fa; }
+        .legend-marker.type-fragment { background: #7c3aed; }
+        .legend-marker.type-urne { background: #f97316; }
+        .legend-marker.type-koerpergrab { background: #22c55e; }
+        .legend-marker.type-brandgrab { background: #e11d48; }
+        .legend-marker.type-grabbau { background: #a855f7; }
+        .legend-marker.type-grabstein { background: #f59e0b; }
+        .legend-marker.type-ziegelplattengrab { background: #9ca3af; }
+        .legend-marker.type-unbekannt { background: #6b7280; }
+        .legend-marker.grabung { background: #ff6b6b; }
+
         .annotation-icon {
             display: flex;
             align-items: center;
@@ -1066,6 +1096,9 @@
     <div class="filter-toolbar" id="filterToolbar">
         <!-- Page-specific: Themen Toggle -->
         <button class="toolbar-reset-btn" id="themesToggleBtn">Themen anzeigen</button>
+
+        <!-- Clustering Toggle -->
+        <button class="toolbar-reset-btn" id="clusteringToggle">Cluster an</button>
 
         <div class="toolbar-divider"></div>
 
@@ -1124,6 +1157,49 @@
             <div class="legend-marker landmark">⭐</div>
             <span data-i18n="map.legend.landmark" data-i18n-page="_global">Landmarke</span>
         </div>
+
+        <div style="height: 8px;"></div>
+        <div class="legend-item">
+            <div class="legend-marker type-sarkophag"></div>
+            <span>Sarkophag</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-deckel"></div>
+            <span>Deckel</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-fragment"></div>
+            <span>Fragment</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-urne"></div>
+            <span>Urne</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-koerpergrab"></div>
+            <span>Körpergrab</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-brandgrab"></div>
+            <span>Brandgrab</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-grabbau"></div>
+            <span>Grabbau</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-grabstein"></div>
+            <span>Grabstein</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-ziegelplattengrab"></div>
+            <span>Ziegel-/Steinplattengrab</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-marker type-unbekannt"></div>
+            <span>Unbekannt / andere</span>
+        </div>
+
         <div style="height: 8px;"></div>
         <div class="legend-item">
             <div class="legend-marker area area-military"></div>
@@ -1161,20 +1237,33 @@
         // State
         let allData = [];
         let filteredData = [];
+        let hasActiveFilter = false;
         let themesData = null;
         let themesLoaded = false;
+        let clusteringEnabled = true;
         let markers = L.markerClusterGroup({
             maxClusterRadius: 30,
             spiderfyOnMaxZoom: true,
             showCoverageOnHover: false,
             iconCreateFunction: function (cluster) {
-                const count = cluster.getChildCount();
+                const children = cluster.getAllChildMarkers();
 
-                // Check if all markers in cluster are dimmed
-                const allMarkers = cluster.getAllChildMarkers();
-                const allDimmed = allMarkers.every(marker =>
-                    marker.options.icon && marker.options.icon.options.className.includes('dimmed')
-                );
+                // Count only non-dimmed markers when a filter is active; otherwise count all
+                const filteredCount = hasActiveFilter
+                    ? children.filter(marker => {
+                        const cls = marker.options.icon?.options.className || '';
+                        return !cls.includes('dimmed');
+                    }).length
+                    : children.length;
+
+                const count = filteredCount;
+
+                // Check if all markers in cluster are dimmed (for styling)
+                const allDimmed = hasActiveFilter
+                    ? filteredCount === 0
+                    : children.every(marker =>
+                        marker.options.icon && marker.options.icon.options.className.includes('dimmed')
+                    );
 
                 let size = 'small';
                 if (count > 10) size = 'medium';
@@ -1190,6 +1279,7 @@
             }
         });
 
+        let unclustered = L.layerGroup();
         let annotationLayer = L.layerGroup();
 
         let selectedFilters = {
@@ -1270,6 +1360,7 @@
 
         map.addLayer(markers);
         map.addLayer(annotationLayer);
+        setClustering(true); // initialize clustering toggle button state
 
         // Karten-Daten Layer (archäologische Bereiche aus karten_daten.json)
         let kartenDatenLayers = {};
@@ -1304,6 +1395,30 @@
                 }
             })
             .catch(err => console.error('Fehler beim Laden der Karten-Daten:', err));
+
+        // Grabungen-Layer laden
+        fetch('assets/Grabungen.json')
+            .then(res => res.json())
+            .then(geo => {
+                const grabungenLayer = L.geoJSON(geo, {
+                    style: {
+                        color: '#ff6b6b',
+                        weight: 2,
+                        fillColor: '#ff6b6b',
+                        fillOpacity: 0.25
+                    },
+                    onEachFeature: (feature, layer) => {
+                        const title = feature?.properties?.layer || 'Grabung';
+                        layer.bindPopup(
+                            `<div class="popup-content"><div class="popup-body"><div class="popup-title">${title}</div></div></div>`,
+                            { maxWidth: 260, minWidth: 200 }
+                        );
+                    }
+                });
+                grabungenLayer.addTo(map);
+                console.log('Grabungen Layer geladen');
+            })
+            .catch(err => console.error('Fehler beim Laden von assets/Grabungen.json:', err));
 
         // Move zoom control to right
         map.zoomControl.setPosition('topright');
@@ -1419,10 +1534,15 @@
         // Always show ALL markers, highlight filtered ones, dim the rest (like steinzelt.html)
         function updateMarkers() {
             markers.clearLayers();
+            unclustered.clearLayers();
 
             // Build set of filtered inventory numbers for quick lookup
             const filteredInvs = new Set(filteredData.map(obj => obj.Inventarnummer).filter(Boolean));
-            const hasActiveFilter = filteredData.length < allData.length;
+            const allWithCoords = allData.filter(o => o.lat && o.lng);
+            const filteredWithCoords = filteredData.filter(o => o.lat && o.lng);
+            hasActiveFilter = filteredWithCoords.length < allWithCoords.length;
+
+            const targetLayer = clusteringEnabled ? markers : unclustered;
 
             allData.forEach(obj => {
                 if (!obj.lat || !obj.lng) return;
@@ -1430,7 +1550,8 @@
                 const inv = obj.Inventarnummer || '';
                 const isFiltered = !hasActiveFilter || filteredInvs.has(inv);
 
-                let className = 'custom-marker';
+                const typeClass = getTypeClass(obj.Typ);
+                let className = 'custom-marker ' + typeClass;
                 if (!obj.certain) className += ' uncertain';
                 if (hasActiveFilter) {
                     className += isFiltered ? ' highlighted' : ' dimmed';
@@ -1445,9 +1566,32 @@
 
                 const marker = L.marker([obj.lat, obj.lng], { icon: markerIcon });
                 marker.on('click', () => showPopup(obj, marker));
-                markers.addLayer(marker);
+                targetLayer.addLayer(marker);
             });
         }
+
+        // Clustering toggle
+        function setClustering(enabled) {
+            clusteringEnabled = enabled;
+            const btn = document.getElementById('clusteringToggle');
+            if (btn) {
+                btn.textContent = enabled ? 'Cluster an' : 'Cluster aus';
+            }
+
+            if (enabled) {
+                map.removeLayer(unclustered);
+                map.addLayer(markers);
+            } else {
+                map.removeLayer(markers);
+                map.addLayer(unclustered);
+            }
+            updateMarkers();
+        }
+
+        // Clustering toggle button
+        document.getElementById('clusteringToggle')?.addEventListener('click', () => {
+            setClustering(!clusteringEnabled);
+        });
 
         // Render annotations (separate layer)
         function renderAnnotations(items) {
@@ -1514,46 +1658,59 @@
         }
 
         // Show Popup
-        window.aetcarAdjustMapPopupImage = function (imgEl) {
-            try {
-                if (!imgEl) return;
-                const frame = imgEl.closest('.popup-image-frame');
-                if (!frame) return;
+        // Burial Type zu CSS-Klasse mapping (fuer Graeber)
+        function getBurialTypeClass(burialType) {
+            if (!burialType) return 'unbekannt';
+            const type = burialType.toLowerCase()
+                .replace(/ae/g, 'ae').replace(/oe/g, 'oe').replace(/ue/g, 'ue')
+                .replace(/\s+/g, '');
+            
+            if (type.includes('sarkophag')) return 'sarkophag';
+            if (type.includes('koerpergrab') || type.includes('korpergrab')) return 'koerpergrab';
+            if (type.includes('skelett')) return 'skelett';
+            if (type.includes('brandgrab') || type.includes('brandgrubengrab')) return 'brandgrubengrab';
+            if (type.includes('bustum')) return 'bustum';
+            if (type.includes('urne')) return 'urne';
+            if (type.includes('grabbau')) return 'grabbau';
+            if (type.includes('grabstein')) return 'grabstein';
+            if (type.includes('ziegelplattengrab')) return 'ziegelplattengrab';
+            if (type.includes('steinplattengrab')) return 'steinplattengrab';
+            if (type.includes('ziegelgrab')) return 'ziegelgrab';
+            if (type.includes('steinkiste')) return 'steinkiste';
+            if (type.includes('knochenreste')) return 'knochenreste';
+            if (type.includes('mumie')) return 'mumie';
+            return 'unbekannt';
+        }
 
-                imgEl.style.width = '100%';
-                imgEl.style.height = '100%';
-                imgEl.style.objectFit = 'contain';
-                imgEl.style.objectPosition = 'center';
-                imgEl.style.position = '';
-                imgEl.style.left = '';
-                imgEl.style.top = '';
-                imgEl.style.transform = '';
-                imgEl.style.transformOrigin = '';
+        // Typ zu CSS-Klasse mapping (für alle Objekte)
+        function getTypeClass(typ) {
+            if (!typ) return 'type-unbekannt';
+            const t = String(typ).toLowerCase()
+                .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue')
+                .replace(/\s+/g, '');
 
-                const nw = imgEl.naturalWidth;
-                const nh = imgEl.naturalHeight;
-                if (!(nw > 0 && nh > 0)) return;
-
-                if (nh > nw) {
-                    const w = frame.clientWidth;
-                    const h = frame.clientHeight;
-                    imgEl.style.width = h + 'px';
-                    imgEl.style.height = w + 'px';
-                    imgEl.style.position = 'absolute';
-                    imgEl.style.left = '50%';
-                    imgEl.style.top = '50%';
-                    imgEl.style.transformOrigin = 'center';
-                    imgEl.style.transform = 'translate(-50%, -50%) rotate(-90deg)';
-                }
-            } catch (e) {
-                // no-op
-            }
-        };
+            if (t.includes('sarkophag')) return 'type-sarkophag';
+            if (t.includes('deckel')) return 'type-deckel';
+            if (t.includes('fragment')) return 'type-fragment';
+            if (t.includes('urne')) return 'type-urne';
+            if (t.includes('koerpergrab') || t.includes('korpergrab')) return 'type-koerpergrab';
+            if (t.includes('brandgrab')) return 'type-brandgrab';
+            if (t.includes('grabbau')) return 'type-grabbau';
+            if (t.includes('grabstein')) return 'type-grabstein';
+            if (t.includes('ziegelplattengrab')) return 'type-ziegelplattengrab';
+            if (t.includes('steinplattengrab')) return 'type-steinplattengrab';
+            if (t.includes('ziegelgrab')) return 'type-ziegelgrab';
+            if (t.includes('steinkiste')) return 'type-steinkiste';
+            if (t.includes('mumie')) return 'type-mumie';
+            return 'type-unbekannt';
+        }
 
         function showPopup(obj, marker) {
             const inv = obj.Inventarnummer || '';
-            const title = obj['Titel / Darstellung'] || inv || 'Unbekanntes Objekt';
+            const rawTitle = obj['Titel / Darstellung'] || inv || 'Unbekanntes Objekt';
+            const title = String(rawTitle).replace(/^Grab\s*#?\s*/i, '').trim() || 'Unbekanntes Objekt';
             const location = obj.Standort || obj.Texteingabe || 'Unbekannter Standort';
+
             const date = obj.Datierung || 'Undatiert';
             const material = obj['Material / Technik (für Objektbeschriftung)'] || 'Unbekannt';
             const imageUrl = inv ? `extracted_sarcophagi/${inv}.jpg` : '';
@@ -1571,8 +1728,12 @@
 
                     <div class="popup-body">
                         <div class="popup-title">${title}</div>
-                        <div class="popup-location">📍 ${location.length > 40 ? location.substring(0, 40) + '...' : location}</div>
+                        <div class="popup-location">📍 ${inv || 'Keine Inventarnummer'}</div>
                         <div class="popup-meta">
+                            <div class="popup-meta-item">
+                                <div class="popup-meta-label">Typ</div>
+                                <div class="popup-meta-value">${obj.Typ || 'Unbekannt'}</div>
+                            </div>
                             <div class="popup-meta-item">
                                 <div class="popup-meta-label">Datierung</div>
                                 <div class="popup-meta-value">${date}</div>
@@ -1582,6 +1743,7 @@
                                 <div class="popup-meta-value">${material.length > 15 ? material.substring(0, 15) + '...' : material}</div>
                             </div>
                         </div>
+
                         <button class="popup-details-btn" onclick="openDetails('${inv}')">Details ansehen</button>
                     </div>
                 </div>
@@ -1801,8 +1963,9 @@
 
         // Helper function to get additional filters for FilterToolbar
         function getAdditionalFilter() {
-            return {
-                search: selectedFilters.search
+            // Return a filter function (not an object) for FilterToolbar.setData()
+            return function(obj) {
+                return true; // No additional filtering needed beyond FilterToolbar's built-in filters
             };
         }
 

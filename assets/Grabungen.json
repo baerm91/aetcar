@@ -1,0 +1,81 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "Notgrabungen im Gräberfeld südlich der Zivilstadt 1984-1986",
+        "source_layer": "Notgrabungen im Gräberfeld südlich der Zivilstadt 1984-1986"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.850774,
+              48.108208
+            ],
+            [
+              16.850871,
+              48.10832
+            ],
+            [
+              16.852646,
+              48.107789
+            ],
+            [
+              16.854728,
+              48.107188
+            ],
+            [
+              16.854588,
+              48.107012
+            ],
+            [
+              16.850774,
+              48.108208
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "Notgrabungen an der Gräberstraße 1984-1986",
+        "source_layer": "Notgrabungen an der Gräberstraße 1984-1986"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              16.870269,
+              48.105891
+            ],
+            [
+              16.870499,
+              48.105723
+            ],
+            [
+              16.873407,
+              48.107506
+            ],
+            [
+              16.873198,
+              48.107671
+            ],
+            [
+              16.871883,
+              48.106729
+            ],
+            [
+              16.870269,
+              48.105891
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

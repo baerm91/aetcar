@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Themen für AETCAR - kuratierte Inhalte und Stories",
-    "total_themes": 15,
+    "total_themes": 11,
     "featured_count": 8,
     "pages": [
       "index",
@@ -207,139 +207,6 @@
       "center_lng": null,
       "zoom": null
     },
-    "grabstaetten": {
-      "theme_id": "grabstaetten",
-      "title": "Grabstätten & Nekropolen",
-      "subtitle": "Die Totenstadt von Carnuntum",
-      "story": "Die Nekropolen von Carnuntum erstrecken sich entlang der Ausfallstraßen der antiken Stadt. Hier wurden über Jahrhunderte die Verstorbenen bestattet – von einfachen Soldaten bis zu wohlhabenden Bürgern. Die Sarkophage zeugen von unterschiedlichen Bestattungsriten und sozialen Schichten.",
-      "pages": [
-        "fundkarte.html"
-      ],
-      "featured": false,
-      "inv": [],
-      "inv_display": "",
-      "tags": [
-        "nekropole",
-        "bestattung"
-      ],
-      "image": "",
-      "target_page": "",
-      "target_params": {},
-      "center_lat": 48.115,
-      "center_lng": 16.865,
-      "zoom": 13
-    },
-    "militaer": {
-      "theme_id": "militaer",
-      "title": "Militärische Bestattungen",
-      "subtitle": "Soldaten der Legionen",
-      "story": "Carnuntum war Standort der Legio XV Apollinaris und später der Legio XIV Gemina. Viele Sarkophage und Grabsteine stammen von Legionären, Centurionen und deren Familien. Die Inschriften verraten oft Rang, Dienstzeit und Herkunft.",
-      "pages": [
-        "fundkarte.html"
-      ],
-      "featured": false,
-      "inv": [],
-      "inv_display": "",
-      "tags": [
-        "legion",
-        "soldat",
-        "centurio"
-      ],
-      "image": "",
-      "target_page": "",
-      "target_params": {},
-      "center_lat": 48.112,
-      "center_lng": 16.858,
-      "zoom": 14
-    },
-    "zivilisten": {
-      "theme_id": "zivilisten",
-      "title": "Zivile Bestattungen",
-      "subtitle": "Bürger und Familien",
-      "story": "Neben dem Militär lebte in Carnuntum eine bedeutende Zivilbevölkerung. Händler, Handwerker und ihre Familien hinterließen ebenfalls Grabdenkmäler. Familienszenen auf Sarkophagen zeigen das alltägliche Leben.",
-      "pages": [
-        "fundkarte.html"
-      ],
-      "featured": false,
-      "inv": [],
-      "inv_display": "",
-      "tags": [
-        "familie",
-        "bürger"
-      ],
-      "image": "",
-      "target_page": "",
-      "target_params": {},
-      "center_lat": 48.118,
-      "center_lng": 16.87,
-      "zoom": 14
-    },
-    "mythologie": {
-      "theme_id": "mythologie",
-      "title": "Mythologische Darstellungen",
-      "subtitle": "Götter und Helden",
-      "story": "Viele Sarkophage zeigen mythologische Szenen: Götter, Helden und Fabelwesen. Diese Darstellungen sollten den Verstorbenen im Jenseits schützen oder ihre Tugenden symbolisieren.",
-      "pages": [
-        "fundkarte.html"
-      ],
-      "featured": false,
-      "inv": [],
-      "inv_display": "",
-      "tags": [
-        "mythologie",
-        "götter"
-      ],
-      "image": "",
-      "target_page": "",
-      "target_params": {},
-      "center_lat": 48.11,
-      "center_lng": 16.862,
-      "zoom": 14
-    },
-    "inschriften": {
-      "theme_id": "inschriften",
-      "title": "Inschriften & Texte",
-      "subtitle": "Stimmen aus der Antike",
-      "story": "Die lateinischen Inschriften auf den Sarkophagen sind wertvolle historische Quellen. Sie nennen Namen, Berufe, Lebensalter und familiäre Beziehungen – und lassen uns die Menschen hinter den Steinen kennenlernen.",
-      "pages": [
-        "fundkarte.html"
-      ],
-      "featured": false,
-      "inv": [],
-      "inv_display": "",
-      "tags": [
-        "inschrift",
-        "text"
-      ],
-      "image": "",
-      "target_page": "",
-      "target_params": {},
-      "center_lat": 48.115,
-      "center_lng": 16.865,
-      "zoom": 13
-    },
-    "handwerk": {
-      "theme_id": "handwerk",
-      "title": "Steinmetzkunst",
-      "subtitle": "Techniken und Materialien",
-      "story": "Die Sarkophage zeigen verschiedene Bearbeitungstechniken und Materialien. Lokaler Kalkstein, importierter Marmor und unterschiedliche Reliefstile verraten viel über Handwerk und Handel in der Antike.",
-      "pages": [
-        "fundkarte.html"
-      ],
-      "featured": false,
-      "inv": [],
-      "inv_display": "",
-      "tags": [
-        "steinmetz",
-        "material"
-      ],
-      "image": "",
-      "target_page": "",
-      "target_params": {},
-      "center_lat": 48.115,
-      "center_lng": 16.865,
-      "zoom": 13
-    },
     "theme_ein_blick_hinter_die_kulissen": {
       "theme_id": "theme_ein_blick_hinter_die_kulissen",
       "title": "Ein Blick hinter die Kulissen",
@@ -358,6 +225,44 @@
       "center_lat": null,
       "center_lng": null,
       "zoom": null
+    },
+    "theme_schnitt_durch_die_totenstadt": {
+      "theme_id": "theme_schnitt_durch_die_totenstadt",
+      "title": "Schnitt durch die Totenstadt",
+      "subtitle": "Die Grabungen an der B9",
+      "story": "Zwischen 1984 und 1986 führte der Bau der Bundesstraße 9 (B9) quer durch die antiken Friedhöfe (Nekropolen) von Carnuntum. Unter hohem Zeitdruck musste das archäologische Team retten, was zu retten war, da der maschinelle Abtrag bereits Teile der historischen Schichten zerstört hatte.\n\nDie Bilanz der Notgrabung ist dennoch beachtlich: Auf der Trasse konnten 211 Grabkomplexe gesichert werden. Sie belegen eine intensive Nutzung des Areals von der Mitte des 2. bis zur Mitte des 3. Jahrhunderts n. Chr. Neben der hohen Dichte an Funden brachte die Grabung vor allem neue Erkenntnisse zu den Ritualen:\n\nEs wurde ein Mix aus Brand- und Körperbestattungen sowie Sarkophagen dokumentiert.\n\nErstmals konnte der Typus des Bustums (Leichenverbrennung direkt über der offenen Grube) in Carnuntum zweifelsfrei nachgewiesen werden.\n\nBesondere pannonische Sitten, wie das Abdecken der Asche mit dachförmigen Ziegeln, traten hier gehäuft auf.",
+      "pages": [
+        "fundkarte.html"
+      ],
+      "featured": false,
+      "inv": [],
+      "inv_display": "",
+      "tags": [],
+      "image": "",
+      "target_page": "",
+      "target_params": {},
+      "center_lat": 48.106593,
+      "center_lng": 16.859078,
+      "zoom": 16
+    },
+    "theme_tote_im_legionslager": {
+      "theme_id": "theme_tote_im_legionslager",
+      "title": "Tote im Legionslager",
+      "subtitle": "Ein Bruch mit römischen Gesetzen",
+      "story": "Nach klassischem römischen Recht waren Bestattungen innerhalb der Mauern strikt verboten. Doch Funde im Legionslager Carnuntum zeigen, wie sich diese Ordnung in der Spätantike auflöste. Ab der zweiten Hälfte des 4. Jahrhunderts (nach-valentinianische Zeit) wandelte sich die einstige Kaserne zu einem Zufluchtsort für die Zivilbevölkerung. Die archäologischen Spuren erzählen von dieser unruhigen Zeit: Während Erwachsene oft in den Ruinen verfallener Gebäude bestattet wurden, setzte man verstorbene Kinder schützend direkt im Wohnbereich bei.",
+      "pages": [
+        "fundkarte.html"
+      ],
+      "featured": false,
+      "inv": [],
+      "inv_display": "",
+      "tags": [],
+      "image": "",
+      "target_page": "",
+      "target_params": {},
+      "center_lat": 48.123107,
+      "center_lng": 16.888765,
+      "zoom": 17
     }
   },
   "featured": [
@@ -382,12 +287,8 @@
       "theme_werkzeugspuren_und_herstellung"
     ],
     "fundkarte": [
-      "grabstaetten",
-      "militaer",
-      "zivilisten",
-      "mythologie",
-      "inschriften",
-      "handwerk"
+      "theme_schnitt_durch_die_totenstadt",
+      "theme_tote_im_legionslager"
     ],
     "steinzelt": [
       "theme_ein_blick_hinter_die_kulissen"
