@@ -1,7 +1,7 @@
 {
   "meta": {
     "description": "Themen für AETCAR - kuratierte Inhalte und Stories",
-    "total_themes": 11,
+    "total_themes": 12,
     "featured_count": 8,
     "pages": [
       "index",
@@ -263,6 +263,27 @@
       "center_lat": 48.123107,
       "center_lng": 16.888765,
       "zoom": 17
+    },
+    "theme_die_tumuli_der_gräberstraße": {
+      "theme_id": "theme_die_tumuli_der_gräberstraße",
+      "title": "Die Tumuli der Gräberstraße",
+      "subtitle": "Masse und Mauerwerk",
+      "story": "Das Phänomen der Tumuli (Grabhügel) ist weit über die Grenzen Pannoniens hinaus in ganz Europa als Bestattungsform verbreitet. Doch während im Umland von Noricum und Pannonien meist die traditionellen, einheimischen Erdhügel dominieren, zeigt sich in Carnuntum eine entscheidende architektonische Weiterentwicklung: Entlang der „Gräberstraße“ fanden sich überwiegend gemauerte Rundgräber.\n\nEinzigartige Dichte im Römischen Reich Der wohl spannendste Aspekt für die Forschung liegt im direkten Vergleich mit anderen römischen Fundplätzen. Während man in anderen Teilen des Reiches üblicherweise Gruppen von lediglich drei bis sieben Hügeln antrifft, weist Carnuntum eine außergewöhnliche Konzentration auf: Hier reihen sich rund 20 Tumuli entlang einer einzigen Verkehrsachse.\n\nDiese Massierung ist kein Zufall, sondern ein Spiegel der Sozialstruktur. Als bedeutender Handelsknotenpunkt und Militärstandort beherbergte Carnuntum eine kaufkräftige Schicht aus Händlern und Offizieren. Diese nutzten die stark frequentierte Ausfallstraße als Bühne, um ihren Status durch monumentale Grabbauten dauerhaft zur Schau zu stellen.\n\nDokumentiert, aber verschwunden Für den heutigen Besucher sind diese Monumente im Gelände nicht mehr erkennbar. Dass wir dennoch detailliertes Wissen über diese „Skyline der Toten“ besitzen, ist der akribischen archäologischen Arbeit des letzten Jahrhunderts zu verdanken. Sie hat die Strukturen im Boden dokumentiert und bewahrt. Ein kurioses Detail am Rande: Obwohl die Anzahl von 20 Tumuli als gesichert gilt, ist der exakte Standort eines dieser Hügel heute nicht mehr lokalisierbar – er ist bekannt, aber im modernen Gelände „verloren“ gegangen.",
+      "pages": [
+        "fundkarte.html"
+      ],
+      "featured": false,
+      "inv": [],
+      "inv_display": "",
+      "tags": [
+        "Tumulus"
+      ],
+      "image": "",
+      "target_page": "",
+      "target_params": {},
+      "center_lat": 48.1113,
+      "center_lng": 16.876223,
+      "zoom": 16
     }
   },
   "featured": [
@@ -288,7 +309,8 @@
     ],
     "fundkarte": [
       "theme_schnitt_durch_die_totenstadt",
-      "theme_tote_im_legionslager"
+      "theme_tote_im_legionslager",
+      "theme_die_tumuli_der_gräberstraße"
     ],
     "steinzelt": [
       "theme_ein_blick_hinter_die_kulissen"

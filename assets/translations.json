@@ -44,8 +44,8 @@
         "mp": "Camelot! (Nur ein Modell)"
       },
       "nav.sarkophage": {
-        "de": "Gräber",
-        "en": "Graves",
+        "de": "Sarkophage",
+        "en": "Sarcophagi",
         "mp": "Sehr teure Kisten"
       },
       "footer.copyright": {
@@ -104,8 +104,8 @@
         "mp": "Camelot!"
       },
       "card.sarkophage.title": {
-        "de": "Gräber",
-        "en": "Graves",
+        "de": "Sarkophage",
+        "en": "Sarcophagi",
         "mp": "Papageien-Lagerhaus"
       },
       "themes.title": {
@@ -347,8 +347,8 @@
     },
     "panorama": {
       "title": {
-        "de": "Gräber",
-        "en": "Graves",
+        "de": "Sarkophage",
+        "en": "Sarcophagi",
         "mp": "Die Papageien-Sammlung"
       },
       "layout.grid": {

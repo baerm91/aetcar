@@ -1001,21 +1001,53 @@
         }
 
         /* Typ-Farben für Punkte */
-        .custom-marker.type-sarkophag { background: #3b82f6; }
-        .custom-marker.type-deckel { background: #60a5fa; }
-        .custom-marker.type-fragment { background: #7c3aed; }
-        .custom-marker.type-urne { background: #f97316; }
+        .custom-marker.type-sarkophag {
+            background: #3b82f6;
+        }
+
+        .custom-marker.type-deckel {
+            background: #60a5fa;
+        }
+
+        .custom-marker.type-fragment {
+            background: #7c3aed;
+        }
+
+        .custom-marker.type-urne {
+            background: #f97316;
+        }
+
         .custom-marker.type-koerpergrab,
-        .custom-marker.type-korpergrab { background: #22c55e; }
-        .custom-marker.type-brandgrab { background: #e11d48; }
-        .custom-marker.type-grabbau { background: #a855f7; }
-        .custom-marker.type-grabstein { background: #f59e0b; }
+        .custom-marker.type-korpergrab {
+            background: #22c55e;
+        }
+
+        .custom-marker.type-brandgrab {
+            background: #e11d48;
+        }
+
+        .custom-marker.type-grabbau {
+            background: #a855f7;
+        }
+
+        .custom-marker.type-grabstein {
+            background: #f59e0b;
+        }
+
         .custom-marker.type-ziegelplattengrab,
         .custom-marker.type-steinplattengrab,
         .custom-marker.type-ziegelgrab,
-        .custom-marker.type-steinkiste { background: #9ca3af; }
-        .custom-marker.type-mumie { background: #10b981; }
-        .custom-marker.type-unbekannt { background: #6b7280; }
+        .custom-marker.type-steinkiste {
+            background: #9ca3af;
+        }
+
+        .custom-marker.type-mumie {
+            background: #10b981;
+        }
+
+        .custom-marker.type-unbekannt {
+            background: #6b7280;
+        }
 
         /* Dimmed state - must come AFTER type colors to override them */
         .custom-marker.dimmed {
@@ -1024,34 +1056,68 @@
             opacity: 0.2 !important;
             box-shadow: none !important;
             filter: grayscale(100%) !important;
-            z-index: 100 !important; /* Push to back */
+            z-index: 100 !important;
+            /* Push to back */
         }
 
         .custom-marker.dimmed.uncertain {
             border-color: rgba(255, 255, 255, 0.05) !important;
             opacity: 0.15 !important;
         }
-        
+
         /* Highlighted state - optional, for emphasis */
         .custom-marker.highlighted {
             opacity: 1 !important;
-            z-index: 1000 !important; /* Pull to front */
+            z-index: 1000 !important;
+            /* Pull to front */
             box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
             border: 2px solid #fff;
         }
 
         /* Legende Typfarben */
-        .legend-marker.type-sarkophag { background: #3b82f6; }
-        .legend-marker.type-deckel { background: #60a5fa; }
-        .legend-marker.type-fragment { background: #7c3aed; }
-        .legend-marker.type-urne { background: #f97316; }
-        .legend-marker.type-koerpergrab { background: #22c55e; }
-        .legend-marker.type-brandgrab { background: #e11d48; }
-        .legend-marker.type-grabbau { background: #a855f7; }
-        .legend-marker.type-grabstein { background: #f59e0b; }
-        .legend-marker.type-ziegelplattengrab { background: #9ca3af; }
-        .legend-marker.type-unbekannt { background: #6b7280; }
-        .legend-marker.grabung { background: #ff6b6b; }
+        .legend-marker.type-sarkophag {
+            background: #3b82f6;
+        }
+
+        .legend-marker.type-deckel {
+            background: #60a5fa;
+        }
+
+        .legend-marker.type-fragment {
+            background: #7c3aed;
+        }
+
+        .legend-marker.type-urne {
+            background: #f97316;
+        }
+
+        .legend-marker.type-koerpergrab {
+            background: #22c55e;
+        }
+
+        .legend-marker.type-brandgrab {
+            background: #e11d48;
+        }
+
+        .legend-marker.type-grabbau {
+            background: #a855f7;
+        }
+
+        .legend-marker.type-grabstein {
+            background: #f59e0b;
+        }
+
+        .legend-marker.type-ziegelplattengrab {
+            background: #9ca3af;
+        }
+
+        .legend-marker.type-unbekannt {
+            background: #6b7280;
+        }
+
+        .legend-marker.grabung {
+            background: #ff6b6b;
+        }
 
         .annotation-icon {
             display: flex;
@@ -1462,12 +1528,12 @@
                             return obj;
                         })
                         .filter(Boolean);
-                    
+
                     console.log(`[Fundkarte] Processed ${allData.length} objects with coordinates.`);
 
                     // Themen-Liste rendern (THEMES wurde durch loadThemesFromJson befüllt)
                     renderThemesList();
-    
+
                     // Handle ids parameter (comma-separated inventory numbers)
                     const urlParams = new URLSearchParams(window.location.search);
                     const idsParam = urlParams.get('ids');
@@ -1478,7 +1544,7 @@
                         idsFilter = obj => obj.Inventarnummer && idsSet.has(obj.Inventarnummer);
                         console.log('IDs Filter aktiv:', idsSet);
                     }
-    
+
                     // Initialize FilterToolbar with central logic
                     const facets = ['material', 'type', 'tags', 'gender', 'beigaben'];
                     if (typeof FilterToolbar === 'undefined') {
@@ -1500,14 +1566,14 @@
                                     if (Array.isArray(v)) return v.length > 0;
                                     return false;
                                 }) || (typeof state?.search === 'string' && state.search.trim().length > 0);
-        
+
                                 // Apply idsFilter on top of toolbar filtering
                                 if (idsFilter) {
                                     filteredData = filtered.filter(idsFilter);
                                 } else {
                                     filteredData = filtered;
                                 }
-                                
+
                                 // Set global hasActiveFilter explicitly
                                 hasActiveFilter = toolbarHasFilter || !!idsFilter;
 
@@ -1518,14 +1584,14 @@
                                     console.log('filteredData.length:', filteredData.length, 'allData.length:', allData.length);
                                     console.groupEnd();
                                 }
-                                
+
                                 updateMarkers();
                                 updateResultCount();
-        
+
                                 // Zoom to filtered objects if ids parameter is set
                                 if (idsSet && filteredData.length > 0) {
                                     zoomToObjects(filteredData);
-        
+
                                     // Open popup for first matching object after a short delay
                                     setTimeout(() => {
                                         const firstObj = filteredData.find(obj => obj.lat && obj.lng);
@@ -1546,12 +1612,12 @@
                                 // Don't reset idsFilter - keep URL parameter active
                             }
                         });
-                        
+
                         // Set data - FilterToolbar will trigger onFilterChange
                         console.log('[Fundkarte] Setting data to FilterToolbar...');
                         FilterToolbar.setData(allData);
                     }
-    
+
                     if (annotations && annotations.items) {
                         renderAnnotations(annotations.items);
                     }
@@ -1639,7 +1705,7 @@
 
             // Build set of filtered inventory numbers for quick lookup
             const filteredInvs = new Set(filteredData.map(o => o.Inventarnummer).filter(Boolean));
-            
+
             if (DEBUG_FILTERS) {
                 console.log('[Fundkarte] updateMarkers', {
                     filtered: filteredData.length,
@@ -1778,7 +1844,7 @@
             const type = burialType.toLowerCase()
                 .replace(/ae/g, 'ae').replace(/oe/g, 'oe').replace(/ue/g, 'ue')
                 .replace(/\s+/g, '');
-            
+
             if (type.includes('sarkophag')) return 'sarkophag';
             if (type.includes('koerpergrab') || type.includes('korpergrab')) return 'koerpergrab';
             if (type.includes('skelett')) return 'skelett';
@@ -2078,7 +2144,7 @@
         // Helper function to get additional filters for FilterToolbar
         function getAdditionalFilter() {
             // Return a filter function (not an object) for FilterToolbar.setData()
-            return function(obj) {
+            return function (obj) {
                 return true; // No additional filtering needed beyond FilterToolbar's built-in filters
             };
         }
@@ -2143,6 +2209,48 @@
                 }
             }, 300);
         });
+    </script>
+    <script>
+        // Coordinates Display - added after main script
+        (function () {
+            // Wait for map to be ready
+            if (typeof map === 'undefined') return;
+
+            // Create coordinates display element
+            var coordsDisplay = document.createElement('div');
+            coordsDisplay.id = 'coordsDisplay';
+            coordsDisplay.style.cssText = 'position: fixed; bottom: 16px; left: 16px; z-index: 500; padding: 6px 10px; background: rgba(0, 0, 0, 0.55); border-radius: 6px; font-family: Consolas, Monaco, monospace; font-size: 11px; color: rgba(255, 255, 255, 0.55); user-select: text; cursor: text; pointer-events: auto; transition: opacity 0.2s ease, color 0.2s ease, background 0.2s ease;';
+            coordsDisplay.innerHTML = '<span id="coordsLat">Lat: --</span> <span id="coordsLng">Lng: --</span> <span id="coordsZoom">Zoom: ' + map.getZoom() + '</span>';
+
+            // Hide in embed mode
+            if (!document.body.classList.contains('embed')) {
+                document.body.appendChild(coordsDisplay);
+            }
+
+            // Hover effect
+            coordsDisplay.addEventListener('mouseenter', function () {
+                this.style.color = 'rgba(255, 255, 255, 0.85)';
+                this.style.background = 'rgba(0, 0, 0, 0.7)';
+            });
+            coordsDisplay.addEventListener('mouseleave', function () {
+                this.style.color = 'rgba(255, 255, 255, 0.55)';
+                this.style.background = 'rgba(0, 0, 0, 0.55)';
+            });
+
+            // Update coordinates on mouse move
+            map.on('mousemove', function (e) {
+                var latEl = document.getElementById('coordsLat');
+                var lngEl = document.getElementById('coordsLng');
+                if (latEl) latEl.textContent = 'Lat: ' + e.latlng.lat.toFixed(6);
+                if (lngEl) lngEl.textContent = 'Lng: ' + e.latlng.lng.toFixed(6);
+            });
+
+            // Update zoom level on zoom change
+            map.on('zoomend', function () {
+                var zoomEl = document.getElementById('coordsZoom');
+                if (zoomEl) zoomEl.textContent = 'Zoom: ' + map.getZoom();
+            });
+        })();
     </script>
 </body>
 
