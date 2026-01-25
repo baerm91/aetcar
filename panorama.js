@@ -63,7 +63,15 @@ class PanoramaManager {
     async loadData() {
         try {
             const response = await fetch('data.json');
-            this.allData = await response.json();
+            const rawData = await response.json();
+            
+            // Nur Sarkophag-Daten verwenden (haben _source: 'sarkophag')
+            // Gräber-Daten werden ausgeschlossen (haben _source: 'grab')
+            this.allData = rawData.filter(item => {
+                return item && item._source !== 'grab';
+            });
+            
+            console.log(`Panorama: ${this.allData.length} Sarkophage geladen (${rawData.length - this.allData.length} Gräber gefiltert)`);
             
             // Prüfe welche Bilder existieren
             await this.checkImageAvailability();
