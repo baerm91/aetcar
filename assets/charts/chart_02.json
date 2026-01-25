@@ -1,0 +1,596 @@
+{
+  "meta": {
+    "chart_id": "chart_02",
+    "title": "Brand- vs. Körperbestattung",
+    "description": "Der kulturelle Wandel der Bestattungssitten über die Zeit.",
+    "row_count": 57,
+    "source": {
+      "sheet_id": "1NehIVZQ6h6A8ff2p9gTqzSGyQPBg9va0BTMALY84COM",
+      "gid": null,
+      "sheet_name": null,
+      "url": "https://docs.google.com/spreadsheets/d/1NehIVZQ6h6A8ff2p9gTqzSGyQPBg9va0BTMALY84COM/edit?usp=sharing"
+    }
+  },
+  "config": {
+    "id": "chart_02",
+    "title_de": "Brand- vs. Körperbestattung",
+    "chart_type": "streamgraph",
+    "x_axis_key": "Date_Start",
+    "y_axis_key": "Count (berechnet)",
+    "group_by": "Burial_Type",
+    "data_source_file": "https://docs.google.com/spreadsheets/d/1NehIVZQ6h6A8ff2p9gTqzSGyQPBg9va0BTMALY84COM/edit?usp=sharing",
+    "description_de": "Der kulturelle Wandel der Bestattungssitten über die Zeit."
+  },
+  "data": [
+    {
+      "grave_id": "Sarkophag der Claudia Ursa",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag (bisomum)",
+      "dating_raw": "Jahrhundert (erste Hälfte)",
+      "date_start": 200,
+      "date_end": 299,
+      "orientation": "W-O",
+      "quelle": "1-3"
+    },
+    {
+      "grave_id": "FÖ 21 Kindergrab",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "ab 200 n. Chr. (Münze), Keramik bis Mitte 3. Jh., Glas Ende 3. Jh.",
+      "date_start": 200,
+      "date_end": 300,
+      "orientation": "O-W",
+      "quelle": "4"
+    },
+    {
+      "grave_id": "Grab 174B (Zivilstadt)",
+      "burial_class": "Brandbestattung",
+      "construction": "Steinkiste (in Grabbau)",
+      "dating_raw": "Zeit des Severus Alexander (2. Viertel 3. Jh.)",
+      "date_start": 222,
+      "date_end": 250,
+      "orientation": "Not in source",
+      "quelle": "5, 6"
+    },
+    {
+      "grave_id": "Grab 30 (unter Bau 11)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustumgrab mit Ziegelabdeckung",
+      "dating_raw": "125-128 n. Chr. (Hadrianisch)",
+      "date_start": 125,
+      "date_end": 128,
+      "orientation": "SW-NO",
+      "quelle": "7"
+    },
+    {
+      "grave_id": "Grab 9 (unter Bau 4)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustumgrab mit Ziegel-Einfassung",
+      "dating_raw": "120-150 n. Chr.",
+      "date_start": 120,
+      "date_end": 150,
+      "orientation": "SW-NO",
+      "quelle": "7"
+    },
+    {
+      "grave_id": "Grab 14 (Zivilstadt)",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "Zeit des Hadrianus / Mitte 2. bis Mitte 4. Jh.",
+      "date_start": 117,
+      "date_end": 350,
+      "orientation": "O-W",
+      "quelle": "6, 8-10"
+    },
+    {
+      "grave_id": "Grab 9/1 (Zivilstadt)",
+      "burial_class": "Körperbestattung",
+      "construction": "Not in source",
+      "dating_raw": "Mitte 2. bis Mitte 4. Jh. n. Chr.",
+      "date_start": 150,
+      "date_end": 350,
+      "orientation": "Not in source",
+      "quelle": "8-10"
+    },
+    {
+      "grave_id": "Grab 13/84",
+      "burial_class": "Brandbestattung",
+      "construction": "Not in source",
+      "dating_raw": "Mitte 2. bis Mitte 4. Jahrhundert n. Chr.",
+      "date_start": 150,
+      "date_end": 350,
+      "orientation": "Not in source",
+      "quelle": "8-10"
+    },
+    {
+      "grave_id": "Petroneller Rundkapelle Grab 1",
+      "burial_class": "Brandbestattung",
+      "construction": "Ziegelgrab (Dachziegel)",
+      "dating_raw": "Mitte 2. Jh. (194 n. Chr.)",
+      "date_start": 194,
+      "date_end": 200,
+      "orientation": "NW-SO",
+      "quelle": "11"
+    },
+    {
+      "grave_id": "Grab 38 (Einzelgrab)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustumgrab (verziegelt)",
+      "dating_raw": "ca. 100 n. Chr.",
+      "date_start": 100,
+      "date_end": 100,
+      "orientation": "SW-NO",
+      "quelle": "7"
+    },
+    {
+      "grave_id": "Petronell Mnr. 05109.23.09",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "Kaiserzeit",
+      "date_start": 1,
+      "date_end": 284,
+      "orientation": "Not in source",
+      "quelle": "12"
+    },
+    {
+      "grave_id": "Bad Deutsch Altenburg Mnr. 05101.23.05",
+      "burial_class": "Körperbestattung",
+      "construction": "Grubenhaus",
+      "dating_raw": "flavisch",
+      "date_start": 69,
+      "date_end": 96,
+      "orientation": "Not in source",
+      "quelle": "12"
+    },
+    {
+      "grave_id": "Rundgrab des Florus (I)",
+      "burial_class": "Brandbestattung",
+      "construction": "Urnengrab (Tumulus)",
+      "dating_raw": "Jahrh. n. Chr. (claudisch / 2. Hälfte)",
+      "date_start": 41,
+      "date_end": 100,
+      "orientation": "Südseite (Straßenseite)",
+      "quelle": "3, 11, 13"
+    },
+    {
+      "grave_id": "Grabstein des Sex. Crixius",
+      "burial_class": "Körperbestattung",
+      "construction": "Grabmal (Stein)",
+      "dating_raw": "Jh. (Veteran der 15. Legion)",
+      "date_start": 1,
+      "date_end": 100,
+      "orientation": "Not in source",
+      "quelle": "14"
+    },
+    {
+      "grave_id": "Grabstein C. Attius Exoratus",
+      "burial_class": "Körperbestattung",
+      "construction": "Grabmal (Stein)",
+      "dating_raw": "vor 63 n. Chr.",
+      "date_start": 1,
+      "date_end": 63,
+      "orientation": "Not in source",
+      "quelle": "15"
+    },
+    {
+      "grave_id": "Grabstein C. Caecilius Celer",
+      "burial_class": "Körperbestattung",
+      "construction": "Grabmal (Stein)",
+      "dating_raw": "flavisch (nach 69 n. Chr.)",
+      "date_start": 69,
+      "date_end": 79,
+      "orientation": "Not in source",
+      "quelle": "15"
+    },
+    {
+      "grave_id": "Petronell - Grab 7",
+      "burial_class": "Körperbestattung",
+      "construction": "Erdgrab",
+      "dating_raw": "zweite Hälfte 4. Jh. n. Chr.",
+      "date_start": 350,
+      "date_end": 400,
+      "orientation": "Nordwest-Südost",
+      "quelle": "16"
+    },
+    {
+      "grave_id": "Ziegelgrab VI/T (Ostecke)",
+      "burial_class": "Körperbestattung",
+      "construction": "Ziegelgrab (Kind)",
+      "dating_raw": "nach 375 n. Chr. (zwischen 383 und 422)",
+      "date_start": 383,
+      "date_end": 422,
+      "orientation": "Osten",
+      "quelle": "15"
+    },
+    {
+      "grave_id": "Skelettgrab T-Hof (Ostecke)",
+      "burial_class": "Körperbestattung",
+      "construction": "Steinsetzung (Mann)",
+      "dating_raw": "nach 375 n. Chr. (Völkerwanderung)",
+      "date_start": 375,
+      "date_end": 450,
+      "orientation": "Osten",
+      "quelle": "15"
+    },
+    {
+      "grave_id": "Ziegelgrab z3 (Solafeldgasse)",
+      "burial_class": "Körperbestattung",
+      "construction": "Ziegelgrab (Kind)",
+      "dating_raw": "nachvalentinianisch",
+      "date_start": 375,
+      "date_end": 450,
+      "orientation": "Not in source",
+      "quelle": "15, 17"
+    },
+    {
+      "grave_id": "Grab 157 (Zivilstadt)",
+      "burial_class": "Körperbestattung",
+      "construction": "Erdgrab (stört Ziegelgräber)",
+      "dating_raw": "wahrscheinlich 5. Jahrhundert",
+      "date_start": 400,
+      "date_end": 499,
+      "orientation": "Bauchlage",
+      "quelle": "8-10"
+    },
+    {
+      "grave_id": "Grab 12/1 (Petronell)",
+      "burial_class": "Körperbestattung",
+      "construction": "Holzsarg",
+      "dating_raw": "spätawarisch-frühkarolingisch (8.–9. Jhdt.)",
+      "date_start": 700,
+      "date_end": 900,
+      "orientation": "W-O",
+      "quelle": "18"
+    },
+    {
+      "grave_id": "Grab 35",
+      "burial_class": "Körperbestattung",
+      "construction": "langrechteckiger Grabschacht",
+      "dating_raw": "La Tène B (400–250 v. Chr.)",
+      "date_start": -400,
+      "date_end": -250,
+      "orientation": "Süden (Schädel)",
+      "quelle": "19"
+    },
+    {
+      "grave_id": "Kriegergrab Zivilstadt",
+      "burial_class": "Körperbestattung",
+      "construction": "Not in source",
+      "dating_raw": "späte Latènezeit (ca. 250–200 v. Chr.)",
+      "date_start": -250,
+      "date_end": -200,
+      "orientation": "Not in source",
+      "quelle": "19"
+    },
+    {
+      "grave_id": "Sarkophag 1",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "Spätantike",
+      "date_start": 284,
+      "date_end": 476,
+      "orientation": "O-W",
+      "quelle": "4"
+    },
+    {
+      "grave_id": "Steinplattengrab 5",
+      "burial_class": "Körperbestattung",
+      "construction": "Steinplattengrab",
+      "dating_raw": "Spätantike",
+      "date_start": 284,
+      "date_end": 476,
+      "orientation": "W-O",
+      "quelle": "4"
+    },
+    {
+      "grave_id": "Sarkophag 3 (FÖ 21)",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "Spätantike",
+      "date_start": 284,
+      "date_end": 476,
+      "orientation": "W-O",
+      "quelle": "4"
+    },
+    {
+      "grave_id": "Sarkophag 6 (FÖ 21)",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "Spätantike",
+      "date_start": 284,
+      "date_end": 476,
+      "orientation": "N-S",
+      "quelle": "4"
+    },
+    {
+      "grave_id": "Grab 93",
+      "burial_class": "Körperbestattung",
+      "construction": "Erdgrab",
+      "dating_raw": "frühkaiserzeitlich, Schwerpunkt im 2. Jh. n. Chr.",
+      "date_start": 100,
+      "date_end": 200,
+      "orientation": "NW-SO",
+      "quelle": "20"
+    },
+    {
+      "grave_id": "Busta (Parz. 326/14)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustum",
+      "dating_raw": "1./2. Jh.",
+      "date_start": 1,
+      "date_end": 200,
+      "orientation": "parallel zur Gräberstraße",
+      "quelle": "20"
+    },
+    {
+      "grave_id": "Grab 6 (Petronell)",
+      "burial_class": "Körperbestattung",
+      "construction": "Steinkistengrab (Spolien)",
+      "dating_raw": "spätrömisch",
+      "date_start": 284,
+      "date_end": 476,
+      "orientation": "Nordwest-Südost",
+      "quelle": "16"
+    },
+    {
+      "grave_id": "Obj. 416/1",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustum",
+      "dating_raw": "ausgehendes 1. Jh. n. Chr. bis Severerzeit",
+      "date_start": 80,
+      "date_end": 235,
+      "orientation": "parallel zum Straßenverlauf",
+      "quelle": "18"
+    },
+    {
+      "grave_id": "F 220",
+      "burial_class": "Körperbestattung",
+      "construction": "Steinsetzung / Sandsteinplatte",
+      "dating_raw": "cal AD 133–321",
+      "date_start": 133,
+      "date_end": 321,
+      "orientation": "W-O",
+      "quelle": "21"
+    },
+    {
+      "grave_id": "F 412",
+      "burial_class": "Körperbestattung",
+      "construction": "Zweiteilige Steinkiste",
+      "dating_raw": "cal AD 255–393",
+      "date_start": 255,
+      "date_end": 393,
+      "orientation": "S-N",
+      "quelle": "21"
+    },
+    {
+      "grave_id": "Grab 1",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustum",
+      "dating_raw": "Jh. n. Chr.",
+      "date_start": 100,
+      "date_end": 200,
+      "orientation": "W-O",
+      "quelle": "22"
+    },
+    {
+      "grave_id": "Grab 31 (unter Bau 8a)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustumgrab (gemauert)",
+      "dating_raw": "100-180 n. Chr.",
+      "date_start": 100,
+      "date_end": 180,
+      "orientation": "SW-NO",
+      "quelle": "7"
+    },
+    {
+      "grave_id": "Grab 27 (unter Bau 9)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustumgrab mit Ziegelbegrenzung",
+      "dating_raw": "180-230 n. Chr.",
+      "date_start": 180,
+      "date_end": 230,
+      "orientation": "SW-NO",
+      "quelle": "7"
+    },
+    {
+      "grave_id": "Grab 31 (Herennia Rufina)",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "frühseverisch",
+      "date_start": 193,
+      "date_end": 211,
+      "orientation": "Not in source",
+      "quelle": "1"
+    },
+    {
+      "grave_id": "Grab 40/84 (Amphitheater II)",
+      "burial_class": "Brandbestattung",
+      "construction": "Steinkiste (Aschenkiste)",
+      "dating_raw": "Drittel des 3. Jhs.",
+      "date_start": 233,
+      "date_end": 266,
+      "orientation": "Not in source",
+      "quelle": "1"
+    },
+    {
+      "grave_id": "Grab 102",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "Jh.",
+      "date_start": 200,
+      "date_end": 300,
+      "orientation": "O-W",
+      "quelle": "6"
+    },
+    {
+      "grave_id": "Frauengrab (Parz. 680)",
+      "burial_class": "Körperbestattung",
+      "construction": "Holzsarg mit Dachziegeleinfassung",
+      "dating_raw": "Hälfte 4. Jahrhundert n. Chr.",
+      "date_start": 300,
+      "date_end": 350,
+      "orientation": "W-O",
+      "quelle": "23"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag",
+      "dating_raw": "spätantoninisch-frühseverisch",
+      "date_start": 161,
+      "date_end": 211,
+      "orientation": "S-N",
+      "quelle": "24-26"
+    },
+    {
+      "grave_id": "Sarkophag II (Kind)",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag / Steinkiste",
+      "dating_raw": "ab 176 n. Chr. bis ca. 225 n. Chr.",
+      "date_start": 176,
+      "date_end": 225,
+      "orientation": "NO-SW",
+      "quelle": "24-26"
+    },
+    {
+      "grave_id": "SE 109",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustum (Ziegelabdeckung)",
+      "dating_raw": "antoninisch",
+      "date_start": 138,
+      "date_end": 180,
+      "orientation": "W-O",
+      "quelle": "24"
+    },
+    {
+      "grave_id": "Grab 2/89 (Mühläcker)",
+      "burial_class": "Brandbestattung",
+      "construction": "Steinkiste",
+      "dating_raw": "nach der Mitte des 4. Jhs. n. Chr.",
+      "date_start": 350,
+      "date_end": 400,
+      "orientation": "Not in source",
+      "quelle": "14"
+    },
+    {
+      "grave_id": "Bustum 1 (Auxiliarkastell)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustum",
+      "dating_raw": "vor flavischer Zeit",
+      "date_start": 50,
+      "date_end": 69,
+      "orientation": "Not in source",
+      "quelle": "27"
+    },
+    {
+      "grave_id": "Grab 159",
+      "burial_class": "Körperbestattung",
+      "construction": "Ziegelplattengrab",
+      "dating_raw": "Drittel 2. Jh.",
+      "date_start": 133,
+      "date_end": 166,
+      "orientation": "NO-SW",
+      "quelle": "6"
+    },
+    {
+      "grave_id": "Kindergrab (Siedlung Frieden)",
+      "burial_class": "Körperbestattung",
+      "construction": "Sarkophag (mumifiziert)",
+      "dating_raw": "Ende des 3. Jh.s",
+      "date_start": 270,
+      "date_end": 300,
+      "orientation": "Not in source",
+      "quelle": "28"
+    },
+    {
+      "grave_id": "Rundgrab 13 & 14",
+      "burial_class": "Brandbestattung",
+      "construction": "Rundgrab mit Stele",
+      "dating_raw": "erste Hälfte des 2. Jh.s",
+      "date_start": 100,
+      "date_end": 150,
+      "orientation": "Süd (zur Gräberstraße)",
+      "quelle": "13"
+    },
+    {
+      "grave_id": "strat. E. 231 / 230 / 190",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustum",
+      "dating_raw": "Jh. bis ins beginnende 2. Jh.",
+      "date_start": 50,
+      "date_end": 125,
+      "orientation": "NO-SW",
+      "quelle": "13"
+    },
+    {
+      "grave_id": "Grab b",
+      "burial_class": "Körperbestattung",
+      "construction": "Ziegelplattengrab",
+      "dating_raw": "Mitte des 3. Jahrhunderts",
+      "date_start": 235,
+      "date_end": 260,
+      "orientation": "NW",
+      "quelle": "29"
+    },
+    {
+      "grave_id": "Kindergrab (bei Gebäude VI)",
+      "burial_class": "Körperbestattung",
+      "construction": "Steinkiste",
+      "dating_raw": "Zeit des Kaisers Probus (276-282 n. Chr.)",
+      "date_start": 276,
+      "date_end": 282,
+      "orientation": "Not in source",
+      "quelle": "29"
+    },
+    {
+      "grave_id": "Grabstätte IV (Einzelgrab 3)",
+      "burial_class": "Körperbestattung",
+      "construction": "Steinplattengrab",
+      "dating_raw": "Zeit des Maximianus",
+      "date_start": 286,
+      "date_end": 305,
+      "orientation": "Not in source",
+      "quelle": "29"
+    },
+    {
+      "grave_id": "Grab in Gebäude Taf. I, 23",
+      "burial_class": "Körperbestattung",
+      "construction": "Erdgrab (in Fundament)",
+      "dating_raw": "Zeit des Aurelianus (270–275 n. Chr.)",
+      "date_start": 270,
+      "date_end": 275,
+      "orientation": "NW",
+      "quelle": "30"
+    },
+    {
+      "grave_id": "Gräberfeld Zivilstadt (Südfriedhof 3)",
+      "burial_class": "Körperbestattung",
+      "construction": "Ziegelplattengrab",
+      "dating_raw": "zweite Hälfte des 4. Jh.",
+      "date_start": 350,
+      "date_end": 400,
+      "orientation": "Not in source",
+      "quelle": "31"
+    },
+    {
+      "grave_id": "Grab 6 (L. Centyllius)",
+      "burial_class": "Brandbestattung",
+      "construction": "Bustum / Urnengrab",
+      "dating_raw": "vor-vespasianisch / 1. Jh.",
+      "date_start": 6,
+      "date_end": 100,
+      "orientation": "An Straße orientiert",
+      "quelle": "32, 33"
+    },
+    {
+      "grave_id": "Heidentor-Tumulus",
+      "burial_class": "Körperbestattung",
+      "construction": "Tumulus (Rundbau)",
+      "dating_raw": "Hälfte 1. Jh. n. Chr.",
+      "date_start": 50,
+      "date_end": 100,
+      "orientation": "Süden",
+      "quelle": "34"
+    }
+  ]
+}

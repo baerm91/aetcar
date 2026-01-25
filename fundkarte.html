@@ -1119,6 +1119,82 @@
             background: #ff6b6b;
         }
 
+        /* Legend Toggle Button */
+        .legend-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 501;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--text);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+            transition: all 0.2s ease;
+        }
+
+        .legend-toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.05);
+        }
+
+        .legend-toggle-btn.active {
+            background: rgba(246, 177, 93, 0.2);
+            border-color: rgba(246, 177, 93, 0.4);
+            color: var(--primary);
+        }
+
+        /* Legend hidden by default on mobile */
+        .map-legend {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+            transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .map-legend.hidden {
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .legend-toggle-btn {
+                bottom: 16px;
+                right: 8px;
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
+            /* Legend starts hidden on mobile */
+            .map-legend {
+                bottom: 60px;
+                right: 8px;
+                left: auto;
+                max-width: calc(100vw - 16px);
+                width: auto;
+            }
+
+            .map-legend.mobile-hidden {
+                transform: translateY(20px);
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+            }
+        }
+
         .annotation-icon {
             display: flex;
             align-items: center;
@@ -1215,8 +1291,13 @@
         </div>
     </div>
 
+    <!-- Legend Toggle Button -->
+    <button class="legend-toggle-btn" id="legendToggleBtn" title="Legende anzeigen/ausblenden">
+        <span>ℹ</span>
+    </button>
+
     <!-- Map Legend -->
-    <div class="map-legend">
+    <div class="map-legend" id="mapLegend">
         <div class="legend-item">
             <div class="legend-marker certain"></div>
             <span data-i18n="map.legend.certain" data-i18n-page="_global">Sicherer Fundort</span>
@@ -2209,6 +2290,50 @@
                 }
             }, 300);
         });
+
+        // ========== LEGEND TOGGLE ==========
+        (function() {
+            const legendToggleBtn = document.getElementById('legendToggleBtn');
+            const mapLegend = document.getElementById('mapLegend');
+            
+            if (!legendToggleBtn || !mapLegend) return;
+
+            // Check if mobile
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+
+            // Initialize legend state based on screen size
+            function initLegendState() {
+                if (isMobile()) {
+                    mapLegend.classList.add('mobile-hidden');
+                    legendToggleBtn.classList.remove('active');
+                } else {
+                    mapLegend.classList.remove('mobile-hidden');
+                    mapLegend.classList.remove('hidden');
+                }
+            }
+
+            // Toggle legend visibility
+            legendToggleBtn.addEventListener('click', () => {
+                if (isMobile()) {
+                    mapLegend.classList.toggle('mobile-hidden');
+                } else {
+                    mapLegend.classList.toggle('hidden');
+                }
+                legendToggleBtn.classList.toggle('active');
+            });
+
+            // Initialize on load
+            initLegendState();
+
+            // Update on resize
+            window.addEventListener('resize', () => {
+                // Only reinitialize if crossing mobile breakpoint
+                initLegendState();
+            });
+        })();
+        // ========== END LEGEND TOGGLE ==========
     </script>
     <script>
         // Coordinates Display - added after main script

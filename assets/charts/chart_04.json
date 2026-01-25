@@ -1,0 +1,2734 @@
+{
+  "meta": {
+    "chart_id": "chart_04",
+    "title": "Häufigkeit der Grabbeigaben-Kategorien",
+    "description": "Wie oft kommen verschiedene Beigaben-Kategorien in den Gräbern vor?",
+    "row_count": 301,
+    "source": {
+      "sheet_id": "1JjsdXMHFPJSvEJGyoM8LMKxXxRjkoTU98l3v7yrXbS8",
+      "gid": null,
+      "sheet_name": null,
+      "url": "https://docs.google.com/spreadsheets/d/1JjsdXMHFPJSvEJGyoM8LMKxXxRjkoTU98l3v7yrXbS8/edit?usp=sharing"
+    }
+  },
+  "config": {
+    "id": "chart_04",
+    "title_de": "Häufigkeit der Grabbeigaben-Kategorien",
+    "chart_type": "bar_chart_vertical",
+    "x_axis_key": "Category",
+    "y_axis_key": "Count (berechnet)",
+    "data_source_file": "https://docs.google.com/spreadsheets/d/1JjsdXMHFPJSvEJGyoM8LMKxXxRjkoTU98l3v7yrXbS8/edit?usp=sharing",
+    "description_de": "Wie oft kommen verschiedene Beigaben-Kategorien in den Gräbern vor?"
+  },
+  "data": [
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Münze",
+      "object": "Denar des Septimius Severus (gelocht)",
+      "material": "Silber/Buntmetall",
+      "origin": "Rom",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Münze",
+      "object": "As des Traianus",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Glas",
+      "object": "Kugelige Glasflasche (Isings 103)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Glas",
+      "object": "Viereckige Glasflasche (Isings 50)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Keramik",
+      "object": "Töpfchen",
+      "material": "Ton (schwarz poliert)",
+      "origin": "Lokal (rätisches Vorbild)",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Keramik",
+      "object": "Teller (Fragment)",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Lampe",
+      "object": "Firmalampe des Cresce(n)s",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Schmuck",
+      "object": "Glasperle (hell-honigfarben)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Schmuck",
+      "object": "Glasperle",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Metall/Waffe",
+      "object": "Eisenstift",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Kindergrab (Parz. 691)",
+      "category": "Metall/Waffe",
+      "object": "Eisenmesser",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Münze",
+      "object": "Radiatus Divus Claudius II?",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Münze",
+      "object": "Antoninian Aurelianus?",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Keramik",
+      "object": "Henkeltopf",
+      "material": "Ton (reduzierend gebrannt)",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Glas",
+      "object": "Balsamarium (AR. 146.1)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Lampe",
+      "object": "Firmalampe Loeschcke X (Stempel INGENVS)",
+      "material": "Ton",
+      "origin": "Lokal (Pannonisch)",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Schmuck",
+      "object": "Röhrenscharnierfibel",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Schmuck",
+      "object": "Bernsteinperle",
+      "material": "Bernstein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Schmuck",
+      "object": "Glasperle",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Schmuck",
+      "object": "Spielwürfel",
+      "material": "Bein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Metall/Waffe",
+      "object": "Messer",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Grab 48 (Aschenkiste des C. Valerius Firminus)",
+      "category": "Tierknochen",
+      "object": "Verbrannte Knochen (Leichenbrand)",
+      "material": "Tierknochen",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "2"
+    },
+    {
+      "grave_id": "Sarkophag aus Parzelle 311",
+      "category": "Münze",
+      "object": "Bronzemünze des Maximinus Thrax",
+      "material": "Bronze",
+      "origin": "Römisches Reich",
+      "count": "1",
+      "source": "3"
+    },
+    {
+      "grave_id": "Sarkophag aus Parzelle 311",
+      "category": "Keramik",
+      "object": "Glasierter Becher mit Einkerbungen und Falten",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "3"
+    },
+    {
+      "grave_id": "Sarkophag aus Parzelle 311",
+      "category": "Glas",
+      "object": "Glasschale mit Fuß",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "3"
+    },
+    {
+      "grave_id": "Sarkophag aus Parzelle 311",
+      "category": "Glas",
+      "object": "Salbölfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "3"
+    },
+    {
+      "grave_id": "Sarkophag aus Parzelle 311",
+      "category": "Schmuck",
+      "object": "Amulett-Plättchen (Zaubertexte)",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "3"
+    },
+    {
+      "grave_id": "Sarkophag aus Parzelle 311",
+      "category": "Schmuck",
+      "object": "Amulett-Plättchen (Zaubertexte)",
+      "material": "Silber",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "3"
+    },
+    {
+      "grave_id": "B Grab 1 in S1 (Sektor 21/22)",
+      "category": "Münze",
+      "object": "Antoninian des Aurelianus (Siscia)",
+      "material": "Nicht in der Quelle",
+      "origin": "Siscia",
+      "count": "1",
+      "source": "2, 4-6"
+    },
+    {
+      "grave_id": "B Grab 1 in S1 (Sektor 21/22)",
+      "category": "Keramik",
+      "object": "Topf mit Flachrand (Typ Petznek 12.3) als Urne",
+      "material": "Ton (grobtonig)",
+      "origin": "Lokal (Carnuntum)",
+      "count": "1",
+      "source": "2, 4, 6"
+    },
+    {
+      "grave_id": "B Grab 1 in S1 (Sektor 21/22)",
+      "category": "Keramik",
+      "object": "Grün glasierte Reibschüssel (Typ Mautern 3)",
+      "material": "Ton (glasiert)",
+      "origin": "Lokal (Carnuntum)",
+      "count": "1",
+      "source": "2, 4, 6"
+    },
+    {
+      "grave_id": "B Grab 1 in S1 (Sektor 21/22)",
+      "category": "Schmuck",
+      "object": "Ringfibel Typ Siscia / Schnallenfibel",
+      "material": "Bronze",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "2, 4, 6"
+    },
+    {
+      "grave_id": "B Grab 1 in S1 (Sektor 21/22)",
+      "category": "Metall/Waffe",
+      "object": "D-förmige Schnalle",
+      "material": "Buntmetall",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "B Grab 1 in S1 (Sektor 21/22)",
+      "category": "Metall/Waffe",
+      "object": "Riemenbeschlag mit punktgetriebenem Kreuz",
+      "material": "Buntmetall",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "2"
+    },
+    {
+      "grave_id": "Sarkophag II (Petronell)",
+      "category": "Münze",
+      "object": "As des Commodus (durchlocht)",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "7"
+    },
+    {
+      "grave_id": "Sarkophag II (Petronell)",
+      "category": "Münze",
+      "object": "As der Diva Faustina",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "7"
+    },
+    {
+      "grave_id": "Sarkophag II (Petronell)",
+      "category": "Glas",
+      "object": "Vierkantige Doppelhenkelflasche (Isings 90)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "7"
+    },
+    {
+      "grave_id": "Sarkophag II (Petronell)",
+      "category": "Glas",
+      "object": "Zylindrischer Krug (Isings 51)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "7"
+    },
+    {
+      "grave_id": "Sarkophag II (Petronell)",
+      "category": "Schmuck",
+      "object": "Goldener Fingerring mit Platte",
+      "material": "Gold",
+      "origin": "Griechischer Osten (vermutet)",
+      "count": "1",
+      "source": "7"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Keramik",
+      "object": "Keramikgefäße",
+      "material": "Keramik",
+      "origin": "Lokal",
+      "count": "Nicht in der Quelle",
+      "source": "8, 9"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Münze",
+      "object": "Münze",
+      "material": "Bronze (Buntmetall)",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "8"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Lampe",
+      "object": "Öllämpchen mit Stempel CRESCE S",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "10"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Glas",
+      "object": "Glasbeigaben",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "9"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Metall/Waffe",
+      "object": "Zwiebelknopffibel",
+      "material": "Bronze (Buntmetall)",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "8"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Metall/Waffe",
+      "object": "Messer mit Beingriff",
+      "material": "Eisen, Bein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "8"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Metall/Waffe",
+      "object": "Pfeilspitze",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "8"
+    },
+    {
+      "grave_id": "Grab 7 (Nowak)",
+      "category": "Metall/Waffe",
+      "object": "Lanzenspitze",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "10"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Keramik",
+      "object": "Flaschenförmiger Topf",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Keramik",
+      "object": "Schüssel / Schale",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "3",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Keramik",
+      "object": "Tonnenförmiges Gefäß",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Schmuck",
+      "object": "Eisenfibel",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Metall/Waffe",
+      "object": "Schwert",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Metall/Waffe",
+      "object": "Lanzenspitze und Lanzenschuh",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Metall/Waffe",
+      "object": "Eisenmesser",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Metall/Waffe",
+      "object": "Koppelringe",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 35 (Petronell)",
+      "category": "Tierknochen",
+      "object": "Schweineskelett",
+      "material": "Knochen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "11"
+    },
+    {
+      "grave_id": "Grab 13 (Zivilstadt)",
+      "category": "Keramik",
+      "object": "TS-Teller DRAG. 31 / TS-Becher DRAG. 33",
+      "material": "Terra Sigillata",
+      "origin": "Rheinzabern / Mittelgallisch",
+      "count": "4",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 13 (Zivilstadt)",
+      "category": "Keramik",
+      "object": "TS-Bodenfragment (Stempel BITURIX)",
+      "material": "Terra Sigillata",
+      "origin": "Mittelgallisch",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 26 (Zivilstadt)",
+      "category": "Münze",
+      "object": "As des Hadrianus",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 26 (Zivilstadt)",
+      "category": "Münze",
+      "object": "As des Nerva",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 26 (Zivilstadt)",
+      "category": "Glas",
+      "object": "Merkurflasche",
+      "material": "Glas",
+      "origin": "Pannonien (Lokal)",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 26 (Zivilstadt)",
+      "category": "Lampe",
+      "object": "Firmalampe LT. X (Stempel CRESCES)",
+      "material": "Ton",
+      "origin": "Lokal (provinziell)",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 26 (Zivilstadt)",
+      "category": "Schmuck",
+      "object": "Kniefibel",
+      "material": "Bronze",
+      "origin": "Lokal (Carnuntum)",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 146 (Zivilstadt)",
+      "category": "Münze",
+      "object": "Münze des Traianus Decius / Gordianus III",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "2",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 146 (Zivilstadt)",
+      "category": "Münze",
+      "object": "Denar des Vespasianus",
+      "material": "Silber",
+      "origin": "Rom",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 146 (Zivilstadt)",
+      "category": "Münze",
+      "object": "Antoninian des Traianus Decius",
+      "material": "Silber / Billon",
+      "origin": "Rom",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "category": "Schmuck",
+      "object": "Stirnband",
+      "material": "Birkenrinde",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "13-16"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "category": "Schmuck",
+      "object": "Holzperlen / Holzknöpfe",
+      "material": "Holz",
+      "origin": "Lokal",
+      "count": "Nicht in der Quelle",
+      "source": "13-15"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "category": "Metall/Waffe",
+      "object": "Holzbogen (Nadelholz)",
+      "material": "Holz",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "13-16"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "category": "Glas",
+      "object": "Gefäßsplitter",
+      "material": "rosabraunes Glas",
+      "origin": "Lokal",
+      "count": "Nicht in der Quelle",
+      "source": "14"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "category": "Schmuck",
+      "object": "Durchbrochene Scheibenfibel",
+      "material": "Bronze",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "7, 14"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "category": "Nicht in der Quelle",
+      "object": "Spielstein",
+      "material": "Bein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "7, 14, 17"
+    },
+    {
+      "grave_id": "Sarkophag I (Gstettenbreite)",
+      "category": "Metall/Waffe",
+      "object": "Schuhnägel",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "4",
+      "source": "7"
+    },
+    {
+      "grave_id": "Grab 6 (Petronell)",
+      "category": "Münze",
+      "object": "Kaiserzeitliche Münzen",
+      "material": "Bronze/Silber",
+      "origin": "Nicht in der Quelle",
+      "count": "4",
+      "source": "10"
+    },
+    {
+      "grave_id": "Grab 6 (Petronell)",
+      "category": "Keramik",
+      "object": "Reibpalette",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "10"
+    },
+    {
+      "grave_id": "Grab 6 (Petronell)",
+      "category": "Lampe",
+      "object": "Tonlämpchen mit Stempel LCC",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "10"
+    },
+    {
+      "grave_id": "Grab b (Gehöft 4)",
+      "category": "Münze",
+      "object": "Sesterz des Maximinus I.",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18, 19"
+    },
+    {
+      "grave_id": "Grab b (Gehöft 4)",
+      "category": "Keramik",
+      "object": "Henkelkrug",
+      "material": "roter Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab b (Gehöft 4)",
+      "category": "Glas",
+      "object": "Glasflaschen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "5",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab b (Gehöft 4)",
+      "category": "Lampe",
+      "object": "Bronzelampe / Tonlampe",
+      "material": "Bronze / Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab b (Gehöft 4)",
+      "category": "Schmuck",
+      "object": "Beinnadel",
+      "material": "Bein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab c (Gehöft 4)",
+      "category": "Münze",
+      "object": "Bronzemünzen (Severus Alexander bis Gallienus)",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "18, 19"
+    },
+    {
+      "grave_id": "Grab c (Gehöft 4)",
+      "category": "Keramik",
+      "object": "Zweihenkelige Vase mit Schuppenzier",
+      "material": "Ton (glasiert)",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab c (Gehöft 4)",
+      "category": "Glas",
+      "object": "Gefäßbruchstück aus Glasmosaik",
+      "material": "Glasmosaik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab c (Gehöft 4)",
+      "category": "Schmuck",
+      "object": "Kamm",
+      "material": "Bein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab c (Gehöft 4)",
+      "category": "Schmuck",
+      "object": "Armbrustfibel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab c (Gehöft 4)",
+      "category": "Metall/Waffe",
+      "object": "Panzerschuppen",
+      "material": "Bronzeblech",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab c (Gehöft 4)",
+      "category": "Metall/Waffe",
+      "object": "Stili",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab d (Gehöft 4)",
+      "category": "Münze",
+      "object": "Bronzemünze (unleserlich)",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab d (Gehöft 4)",
+      "category": "Keramik",
+      "object": "Topf / Schüssel",
+      "material": "hellgrauer Ton, schwarz glasiert",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab d (Gehöft 4)",
+      "category": "Metall/Waffe",
+      "object": "Messer mit Beingriff",
+      "material": "Eisen und Bein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab 15 (Villa Palffy)",
+      "category": "Lampe",
+      "object": "Firmalampe (Stempel AGILIS)",
+      "material": "Ton",
+      "origin": "Provinziell",
+      "count": "1",
+      "source": "20"
+    },
+    {
+      "grave_id": "Grab 15 (Villa Palffy)",
+      "category": "Metall/Waffe",
+      "object": "Zwiebelknopffibel",
+      "material": "Bronze",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 13 (Villa Palffy)",
+      "category": "Glas",
+      "object": "Glasfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "22"
+    },
+    {
+      "grave_id": "Grab 13 (Villa Palffy)",
+      "category": "Lampe",
+      "object": "Firmalampe (Stempel IEGIDI)",
+      "material": "Ton",
+      "origin": "Provinziell",
+      "count": "1",
+      "source": "20"
+    },
+    {
+      "grave_id": "Grab 20 (Villa Palffy)",
+      "category": "Münze",
+      "object": "Großerze des Philippus Arabs",
+      "material": "Bronze",
+      "origin": "Viminacium",
+      "count": "4",
+      "source": "22"
+    },
+    {
+      "grave_id": "Grab 20 (Villa Palffy)",
+      "category": "Metall/Waffe",
+      "object": "Kleine hohle Pfeilspitze",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "22"
+    },
+    {
+      "grave_id": "Grab 20 (Villa Palffy)",
+      "category": "Metall/Waffe",
+      "object": "Schildbuckel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "22"
+    },
+    {
+      "grave_id": "Sarkophag (Mädchengrab 1895)",
+      "category": "Schmuck",
+      "object": "Ohrringe mit Email / Ohrgehänge",
+      "material": "Gold und Email",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18, 19"
+    },
+    {
+      "grave_id": "Sarkophag (Mädchengrab 1895)",
+      "category": "Schmuck",
+      "object": "Fingerring mit Onyxkamee / farbigen Steinen",
+      "material": "Gold und Edelstein",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18"
+    },
+    {
+      "grave_id": "Sarkophag (Mädchengrab 1895)",
+      "category": "Schmuck",
+      "object": "Halskette / Kettchen aus Draht",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18, 19"
+    },
+    {
+      "grave_id": "Sarkophag (Mädchengrab 1895)",
+      "category": "Schmuck",
+      "object": "Goldplättchen (Gewandschmuck)",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "zahlreiche",
+      "source": "18, 19"
+    },
+    {
+      "grave_id": "Kindergrab (Steinsarkophag)",
+      "category": "Münze",
+      "object": "Dupondius des Probus",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "18"
+    },
+    {
+      "grave_id": "Kindergrab (Steinsarkophag)",
+      "category": "Glas",
+      "object": "Bauchige Glasflasche / Flasche zerbrochen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "18"
+    },
+    {
+      "grave_id": "Kindergrab (Steinsarkophag)",
+      "category": "Schmuck",
+      "object": "Perlen (Bernstein und Glas)",
+      "material": "Bernstein und Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "55",
+      "source": "18"
+    },
+    {
+      "grave_id": "Steinkiste (Kind, Parkplatz)",
+      "category": "Münze",
+      "object": "Münzen (Prägung Hadrian)",
+      "material": "Metall",
+      "origin": "Nicht in der Quelle",
+      "count": "4",
+      "source": "23"
+    },
+    {
+      "grave_id": "Steinkiste (Kind, Parkplatz)",
+      "category": "Keramik",
+      "object": "Becher",
+      "material": "Ton (Grobware)",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Steinkiste (Kind, Parkplatz)",
+      "category": "Glas",
+      "object": "Balsamarium",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Steinkiste (Kind, Parkplatz)",
+      "category": "Lampe",
+      "object": "Öllampe",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Steinkiste (Kind, Parkplatz)",
+      "category": "Schmuck",
+      "object": "Zwiebelknopffibel / Glasperle",
+      "material": "Bronze / Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "23"
+    },
+    {
+      "grave_id": "Steinkiste (Kind, Parkplatz)",
+      "category": "Metall/Waffe",
+      "object": "Messer",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Steinkiste (Kind, Parkplatz)",
+      "category": "Tierknochen",
+      "object": "Knochen eines Säugetiers",
+      "material": "Tierknochen",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "23"
+    },
+    {
+      "grave_id": "Grab III (Pz. 308)",
+      "category": "Keramik",
+      "object": "Zweihenkliger Napf / Henkelschale",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "2, 24"
+    },
+    {
+      "grave_id": "Grab III (Pz. 308)",
+      "category": "Keramik",
+      "object": "Terrasigillataschale Form 27",
+      "material": "Terra Sigillata",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab III (Pz. 308)",
+      "category": "Lampe",
+      "object": "Lampe Typus X (Stempel QGC/QCC)",
+      "material": "Roter Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab III (Pz. 308)",
+      "category": "Schmuck",
+      "object": "Gewandnadel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab 174B (Zivilstadt)",
+      "category": "Münze",
+      "object": "Denar des Severus Alexander (für Orbiana)",
+      "material": "Silber",
+      "origin": "Rom",
+      "count": "2",
+      "source": "12, 21"
+    },
+    {
+      "grave_id": "Grab 174B (Zivilstadt)",
+      "category": "Metall/Waffe",
+      "object": "Peltaschnalle / Gürtelbeschläge",
+      "material": "Bronze",
+      "origin": "Lokal",
+      "count": "3",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 174B (Zivilstadt)",
+      "category": "Metall/Waffe",
+      "object": "Riemenzunge",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 174B (Zivilstadt)",
+      "category": "Schmuck",
+      "object": "Kniefibel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 174B (Zivilstadt)",
+      "category": "Glas",
+      "object": "Glasgefäße",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "Mehrere",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab e (Aequinoctium)",
+      "category": "Münze",
+      "object": "Sesterz Kaiser Trajans",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "25"
+    },
+    {
+      "grave_id": "Grab e (Aequinoctium)",
+      "category": "Keramik",
+      "object": "Kleiner Henkelkrug",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "25"
+    },
+    {
+      "grave_id": "Grab e (Aequinoctium)",
+      "category": "Lampe",
+      "object": "Tonlampe mit Stempel Pastor",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "25"
+    },
+    {
+      "grave_id": "Frauenbestattung im Horreum",
+      "category": "Keramik",
+      "object": "Henkeltopf",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Frauenbestattung im Horreum",
+      "category": "Metall/Waffe",
+      "object": "Holzkästchen mit Bronzebeschlägen",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Gst. 416/1",
+      "category": "Münze",
+      "object": "Münzen (Vespasianus bis Antoninus Pius)",
+      "material": "Bronze/Silber",
+      "origin": "Römisches Reich",
+      "count": "Nicht in der Quelle",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 416/1",
+      "category": "Keramik",
+      "object": "Urne / Gefäße (TS, Feinware)",
+      "material": "Ton",
+      "origin": "Lokal (Inferred)",
+      "count": "Nicht in der Quelle",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 416/1",
+      "category": "Stein/Grabmal",
+      "object": "Sarkophag / Grabstele",
+      "material": "Sandstein",
+      "origin": "Lokal (Inferred)",
+      "count": "2",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 416/1",
+      "category": "Glas",
+      "object": "Glasgefäße",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 6382",
+      "category": "Stein/Grabmal",
+      "object": "Grabstele eines Veteranen",
+      "material": "Leithakalkstein",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 6382",
+      "category": "Metall/Waffe",
+      "object": "Schwert / Lanze",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "26"
+    },
+    {
+      "grave_id": "Grab 9 (Petronell)",
+      "category": "Münze",
+      "object": "As des Antoninus Pius / Münze",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "2",
+      "source": "12, 27"
+    },
+    {
+      "grave_id": "Grab 9 (Petronell)",
+      "category": "Keramik",
+      "object": "Faltenbecher",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "27"
+    },
+    {
+      "grave_id": "Grab 9 (Petronell)",
+      "category": "Lampe",
+      "object": "Öllampe",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "27"
+    },
+    {
+      "grave_id": "Gst. 838/15",
+      "category": "Stein/Grabmal",
+      "object": "Sarkophag",
+      "material": "Bruchstein",
+      "origin": "Nicht in der Quelle",
+      "count": "1-3",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 838/15",
+      "category": "Schmuck",
+      "object": "Achatscheibe",
+      "material": "Achat",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 838/15",
+      "category": "Metall/Waffe",
+      "object": "Pfeilspitze",
+      "material": "Quarz",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "26"
+    },
+    {
+      "grave_id": "Gst. 838/15",
+      "category": "Münze",
+      "object": "Münzen",
+      "material": "Metall",
+      "origin": "Römisches Reich",
+      "count": "Nicht in der Quelle",
+      "source": "26"
+    },
+    {
+      "grave_id": "Zentraler Grabbau (Steinkiste)",
+      "category": "Keramik",
+      "object": "Räuchergefäßfragmente",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "27"
+    },
+    {
+      "grave_id": "Zentraler Grabbau (Steinkiste)",
+      "category": "Glas",
+      "object": "Glasobjekte",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "27"
+    },
+    {
+      "grave_id": "Zentraler Grabbau (Steinkiste)",
+      "category": "Lampe",
+      "object": "Öllampen",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "5",
+      "source": "27"
+    },
+    {
+      "grave_id": "Zentraler Grabbau (Steinkiste)",
+      "category": "Schmuck",
+      "object": "Knochenfragmente / Knochenscheiben",
+      "material": "Knochen",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "27"
+    },
+    {
+      "grave_id": "Zentraler Grabbau (Steinkiste)",
+      "category": "Schmuck",
+      "object": "Bronze- und Eisengegenstände",
+      "material": "Bronze, Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "27"
+    },
+    {
+      "grave_id": "Grab 12 (Petronell)",
+      "category": "Münze",
+      "object": "Münze mit Textilrückständen",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "27"
+    },
+    {
+      "grave_id": "Grab 12 (Petronell)",
+      "category": "Lampe",
+      "object": "Öllampe",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "27"
+    },
+    {
+      "grave_id": "Grab 12 (Petronell)",
+      "category": "Keramik",
+      "object": "Gesichtsurne",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Brandgrab (Parz. 2005/6)",
+      "category": "Keramik",
+      "object": "Sigillata-Schale Drag. 37",
+      "material": "Terra Sigillata",
+      "origin": "Rheinzabern",
+      "count": "1",
+      "source": "1"
+    },
+    {
+      "grave_id": "Parzelle 311 (Petronell)",
+      "category": "Münze",
+      "object": "Mittelbronze des Maximinus Thrax",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "28"
+    },
+    {
+      "grave_id": "Parzelle 311 (Petronell)",
+      "category": "Glas",
+      "object": "Tränenfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "28"
+    },
+    {
+      "grave_id": "Parzelle 311 (Petronell)",
+      "category": "Metall/Waffe",
+      "object": "Schriftröllchen (gnostische Amulette)",
+      "material": "Silber / Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "28"
+    },
+    {
+      "grave_id": "Parzelle 311 (Petronell)",
+      "category": "Keramik",
+      "object": "glasierter Topf",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "28"
+    },
+    {
+      "grave_id": "Parzelle 89/90 (Friedhof)",
+      "category": "Schmuck",
+      "object": "Ohrringe / Fingerring",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "28"
+    },
+    {
+      "grave_id": "Parzelle 89/90 (Friedhof)",
+      "category": "Glas",
+      "object": "Trauerfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "28"
+    },
+    {
+      "grave_id": "Parzelle 89/90 (Friedhof)",
+      "category": "Schmuck",
+      "object": "geflügelter Genius",
+      "material": "Bernstein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "28"
+    },
+    {
+      "grave_id": "Parzelle 842 (Johannisbreite)",
+      "category": "Münze",
+      "object": "As des Agrippa",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "28"
+    },
+    {
+      "grave_id": "Petronell (Sarkophag-Privatfund)",
+      "category": "Lampe",
+      "object": "Zwiebelknopffibel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "28"
+    },
+    {
+      "grave_id": "Petronell römisches Gräberfeld",
+      "category": "Metall/Waffe",
+      "object": "Maskenhelm",
+      "material": "Eisen/Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "29"
+    },
+    {
+      "grave_id": "Mnr. 05109.18.02",
+      "category": "Keramik",
+      "object": "Ganzgefäße",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "mehrere",
+      "source": "29"
+    },
+    {
+      "grave_id": "Mnr. 05109.18.02",
+      "category": "Tierknochen",
+      "object": "Skelettreste",
+      "material": "Tierknochen",
+      "origin": "Lokal (Inferred)",
+      "count": "Nicht in der Quelle",
+      "source": "29"
+    },
+    {
+      "grave_id": "Grab 10 (Gst. 832/11)",
+      "category": "Keramik",
+      "object": "Becher",
+      "material": "Ton (gelbtonig)",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "30"
+    },
+    {
+      "grave_id": "Grab 10 (Gst. 832/11)",
+      "category": "Glas",
+      "object": "Spielsteine",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "7",
+      "source": "31, 32"
+    },
+    {
+      "grave_id": "Grab 10 (Gst. 832/11)",
+      "category": "Metall/Waffe",
+      "object": "Knauf",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "32"
+    },
+    {
+      "grave_id": "Grab 10 (Gst. 832/11)",
+      "category": "Lampe",
+      "object": "Firmalampe LT. X (Stempel VRSIO)",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "B9 Neubau (Sarkophag)",
+      "category": "Glas",
+      "object": "Glasflaschen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "31"
+    },
+    {
+      "grave_id": "B9 Neubau (Sarkophag)",
+      "category": "Münze",
+      "object": "Münzen",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "31"
+    },
+    {
+      "grave_id": "B9 Neubau (Sarkophag)",
+      "category": "Schmuck",
+      "object": "kleiner Fingerring",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "31"
+    },
+    {
+      "grave_id": "B9 Neubau (Reflexbogen)",
+      "category": "Metall/Waffe",
+      "object": "Reste eines Reflexbogens",
+      "material": "Holz",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "31"
+    },
+    {
+      "grave_id": "Grab 32 (Traungasse)",
+      "category": "Schmuck",
+      "object": "Bernsteinanhänger / Armreifen",
+      "material": "Bernstein / Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "19, 24"
+    },
+    {
+      "grave_id": "Grab 32 (Traungasse)",
+      "category": "Metall/Waffe",
+      "object": "Gekrümmtes Eisenobjekt",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab (Pz. 252)",
+      "category": "Schmuck",
+      "object": "Ohrringe",
+      "material": "Golddraht",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab (Pz. 252)",
+      "category": "Münze",
+      "object": "Münze des Hadrian",
+      "material": "Messing",
+      "origin": "Rom",
+      "count": "1",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab (Pz. 252)",
+      "category": "Metall/Waffe",
+      "object": "Löffelchen",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab 35 (Thurkowitsch)",
+      "category": "Keramik",
+      "object": "Kannen / Teller (Fragmente)",
+      "material": "Gelbtonig",
+      "origin": "Lokal (impliziert)",
+      "count": "3",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab 35 (Thurkowitsch)",
+      "category": "Glas",
+      "object": "Balsamar (Fragmente)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab 11 (Thurkowitsch)",
+      "category": "Keramik",
+      "object": "Drag. 37 (Fragmente)",
+      "material": "Terra Sigillata",
+      "origin": "Lezoux",
+      "count": "2",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab 11 (Thurkowitsch)",
+      "category": "Keramik",
+      "object": "Krug / Teller (Fragmente)",
+      "material": "Gelbtonig / Rauhwandig",
+      "origin": "Nicht in der Quelle",
+      "count": "4",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab 34 (Thurkowitsch)",
+      "category": "Schmuck",
+      "object": "Goldring / Silberne Nadeldose",
+      "material": "Gold / Silber",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab 34 (Thurkowitsch)",
+      "category": "Glas",
+      "object": "Rhyton (theriomorph)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab 34 (Thurkowitsch)",
+      "category": "Lampe",
+      "object": "Firmalampen (FORTIS)",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab 1 (Villa Palffy)",
+      "category": "Metall/Waffe",
+      "object": "Eisennägel",
+      "material": "Eisen",
+      "origin": "Nicht in der Quelle",
+      "count": "5",
+      "source": "22"
+    },
+    {
+      "grave_id": "Grab 1 (Villa Palffy)",
+      "category": "Keramik",
+      "object": "Zweihenkeliger Topf / Schale / Krughals",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 1 (Villa Palffy)",
+      "category": "Schmuck",
+      "object": "Bulla",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 1 (Villa Palffy)",
+      "category": "Metall/Waffe",
+      "object": "Metallfunde (unbestimmt)",
+      "material": "Metall",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "9"
+    },
+    {
+      "grave_id": "Grab 3 (Lagerfriedhof)",
+      "category": "Keramik",
+      "object": "Urne / Gefäße",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "35"
+    },
+    {
+      "grave_id": "Grab 3 (Lagerfriedhof)",
+      "category": "Metall/Waffe",
+      "object": "Eisenobjekt / Henkelkanne",
+      "material": "Eisen / Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "34, 35"
+    },
+    {
+      "grave_id": "Grab 3 (Lagerfriedhof)",
+      "category": "Glas",
+      "object": "Gefäßreste",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 3 (Lagerfriedhof)",
+      "category": "Keramik",
+      "object": "Kugelförmiges Gefäß",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "36"
+    },
+    {
+      "grave_id": "Grab 3 (Lagerfriedhof)",
+      "category": "Schmuck",
+      "object": "Fibel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Kindergrab (Quaestorium)",
+      "category": "Glas",
+      "object": "Konisches Becherglas",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "37"
+    },
+    {
+      "grave_id": "Kindergrab (Quaestorium)",
+      "category": "Tierknochen",
+      "object": "Skelett eines Kindes",
+      "material": "Knochen",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "37"
+    },
+    {
+      "grave_id": "Grab 30 (Petronell)",
+      "category": "Keramik",
+      "object": "Halbkugeliges Schälchen",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "Source_3"
+    },
+    {
+      "grave_id": "Grab 30 (Petronell)",
+      "category": "Lampe",
+      "object": "Firmalampe (Stempel FORTIS)",
+      "material": "Ton",
+      "origin": "Oberitalien",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 56 (Petronell)",
+      "category": "Keramik",
+      "object": "Bikonische Schale / Topf mit Deckelfalz",
+      "material": "Ton",
+      "origin": "Oberitalien / Lokal",
+      "count": "2",
+      "source": "28, Source_3"
+    },
+    {
+      "grave_id": "Grab 56 (Petronell)",
+      "category": "Keramik",
+      "object": "TS-Teller DRAG. 31 (Stempel MUSCELLAF)",
+      "material": "Terra Sigillata",
+      "origin": "Westerndorf",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 37 (Petronell)",
+      "category": "Keramik",
+      "object": "Einhenkeliger Becher",
+      "material": "Nicht in der Quelle",
+      "origin": "Italienisch",
+      "count": "1",
+      "source": "Source_3"
+    },
+    {
+      "grave_id": "Grab 37 (Petronell)",
+      "category": "Keramik",
+      "object": "Schale mit Ratterdekor",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "36"
+    },
+    {
+      "grave_id": "Grab 37 (Petronell)",
+      "category": "Glas",
+      "object": "Flasche (Isings 50 b)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "Source_3"
+    },
+    {
+      "grave_id": "Brandgrubengrab 35/84",
+      "category": "Keramik",
+      "object": "Eiförmiges Töpfchen",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "34, 38, 39"
+    },
+    {
+      "grave_id": "Brandgrubengrab 35/84",
+      "category": "Münze",
+      "object": "As des Trajan",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "34, 39"
+    },
+    {
+      "grave_id": "Brandgrubengrab 35/84",
+      "category": "Glas",
+      "object": "Glasflasche",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Ziegelgrab 31/84",
+      "category": "Glas",
+      "object": "Merkurflasche",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Ziegelgrab 31/84",
+      "category": "Lampe",
+      "object": "Firmenlampe",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Ziegelgrab 31/84",
+      "category": "Schmuck",
+      "object": "Kniefibel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Sarkophag I (Krems/Wimmer)",
+      "category": "Metall/Waffe",
+      "object": "Zinngefäß",
+      "material": "Zinn",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "40"
+    },
+    {
+      "grave_id": "Sarkophag I (Krems/Wimmer)",
+      "category": "Glas",
+      "object": "Glasfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "40"
+    },
+    {
+      "grave_id": "Rundgrab I (Florus)",
+      "category": "Münze",
+      "object": "As des Kaisers Claudius",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Rundgrab I (Florus)",
+      "category": "Keramik",
+      "object": "Urne mit Kammstrichbändern",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Grabhaus IX",
+      "category": "Keramik",
+      "object": "Urne mit Kammstrichbändern / Kochtopf",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "34, 41"
+    },
+    {
+      "grave_id": "Grabhaus IX",
+      "category": "Lampe",
+      "object": "Firmalampe (Stempel Cerinthus)",
+      "material": "Ton",
+      "origin": "Modena",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Grabhaus IX",
+      "category": "Münze",
+      "object": "As (Tiberius)",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Grabhaus IX",
+      "category": "Schmuck",
+      "object": "Elfenbeinnadel (Vogelkopf)",
+      "material": "Elfenbein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Grabhaus IX",
+      "category": "Metall/Waffe",
+      "object": "Bronzespiegel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Urnengrab 22/34",
+      "category": "Lampe",
+      "object": "Bildlampe (Typ Loeschcke IB)",
+      "material": "Ton",
+      "origin": "Oberitalien",
+      "count": "1",
+      "source": "20, 41"
+    },
+    {
+      "grave_id": "Urnengrab 22/34",
+      "category": "Keramik",
+      "object": "Pyxis / Auerbergtopf",
+      "material": "Elfenbein / Ton",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "34, 39, 41"
+    },
+    {
+      "grave_id": "Urnengrab 22/34",
+      "category": "Schmuck",
+      "object": "Trompetenfibel",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "39"
+    },
+    {
+      "grave_id": "Urnengrab 1 (2/34)",
+      "category": "Keramik",
+      "object": "Urne mit Schlangenlinie",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Urnengrab 1 (2/34)",
+      "category": "Glas",
+      "object": "Tränenfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Urnengrab 1 (2/34)",
+      "category": "Metall/Waffe",
+      "object": "Bronzefibel (trompetenförmig)",
+      "material": "Bronze",
+      "origin": "Nordpannonien",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Urnengrab 1 (2/34)",
+      "category": "Schmuck",
+      "object": "Bernsteinbruchstücke",
+      "material": "Bernstein",
+      "origin": "Nicht in der Quelle",
+      "count": "6",
+      "source": "41"
+    },
+    {
+      "grave_id": "Urnengrab 2 (2/34)",
+      "category": "Keramik",
+      "object": "Terra Sigillata Schale / Auerberg-Derivat",
+      "material": "Terra Sigillata / Ton",
+      "origin": "Arezzo / Lokal",
+      "count": "2",
+      "source": "34, 39, 41"
+    },
+    {
+      "grave_id": "Urnengrab 2 (2/34)",
+      "category": "Glas",
+      "object": "Glasfläschchen (Aryballosform)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "41"
+    },
+    {
+      "grave_id": "Urnengrab 2 (2/34)",
+      "category": "Lampe",
+      "object": "Lampe des Cerinthus",
+      "material": "Ton",
+      "origin": "Modena",
+      "count": "1",
+      "source": "39"
+    },
+    {
+      "grave_id": "Frauengrab (4. Jh.)",
+      "category": "Keramik",
+      "object": "Henkeltopf",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "42"
+    },
+    {
+      "grave_id": "Frauengrab (4. Jh.)",
+      "category": "Schmuck",
+      "object": "Ohrringe",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "42"
+    },
+    {
+      "grave_id": "Frauengrab (4. Jh.)",
+      "category": "Schmuck",
+      "object": "Kästchenbeschläge",
+      "material": "Bronzeblech",
+      "origin": "Nicht in der Quelle",
+      "count": "Nicht in der Quelle",
+      "source": "42"
+    },
+    {
+      "grave_id": "Frauengrab (4. Jh.)",
+      "category": "Münze",
+      "object": "Münzen (2. Hälfte 3. Jh.)",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "42"
+    },
+    {
+      "grave_id": "Grab 131 (Zivilstadt)",
+      "category": "Münze",
+      "object": "As des Antoninus Pius (Diva Faustina)",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 133 (Zivilstadt)",
+      "category": "Münze",
+      "object": "As des Gordianus III",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 182 (Zivilstadt)",
+      "category": "Schmuck",
+      "object": "Goldohrringe mit Rosette",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "12"
+    },
+    {
+      "grave_id": "Grab 189 (Zivilstadt)",
+      "category": "Münze",
+      "object": "As des Hadrianus",
+      "material": "Bronze",
+      "origin": "Rom",
+      "count": "1",
+      "source": "12"
+    },
+    {
+      "grave_id": "Sarkophag 1 (Unteres Burgfeld)",
+      "category": "Münze",
+      "object": "Münzen",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "38"
+    },
+    {
+      "grave_id": "Sarkophag 1 (Unteres Burgfeld)",
+      "category": "Schmuck",
+      "object": "Silberfibel",
+      "material": "Silber",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Grab 163/85 (Bustum)",
+      "category": "Keramik",
+      "object": "Kleine graue Henkelschale",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Brandflächengrab 33/85",
+      "category": "Keramik",
+      "object": "Räucherschale",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Brandflächengrab 33/85",
+      "category": "Lampe",
+      "object": "Firmenlampe (FORTIS)",
+      "material": "Ton",
+      "origin": "Lokal (vermutlich)",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Brandflächengrab 33/85",
+      "category": "Münze",
+      "object": "As des Antoninus Pius",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Grab 9/85 (Urne)",
+      "category": "Keramik",
+      "object": "Urne mit Rädchenverzierung",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Grab 166/85 (Urne)",
+      "category": "Keramik",
+      "object": "Urne mit Deckel (graue Ware)",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Grab 128/85",
+      "category": "Münze",
+      "object": "Sesterz des Antoninus Pius",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Sarkophag 102/85",
+      "category": "Schmuck",
+      "object": "Beinhaarnadel",
+      "material": "Bein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "38"
+    },
+    {
+      "grave_id": "Kindersarkophag (Gstettenbreite)",
+      "category": "Glas",
+      "object": "Glasflaschen",
+      "material": "Glas",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "14"
+    },
+    {
+      "grave_id": "Kindersarkophag (Gstettenbreite)",
+      "category": "Schmuck",
+      "object": "winzige Perlen",
+      "material": "Nicht in der Quelle",
+      "origin": "Lokal",
+      "count": "Nicht in der Quelle",
+      "source": "14"
+    },
+    {
+      "grave_id": "Kindersarkophag (Gstettenbreite)",
+      "category": "Münze",
+      "object": "Münze Marc Aurel / gelochte Münze",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "14"
+    },
+    {
+      "grave_id": "Kindersarkophag (Gstettenbreite)",
+      "category": "Schmuck",
+      "object": "bandförmiger Fingerring",
+      "material": "Gold",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "14"
+    },
+    {
+      "grave_id": "Aedicula II (Gräberstraße) - Urne I",
+      "category": "Glas",
+      "object": "Tränenfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "43"
+    },
+    {
+      "grave_id": "Aedicula II (Gräberstraße) - Urne I",
+      "category": "Keramik",
+      "object": "Teller (TS-Imitation) / Schälchen",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "43"
+    },
+    {
+      "grave_id": "Aedicula II (Gräberstraße) - Urne II",
+      "category": "Glas",
+      "object": "Tränenfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "43"
+    },
+    {
+      "grave_id": "Aedicula II (Gräberstraße) - Urne II",
+      "category": "Lampe",
+      "object": "Bildlampe Loeschcke I (Luna)",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "43"
+    },
+    {
+      "grave_id": "Aedicula II (Gräberstraße) - Urne II",
+      "category": "Keramik",
+      "object": "Schälchen",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "43"
+    },
+    {
+      "grave_id": "Aedicula II (Gräberstraße) - Urne II",
+      "category": "Münze",
+      "object": "Münze des Claudius",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "43"
+    },
+    {
+      "grave_id": "Grab bei Haslau",
+      "category": "Glas",
+      "object": "Glasurne",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "25, 37"
+    },
+    {
+      "grave_id": "Grab bei Haslau",
+      "category": "Münze",
+      "object": "Aureus des Aurelianus",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "25, 37"
+    },
+    {
+      "grave_id": "Grab an der Straße (Scarabantia)",
+      "category": "Keramik",
+      "object": "Krug / Urne mit Leichnam",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "37"
+    },
+    {
+      "grave_id": "Grab an der Straße (Scarabantia)",
+      "category": "Schmuck",
+      "object": "Buchstabe E / Gefäßdeckelteil",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "25"
+    },
+    {
+      "grave_id": "Grab an der Straße (Scarabantia)",
+      "category": "Keramik",
+      "object": "Vase mit Pferdekopf-Henkel",
+      "material": "Ton (glasiert)",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "25"
+    },
+    {
+      "grave_id": "Grab IA (Gräberstraße)",
+      "category": "Keramik",
+      "object": "Topf mit horizontalem Flachrand",
+      "material": "Keramik",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 15 (Gräberstraße)",
+      "category": "Keramik",
+      "object": "Urne / Sigillataschale / Henkelkrug",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 15 (Gräberstraße)",
+      "category": "Lampe",
+      "object": "Lampe",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 21 (Gräberstraße)",
+      "category": "Schmuck",
+      "object": "Ring",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 21 (Gräberstraße)",
+      "category": "Metall/Waffe",
+      "object": "Ringschlüssel",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 25 (Gräberstraße)",
+      "category": "Lampe",
+      "object": "Lampe mit Stempel FORTIS / AGILIS",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 4 (Gräberstraße)",
+      "category": "Glas",
+      "object": "Tränenfläschchen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 4 (Gräberstraße)",
+      "category": "Keramik",
+      "object": "Urne mit verbrannten Knochen",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 4 (Gräberstraße)",
+      "category": "Schmuck",
+      "object": "Gerippte Perle",
+      "material": "Glasemail",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grabumfassung (Stiglitz)",
+      "category": "Keramik",
+      "object": "Steinossuar (Steinkiste)",
+      "material": "Kalkstein",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "16, 44"
+    },
+    {
+      "grave_id": "Grabbau XI",
+      "category": "Keramik",
+      "object": "Schüssel / Reibschüssel / Platten",
+      "material": "Terra Sigillata / Ton",
+      "origin": "Rheinzabern",
+      "count": "5",
+      "source": "45"
+    },
+    {
+      "grave_id": "Grab in Graben XI",
+      "category": "Keramik",
+      "object": "Räucherkelch / Teller",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "4",
+      "source": "45"
+    },
+    {
+      "grave_id": "Urne NO-Ecke Graben XI",
+      "category": "Glas",
+      "object": "Parfumfläschchen (Fragmente)",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "45"
+    },
+    {
+      "grave_id": "Urne NO-Ecke Graben XI",
+      "category": "Münze",
+      "object": "Münze des Augustus",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "45"
+    },
+    {
+      "grave_id": "Urne NO-Ecke Graben XI",
+      "category": "Keramik",
+      "object": "Urne mit herzförmigem Rand",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "45"
+    },
+    {
+      "grave_id": "Urne NW-Ecke Graben XI",
+      "category": "Keramik",
+      "object": "Urne mit gelbem Deckel",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "45"
+    },
+    {
+      "grave_id": "Urne NW-Ecke Graben XII",
+      "category": "Glas",
+      "object": "Bruchstück eines Parfumfläschchens",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "45"
+    },
+    {
+      "grave_id": "Petronell, Grab 8 (Fürstengrab)",
+      "category": "Metall/Waffe",
+      "object": "Bronzeteller / Bronzeschälchen",
+      "material": "Bronze, silberplattiert",
+      "origin": "Römischer Import",
+      "count": "2",
+      "source": "46"
+    },
+    {
+      "grave_id": "Petronell, Grabung B9 (Sarkophag 1/86)",
+      "category": "Metall/Waffe",
+      "object": "Dolchklinge / Scheidenbeschlag",
+      "material": "Eisen",
+      "origin": "Lokal",
+      "count": "2",
+      "source": "47"
+    },
+    {
+      "grave_id": "Petronell, Friedhof (Doppelsarkophag)",
+      "category": "Münze",
+      "object": "Münze des Constantius",
+      "material": "Kupfer/Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "48"
+    },
+    {
+      "grave_id": "Petronell, Friedhof (Doppelsarkophag)",
+      "category": "Keramik",
+      "object": "Schwarzes Tongefäß (Fragment)",
+      "material": "Keramik",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "48"
+    },
+    {
+      "grave_id": "Petronell (Lagerfriedhof)",
+      "category": "Stein/Grabmal",
+      "object": "Grabsteine (Lucretius / Iulius / Antoninus)",
+      "material": "Sandstein",
+      "origin": "Lokal",
+      "count": "4",
+      "source": "49"
+    },
+    {
+      "grave_id": "Grab 14 (Parz. 832/14)",
+      "category": "Schmuck",
+      "object": "Bronzeanhänger",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Grab 14 (Parz. 832/14)",
+      "category": "Lampe",
+      "object": "Öllämpchen",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Grab 34 (Parz. 832/14)",
+      "category": "Keramik",
+      "object": "Spruchbecher 'VITA MEA'",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Grab 34 (Parz. 832/14)",
+      "category": "Münze",
+      "object": "Münze",
+      "material": "Metall",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "23"
+    },
+    {
+      "grave_id": "Grab 48 (Parz. 832/14)",
+      "category": "Schmuck",
+      "object": "Gagatperlen",
+      "material": "Gagat/Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "90",
+      "source": "23"
+    },
+    {
+      "grave_id": "Kindergrab (BDA)",
+      "category": "Münze",
+      "object": "Denar des Septimius Severus",
+      "material": "Silber",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "50"
+    },
+    {
+      "grave_id": "Kindergrab (BDA)",
+      "category": "Lampe",
+      "object": "Firmalampe (Stempel CRESCE)",
+      "material": "Ton",
+      "origin": "Provinziell",
+      "count": "1",
+      "source": "20"
+    },
+    {
+      "grave_id": "Brandgrab (mit Traian)",
+      "category": "Lampe",
+      "object": "Firmalampe (Stempel L NARI / SEXTI / VRSIO)",
+      "material": "Ton",
+      "origin": "Provinziell",
+      "count": "3",
+      "source": "20"
+    },
+    {
+      "grave_id": "Brandgrab (mit Traian)",
+      "category": "Münze",
+      "object": "Münze des Traian",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "20"
+    },
+    {
+      "grave_id": "Grab 13 (Parz. 124/1)",
+      "category": "Nicht in der Quelle",
+      "object": "Steinkistengrab",
+      "material": "Stein",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "30"
+    },
+    {
+      "grave_id": "Grab 14 (Parz. 124/1)",
+      "category": "Keramik",
+      "object": "Keramikgefäße",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "30"
+    },
+    {
+      "grave_id": "Grab 14 (Parz. 124/1)",
+      "category": "Münze",
+      "object": "Münze",
+      "material": "Nicht in der Quelle",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "30"
+    },
+    {
+      "grave_id": "Kindersarkophag (Fundstelle 2)",
+      "category": "Glas",
+      "object": "Glasflaschen",
+      "material": "Glas",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "17"
+    },
+    {
+      "grave_id": "Kindersarkophag (Fundstelle 2)",
+      "category": "Münze",
+      "object": "Münzen (eine als Medaillon)",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "2",
+      "source": "17"
+    },
+    {
+      "grave_id": "Kindersarkophag (Fundstelle 2)",
+      "category": "Schmuck",
+      "object": "Goldring",
+      "material": "Gold",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "17"
+    },
+    {
+      "grave_id": "Kindersarkophag (Fundstelle 2)",
+      "category": "Metall/Waffe",
+      "object": "Negerbüstengefäß",
+      "material": "Bronze",
+      "origin": "Gallien (vermutet)",
+      "count": "1",
+      "source": "51"
+    },
+    {
+      "grave_id": "Kindersarkophag (Fundstelle 2)",
+      "category": "Lampe",
+      "object": "Firmalampe (FORTIS)",
+      "material": "Ton",
+      "origin": "Lokal",
+      "count": "1",
+      "source": "51"
+    },
+    {
+      "grave_id": "Kindersarkophag (Fundstelle 2)",
+      "category": "Münze",
+      "object": "As des Antoninus Pius",
+      "material": "Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "51"
+    },
+    {
+      "grave_id": "Fundstelle 3 (Brandgräber)",
+      "category": "Lampe",
+      "object": "Firmalampe (FORTIS / AGILIS)",
+      "material": "Ton",
+      "origin": "Lokal / Import",
+      "count": "2",
+      "source": "51"
+    },
+    {
+      "grave_id": "Fundstelle 3 (Brandgräber)",
+      "category": "Keramik",
+      "object": "Topf (Unterteil)",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "1",
+      "source": "51"
+    },
+    {
+      "grave_id": "Fundstelle 3 (Brandgräber)",
+      "category": "Münze",
+      "object": "As des Hadrian / Flavier",
+      "material": "Kupfer/Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "51"
+    },
+    {
+      "grave_id": "Fundstelle 5 (Brandschüttung)",
+      "category": "Keramik",
+      "object": "Töpfchen / Teller / Henkeltöpfchen",
+      "material": "Ton",
+      "origin": "Nicht in der Quelle",
+      "count": "5",
+      "source": "51"
+    },
+    {
+      "grave_id": "Fundstelle 5 (Brandschüttung)",
+      "category": "Münze",
+      "object": "As des Hadrian / Marcus / Commodus",
+      "material": "Kupfer/Bronze",
+      "origin": "Nicht in der Quelle",
+      "count": "3",
+      "source": "51"
+    }
+  ]
+}

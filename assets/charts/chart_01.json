@@ -1,0 +1,1025 @@
+{
+  "meta": {
+    "chart_id": "chart_01",
+    "title": "Bevölkerung nach Alter & Geschlecht",
+    "description": "Wer starb in Carnuntum? Verteilung nach Altersgruppen.",
+    "row_count": 111,
+    "source": {
+      "sheet_id": "1aVkyZa19NDAbJJaqP_i8bz2eUtbAJhFghj7-HZpCBFg",
+      "gid": null,
+      "sheet_name": null,
+      "url": "https://docs.google.com/spreadsheets/d/1aVkyZa19NDAbJJaqP_i8bz2eUtbAJhFghj7-HZpCBFg/edit?usp=sharing"
+    }
+  },
+  "config": {
+    "id": "chart_01",
+    "title_de": "Bevölkerung nach Alter & Geschlecht",
+    "chart_type": "bar_chart_horizontal",
+    "x_axis_key": "Count (berechnet)",
+    "y_axis_key": "Age_Class",
+    "group_by": "Sex",
+    "data_source_file": "https://docs.google.com/spreadsheets/d/1aVkyZa19NDAbJJaqP_i8bz2eUtbAJhFghj7-HZpCBFg/edit?usp=sharing",
+    "description_de": "Wer starb in Carnuntum? Verteilung nach Altersgruppen."
+  },
+  "data": [
+    {
+      "grave_id": "Sarkophag I, Individuum A",
+      "location_detail": "Petronell-Carnuntum, Flur Gstettenbreite",
+      "sex": "w",
+      "age_min": "30",
+      "age_max": "40",
+      "pathology": "Natürliche Teilmumifikation, Bandwurmfinne (Cysticercus) in den Weichteilen, Morbus Bechterew (Spondylitis ankylopoetica), spongiöse Hyperostose, Cribra orbitalia, Harris'sche Linien, Parodontose, Längenasymmetrie der Extremitäten, Wurmbefall, Anämie",
+      "source": "1-4"
+    },
+    {
+      "grave_id": "Sarkophag I, Individuum B",
+      "location_detail": "Petronell-Carnuntum, Flur Gstettenbreite",
+      "sex": "indet",
+      "age_min": "4",
+      "age_max": "5",
+      "pathology": "Teilmumifikation des Körpergewebes, Schmelzhypoplasien an den Unterkiefercaninen",
+      "source": "1-4"
+    },
+    {
+      "grave_id": "Sarkophag II, Individuum E",
+      "location_detail": "Petronell-Carnuntum, Flur Gstettenbreite",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "1",
+      "pathology": "Teilmumifikation, Cribra orbitalia et cranii",
+      "source": "1-4"
+    },
+    {
+      "grave_id": "Sarkophag II, Individuen C und D",
+      "location_detail": "Petronell-Carnuntum, Flur Gstettenbreite",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "1",
+      "pathology": "Teilmumifikation (Individuum C)",
+      "source": "1-4"
+    },
+    {
+      "grave_id": "Grab 119/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "45",
+      "age_max": "55",
+      "pathology": "Starke Karies, Wurzelgranulom, Sacroiliitis, Osteomyelitis, verheiltes Trauma (Tibia), Nucleus pulposus-Hernien, Kyphose, Sakralisierung L5",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 101",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "51",
+      "age_max": "70",
+      "pathology": "Usurierte Gelenke, verknöcherter Sehnenansatz, Fibroostitis, Synostose, Sacroiliitis, verheilte Fraktur Metatarsale III, Skoliose, Osteoarthritis",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 118/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "35",
+      "age_max": "45",
+      "pathology": "Karies, Radiusfraktur, exzessive Osteophyten, Nucleus pulposus-Hernien, Osteochondrose, Rachitis",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 104/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "41",
+      "age_max": "50",
+      "pathology": "Verheilte Frakturen (Tibia, Fibula, Mittelhand), Kyphose der Brustwirbelsäule, Osteophyten, Randanschärfungen",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 28/2",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "35",
+      "age_max": "45",
+      "pathology": "Karies, Osteomyelitis (Caput humeri), scharfes Trauma an rechter Tibia mit Kallusbildung, Hyperostosen, Periostitis",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 133",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "31",
+      "age_max": "40",
+      "pathology": "Pacchionische Granulationen, Karies, Schmelzhypoplasien, Cribra orbitalia Stufe 1, Nucleus pulposus-Hernien (Überlastungssyndrom), Rippenfraktur",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Sarkophag (FN 1071/1075/3)",
+      "location_detail": "Petronell-Carnuntum, Gst. Nr. 1071, 1075/3",
+      "sex": "w",
+      "age_min": "60",
+      "age_max": "60",
+      "pathology": "Verheilte Frakturen (distale Fibula, fünf rechte Rippen, linke Ulna), schwere Gonarthrose rechts, Arthrose am rechten großen Zeh, arthrotisch veränderte Hals- und Brustwirbelsäule, Osteophyten an der Lendenwirbelsäule, rheumatische Grunderkrankung, Wurzelspitzenabszess, Karies",
+      "source": "6"
+    },
+    {
+      "grave_id": "Grab 115/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "25",
+      "age_max": "35",
+      "pathology": "Periostitis, entzündete Muskelrauheiten, Sacroiliitis, Osteochondrose (Überlastungssyndrom)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 115/2",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "35",
+      "age_max": "45",
+      "pathology": "Spondylose, spondylotisch verformte Wirbelkörper, Nucleus pulposus-Hernien, Sacroiliitis",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 158",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "35",
+      "age_max": "45",
+      "pathology": "Sakralisierung L5, Schmelzhypoplasien, Radiusfraktur",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 166",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "22",
+      "age_max": "25",
+      "pathology": "Schmelzhypoplasien, Cribra orbitalia Stufe 1, Exostosen (Facies präauriculares), rachitisch verbogene Ulnae/Radii",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 176",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "indet",
+      "age_min": "12",
+      "age_max": "13",
+      "pathology": "Zusätzlicher I2 (Oberkiefer), Radius rachitisch verbogen, Harris'sche Linien",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 135/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "18",
+      "age_max": "22",
+      "pathology": "Spina bifida, Lumbalisierung S1, Schmelzhypoplasien, Nucleus pulposus-Hernien, Harris'sche Linien",
+      "source": "2, 5"
+    },
+    {
+      "grave_id": "Grab 163",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "25",
+      "age_max": "35",
+      "pathology": "Insektenfraßspuren am Schädel, Zahnhalskaries, Cribra orbitalia Stufe 1, verdickte Scheitelbeinhöcker",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 102/2",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "13",
+      "age_max": "15",
+      "pathology": "Cribra orbitalia Stufe 1, verdickte Diploe (Anämie)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 149",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "indet",
+      "age_min": "11",
+      "age_max": "12",
+      "pathology": "Mäuseverbiß, Cribra orbitalia Stufe 2, Schmelzhypoplasien, Harris'sche Linien",
+      "source": "2, 4"
+    },
+    {
+      "grave_id": "Grab 168/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "25",
+      "age_max": "30",
+      "pathology": "Cribra orbitalia Stufe 2, Hyperostosen, Cribra cranii",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 168/2",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "indet",
+      "age_min": "3",
+      "age_max": "4",
+      "pathology": "Cribra orbitalia Stufe 1, Hyperostosen (Schädel, Tibia)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 92",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "1",
+      "pathology": "Skelett porosiert, hyperostotische Auflagerungen, Harris'sche Linien",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 114/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "1",
+      "pathology": "Starke Porosierungen und Hyperostosen",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 70",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "indet",
+      "age_min": "1",
+      "age_max": "2",
+      "pathology": "Verdickung der Diploe, Porosierungen am Os petrosum (Anämie)",
+      "source": "2, 4"
+    },
+    {
+      "grave_id": "Grab 182",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "indet",
+      "age_min": "2",
+      "age_max": "3",
+      "pathology": "Schmelzhypoplasien, hyperostotische Auflagerungen, starke Harris'sche Linien",
+      "source": "2, 5"
+    },
+    {
+      "grave_id": "Grab 151/1",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "41",
+      "age_max": "60",
+      "pathology": "Randanschärfungen, Lochbildungen (Wirbel), offener Wirbelbogen",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 114/2",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "31",
+      "age_max": "50",
+      "pathology": "Leichte Anschärfung des Radiusköpfchens",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 130",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "41",
+      "age_max": "60",
+      "pathology": "Randlippenbildungen an Gelenksflächen (Radiusepiphyse)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 153/2",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "51",
+      "age_max": "70",
+      "pathology": "Randlippenbildungen, Porosierungen, Anschärfungen, Exostosen (Tuber ischiadicum)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 118/2",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "61",
+      "age_max": "80",
+      "pathology": "Cribra orbitalia Stufe 1, Cribra cranii, verdickte Diploe, Karies",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 128",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "19",
+      "age_max": "22",
+      "pathology": "Karies, Entwicklungsstörung (Lochbildungen an Wirbeln, unvollständige Verschmelzung)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 48",
+      "location_detail": "Zivilstadt, Gräberfeld Johannisbreite",
+      "sex": "indet",
+      "age_min": "1.7",
+      "age_max": "2",
+      "pathology": "Eisenmangel, Proteinmangel",
+      "source": "7"
+    },
+    {
+      "grave_id": "Sarkophag (FN 035/2011)",
+      "location_detail": "Südrand (Grabung Thurkowitsch)",
+      "sex": "w",
+      "age_min": "35",
+      "age_max": "40",
+      "pathology": "Hallux valgus (Ballenzehe)",
+      "source": "8"
+    },
+    {
+      "grave_id": "Grab 13/84",
+      "location_detail": "Gräberstraße (Bustum)",
+      "sex": "w",
+      "age_min": "25",
+      "age_max": "40",
+      "pathology": "Periostitis an einem Fibulafragment",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 35 (Brandbestattung)",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "31",
+      "age_max": "50",
+      "pathology": "Wirbelkörperdeckplatten eingesenkt",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 42",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "m",
+      "age_min": "61",
+      "age_max": "80",
+      "pathology": "Dünne Compacta, rarefizierte Spongiosa (Alterserscheinung)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 112",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "31",
+      "age_max": "40",
+      "pathology": "Atypische Abrasion (Zähne bis Alveolen abgekaut)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 174 B",
+      "location_detail": "Gräberfeld südlich der Zivilstadt (Steinkiste)",
+      "sex": "m",
+      "age_min": "41",
+      "age_max": "60",
+      "pathology": "Anschärfungen an Gelenken, Kanellierungen, Cribrosierungen an Parietalia",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 179",
+      "location_detail": "Gräberfeld südlich der Zivilstadt",
+      "sex": "w",
+      "age_min": "41",
+      "age_max": "60",
+      "pathology": "Randleisten der Wirbel aufgelöst, Randlippenbildungen",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab eines Mannes",
+      "location_detail": "Tribunenhaus T, Ostecke des Hofumganges",
+      "sex": "m",
+      "age_min": "50",
+      "age_max": "50",
+      "pathology": "Dolichocephal (Längen-Breiten-Index 73,6), Rippen zersplittert",
+      "source": "9"
+    },
+    {
+      "grave_id": "Grab eines Kindes",
+      "location_detail": "Tribunenhaus T, Ostecke des Raumes VI",
+      "sex": "indet",
+      "age_min": "10",
+      "age_max": "10",
+      "pathology": "Mesocephal (Index 76,5), Lage eines Schlafenden",
+      "source": "9"
+    },
+    {
+      "grave_id": "Planquadrat 10/85",
+      "location_detail": "Canabae Legionis, B 9 Umfahrungsstraße",
+      "sex": "m",
+      "age_min": "40",
+      "age_max": "40",
+      "pathology": "Schädel fehlt (postmortal), Zahnuntersuchung erfolgte",
+      "source": "10, 11"
+    },
+    {
+      "grave_id": "Sektor 80",
+      "location_detail": "Carnuntum (genauer Fundort unbestimmt)",
+      "sex": "m",
+      "age_min": "51",
+      "age_max": "60",
+      "pathology": "Wurzelgranulom, Fenestrierung, Porosierung der Alveolen",
+      "source": "2, 4"
+    },
+    {
+      "grave_id": "Sarkophag der Herennia Rufina",
+      "location_detail": "Zivilstadt, Gräberfeld Johannisbreite",
+      "sex": "m",
+      "age_min": "35",
+      "age_max": "40",
+      "pathology": "Not in source",
+      "source": "7"
+    },
+    {
+      "grave_id": "Sarkophag der Claudia Ursa",
+      "location_detail": "Petronell, Spitalweingärten",
+      "sex": "w",
+      "age_min": "24",
+      "age_max": "24",
+      "pathology": "Not in source",
+      "source": "7, 11, 13-15"
+    },
+    {
+      "grave_id": "Grab des Tertius Ninnius",
+      "location_detail": "Militärfriedhof (Burgfeld)",
+      "sex": "m",
+      "age_min": "28",
+      "age_max": "28",
+      "pathology": "Not in source",
+      "source": "16"
+    },
+    {
+      "grave_id": "Grab des M. Gavius",
+      "location_detail": "Gräberstraße Carnuntum",
+      "sex": "m",
+      "age_min": "30",
+      "age_max": "30",
+      "pathology": "Verbrannte Knochen (Ustrina)",
+      "source": "17"
+    },
+    {
+      "grave_id": "Grab des L. Antonius Magnus",
+      "location_detail": "Gräberstraße Carnuntum",
+      "sex": "m",
+      "age_min": "55",
+      "age_max": "55",
+      "pathology": "Verbrannte Knochen (Ustrina)",
+      "source": "17"
+    },
+    {
+      "grave_id": "Grab 37 (Frau)",
+      "location_detail": "Gräberfeld, GstNr. 832/14",
+      "sex": "w",
+      "age_min": "14",
+      "age_max": "20",
+      "pathology": "Bestattung in Bauchlage",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab 157",
+      "location_detail": "Gräberfeld südlich der Zivilstadt (Hunnin)",
+      "sex": "w",
+      "age_min": "25",
+      "age_max": "30",
+      "pathology": "Mongolider Formentypus, apikaler Prozeß (I1), Okklusalkaries (M3)",
+      "source": "2, 4, 5"
+    },
+    {
+      "grave_id": "Grab 1/89 (Doppelbestattung)",
+      "location_detail": "Mühläcker (Canabae), Fläche R 1",
+      "sex": "w",
+      "age_min": "20",
+      "age_max": "Not in source",
+      "pathology": "Mutter mit Kind bestattet",
+      "source": "19"
+    },
+    {
+      "grave_id": "Grab 33",
+      "location_detail": "Südrand (Grabung Thurkowitsch, Bau 8b)",
+      "sex": "m",
+      "age_min": "20",
+      "age_max": "Not in source",
+      "pathology": "Doppelbestattung mit subadultem Individuum",
+      "source": "8"
+    },
+    {
+      "grave_id": "Ziegelgrab (Neonatus)",
+      "location_detail": "Legionslager (Gebäude D, Zimmer 14)",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "1",
+      "pathology": "Säuglingsbestattung",
+      "source": "20"
+    },
+    {
+      "grave_id": "Steinkistengrab",
+      "location_detail": "Legionslager (Gebäude D, Zimmer 17)",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "7",
+      "pathology": "Kindergrab",
+      "source": "20"
+    },
+    {
+      "grave_id": "Grab 10 (Diadumenus)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "8",
+      "age_max": "8",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Kindersarkophag PO 12/85",
+      "location_detail": "Canabae Legionis, Planquadrat 12/85",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "6",
+      "pathology": "Not in source",
+      "source": "10, 11"
+    },
+    {
+      "grave_id": "Grab des Florus",
+      "location_detail": "Gräberstraße",
+      "sex": "m",
+      "age_min": "26",
+      "age_max": "26",
+      "pathology": "Sklave",
+      "source": "13, 22, 23"
+    },
+    {
+      "grave_id": "Grabstein der Iusta",
+      "location_detail": "Carnuntum",
+      "sex": "w",
+      "age_min": "5",
+      "age_max": "5",
+      "pathology": "Not in source",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grabstein des Festio",
+      "location_detail": "Carnuntum",
+      "sex": "m",
+      "age_min": "5",
+      "age_max": "5",
+      "pathology": "Not in source",
+      "source": "16, 24"
+    },
+    {
+      "grave_id": "Grabstein (Kat. Nr. 822)",
+      "location_detail": "Carnuntum",
+      "sex": "m",
+      "age_min": "3",
+      "age_max": "3",
+      "pathology": "Kind",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grabstein (Kat. Nr. 822)",
+      "location_detail": "Carnuntum",
+      "sex": "w",
+      "age_min": "34",
+      "age_max": "34",
+      "pathology": "Frau",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grabstele (Kat. Nr. 161)",
+      "location_detail": "Petronell (südlich der Zivilstadt)",
+      "sex": "m",
+      "age_min": "108",
+      "age_max": "108",
+      "pathology": "Not in source",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grabstele (Kat. Nr. 161)",
+      "location_detail": "Petronell (südlich der Zivilstadt)",
+      "sex": "w",
+      "age_min": "80",
+      "age_max": "80",
+      "pathology": "Not in source",
+      "source": "24"
+    },
+    {
+      "grave_id": "Sarkophag 1",
+      "location_detail": "Bad Deutsch-Altenburg, Parz. 691",
+      "sex": "m",
+      "age_min": "50",
+      "age_max": "50",
+      "pathology": "Not in source",
+      "source": "25"
+    },
+    {
+      "grave_id": "Ziegelplattengrab 2",
+      "location_detail": "Bad Deutsch-Altenburg, Parz. 691",
+      "sex": "m",
+      "age_min": "40",
+      "age_max": "40",
+      "pathology": "Not in source",
+      "source": "25"
+    },
+    {
+      "grave_id": "Bestattung 4",
+      "location_detail": "Bad Deutsch-Altenburg, Parz. 691",
+      "sex": "m",
+      "age_min": "40",
+      "age_max": "40",
+      "pathology": "Not in source",
+      "source": "25"
+    },
+    {
+      "grave_id": "Sarkophag 6",
+      "location_detail": "Bad Deutsch-Altenburg, Parz. 691",
+      "sex": "indet",
+      "age_min": "1.5",
+      "age_max": "1.5",
+      "pathology": "Not in source",
+      "source": "25"
+    },
+    {
+      "grave_id": "Sarkophag Parz. 758",
+      "location_detail": "Bad Deutsch-Altenburg, Parz. 758",
+      "sex": "indet",
+      "age_min": "20",
+      "age_max": "60",
+      "pathology": "Not in source",
+      "source": "25"
+    },
+    {
+      "grave_id": "Grab 14",
+      "location_detail": "Gräberfeld, GstNr. 832/14",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "7",
+      "pathology": "Not in source",
+      "source": "18"
+    },
+    {
+      "grave_id": "Grab 48",
+      "location_detail": "Gräberfeld, GstNr. 832/14",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "7",
+      "pathology": "Not in source",
+      "source": "18"
+    },
+    {
+      "grave_id": "Bestattung eines Neugeborenen",
+      "location_detail": "Zivilstadt, Haus II (Peristylhaus), Hof R 85",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "0",
+      "pathology": "Not in source",
+      "source": "18"
+    },
+    {
+      "grave_id": "Doppelbestattung von zwei Kindern",
+      "location_detail": "Zivilstadt, südlich der Stadtmauer (Parkplatz)",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "14",
+      "pathology": "Not in source",
+      "source": "18"
+    },
+    {
+      "grave_id": "Sarkophag 1/86",
+      "location_detail": "Zivilstadt (Petronell), Planquadrat 12",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "14",
+      "pathology": "Not in source",
+      "source": "11"
+    },
+    {
+      "grave_id": "Kindersarkophag",
+      "location_detail": "Heizröhre, Gebäude XXVII, Legionslager",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "6",
+      "pathology": "Not in source",
+      "source": "26"
+    },
+    {
+      "grave_id": "Grab 1 (M. Careius Carus)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "20",
+      "age_max": "20",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 2 (T. Deunatius Freques)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "25",
+      "age_max": "25",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 4 (C. Iulius Verecundus)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "25",
+      "age_max": "25",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 5 (L. Marcius Marcianus)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "35",
+      "age_max": "35",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 13 (T. Attius Vegetus)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "50",
+      "age_max": "50",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 17 (L. Armentiacus)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "55",
+      "age_max": "55",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 27 (P. Sestius Valens)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "m",
+      "age_min": "50",
+      "age_max": "50",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 38 (Cornelia Candida)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "w",
+      "age_min": "40",
+      "age_max": "40",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Grab 41 (Messia Flora)",
+      "location_detail": "Petroneller Burgfeld, Parzelle 310",
+      "sex": "w",
+      "age_min": "45",
+      "age_max": "45",
+      "pathology": "Not in source",
+      "source": "21"
+    },
+    {
+      "grave_id": "Not in source",
+      "location_detail": "Vicus Süd (Schubertstraße 26)",
+      "sex": "m",
+      "age_min": "45",
+      "age_max": "55",
+      "pathology": "Abnützungserscheinungen, Vitaminmangel, Reiterfacetten",
+      "source": "27"
+    },
+    {
+      "grave_id": "Grab 4 (A. Eburius)",
+      "location_detail": "Gräberstraße Carnuntum",
+      "sex": "m",
+      "age_min": "30",
+      "age_max": "30",
+      "pathology": "Not in source",
+      "source": "17"
+    },
+    {
+      "grave_id": "Grab 23 (T. Terentius)",
+      "location_detail": "Gräberstraße Carnuntum",
+      "sex": "m",
+      "age_min": "31",
+      "age_max": "31",
+      "pathology": "Not in source",
+      "source": "17"
+    },
+    {
+      "grave_id": "Grab 28 (C. Fabius)",
+      "location_detail": "Gräberstraße Carnuntum",
+      "sex": "m",
+      "age_min": "37",
+      "age_max": "37",
+      "pathology": "Not in source",
+      "source": "17"
+    },
+    {
+      "grave_id": "Grab der Afrania Hilara",
+      "location_detail": "südwestlich des Lagers Carnuntum",
+      "sex": "w",
+      "age_min": "25",
+      "age_max": "25",
+      "pathology": "Not in source",
+      "source": "17"
+    },
+    {
+      "grave_id": "Grab des Q. Cerfontius",
+      "location_detail": "Gräberstraße Carnuntum",
+      "sex": "m",
+      "age_min": "47",
+      "age_max": "47",
+      "pathology": "Not in source",
+      "source": "17"
+    },
+    {
+      "grave_id": "Grab der Vibia Citheris",
+      "location_detail": "Petronell (Begräbnisstätte der Zivilstadt)",
+      "sex": "w",
+      "age_min": "11",
+      "age_max": "11",
+      "pathology": "Not in source",
+      "source": "13"
+    },
+    {
+      "grave_id": "Sarkophag eines Mädchens",
+      "location_detail": "Südöstlicher Rand der Canabae",
+      "sex": "w",
+      "age_min": "16",
+      "age_max": "16",
+      "pathology": "Not in source",
+      "source": "13"
+    },
+    {
+      "grave_id": "Grabstein der Primigenia",
+      "location_detail": "Lagerfriedhof / Burgfeld",
+      "sex": "w",
+      "age_min": "20",
+      "age_max": "21",
+      "pathology": "Not in source",
+      "source": "13, 16, 24"
+    },
+    {
+      "grave_id": "Grab des C. Curius Placidus",
+      "location_detail": "Petronell, südlich der Bundesstraße",
+      "sex": "m",
+      "age_min": "20",
+      "age_max": "20",
+      "pathology": "Not in source",
+      "source": "28"
+    },
+    {
+      "grave_id": "Grab des C. Germanius Longus",
+      "location_detail": "Auxiliarkastell Vicus, Petronell",
+      "sex": "m",
+      "age_min": "30",
+      "age_max": "30",
+      "pathology": "Not in source",
+      "source": "29"
+    },
+    {
+      "grave_id": "Grab 1",
+      "location_detail": "Gräberfeld, Parzellen 10 und 11",
+      "sex": "indet",
+      "age_min": "20",
+      "age_max": "70",
+      "pathology": "Not in source",
+      "source": "30"
+    },
+    {
+      "grave_id": "Grab 2",
+      "location_detail": "Gräberfeld, Parzellen 10 und 11",
+      "sex": "indet",
+      "age_min": "20",
+      "age_max": "70",
+      "pathology": "Not in source",
+      "source": "30"
+    },
+    {
+      "grave_id": "Grabstein der Vodercila",
+      "location_detail": "Göttlesbrunn (Grenze zu Höflein)",
+      "sex": "w",
+      "age_min": "19",
+      "age_max": "19",
+      "pathology": "Not in source",
+      "source": "31, 32"
+    },
+    {
+      "grave_id": "Grabstein des Pollitus",
+      "location_detail": "Göttlesbrunn",
+      "sex": "m",
+      "age_min": "70",
+      "age_max": "70",
+      "pathology": "Not in source",
+      "source": "33"
+    },
+    {
+      "grave_id": "Grab des Ulpius Titius",
+      "location_detail": "Carnuntum (in Rom bestattet)",
+      "sex": "m",
+      "age_min": "35",
+      "age_max": "35",
+      "pathology": "Not in source",
+      "source": "24"
+    },
+    {
+      "grave_id": "Grab 22",
+      "location_detail": "Grund (S3), Gräberfeld",
+      "sex": "w",
+      "age_min": "30",
+      "age_max": "40",
+      "pathology": "Not in source",
+      "source": "12"
+    },
+    {
+      "grave_id": "Bestattung 1",
+      "location_detail": "Müllendorf",
+      "sex": "w",
+      "age_min": "30",
+      "age_max": "40",
+      "pathology": "Not in source",
+      "source": "12"
+    },
+    {
+      "grave_id": "SE 270",
+      "location_detail": "Feistritz an der Drau, Stadt Görz",
+      "sex": "w",
+      "age_min": "17",
+      "age_max": "22",
+      "pathology": "Bronzepfeilspitze in Halswirbel, Rippenbruch, Mangelerscheinungen",
+      "source": "12"
+    },
+    {
+      "grave_id": "Obj. 340",
+      "location_detail": "Mattersburg, Gräberfeld-Südteil",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "14",
+      "pathology": "Not in source",
+      "source": "12"
+    },
+    {
+      "grave_id": "Obj. 379",
+      "location_detail": "Mattersburg, Gräberfeld-Südteil",
+      "sex": "w",
+      "age_min": "10",
+      "age_max": "13",
+      "pathology": "Not in source",
+      "source": "12"
+    },
+    {
+      "grave_id": "Obj. 344",
+      "location_detail": "Mattersburg, Gräberfeld-Südteil",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "14",
+      "pathology": "Not in source",
+      "source": "12"
+    },
+    {
+      "grave_id": "Kindergrab",
+      "location_detail": "Nekropole von Halbturn",
+      "sex": "indet",
+      "age_min": "0",
+      "age_max": "12",
+      "pathology": "Not in source",
+      "source": "34"
+    },
+    {
+      "grave_id": "Grab 114",
+      "location_detail": "Gräberstraße Carnuntum",
+      "sex": "indet",
+      "age_min": "20",
+      "age_max": "Not in source",
+      "pathology": "Karies",
+      "source": "35, 36"
+    },
+    {
+      "grave_id": "Sarkophag A",
+      "location_detail": "Zivilstadt / Gräberstraße",
+      "sex": "w",
+      "age_min": "Not in source",
+      "age_max": "Not in source",
+      "pathology": "Verheilter Bruch",
+      "source": "35, 37-39"
+    },
+    {
+      "grave_id": "Not in source",
+      "location_detail": "südlich der Zivilstadt (Johannisbreite)",
+      "sex": "m",
+      "age_min": "Not in source",
+      "age_max": "Not in source",
+      "pathology": "Schädelpenetration durch Metallgegenstand",
+      "source": "38"
+    },
+    {
+      "grave_id": "Nicht im Quelltext",
+      "location_detail": "Sandgrube Traun'scher Tiergarten",
+      "sex": "w",
+      "age_min": "Not in source",
+      "age_max": "Not in source",
+      "pathology": "Mumie von Carnuntum (in Leinenbinden)",
+      "source": "40"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data-Stories – ÆTCAR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="data-stories.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <script src="i18n.js"></script>
+    <div id="site-nav"></div>
+    <script src="nav-loader.js"></script>
+
+    <div class="ds-layout">
+        <!-- Sidebar: Themen Navigation -->
+        <aside class="ds-sidebar">
+            <header class="ds-sidebar-header">
+                <div class="ds-explorer-label">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3v18h18"/>
+                        <path d="M18 17V9"/>
+                        <path d="M13 17V5"/>
+                        <path d="M8 17v-3"/>
+                    </svg>
+                    <span>THEMEN-EXPLORER</span>
+                </div>
+                <p class="ds-explorer-subtitle">Archäologische Analysen</p>
+            </header>
+            <nav class="ds-theme-nav" id="themeNav">
+                <!-- Dynamisch gefüllt -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="ds-main">
+            <!-- Breadcrumb -->
+            <nav class="ds-breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Startseite</a>
+                <span class="ds-breadcrumb-sep">/</span>
+                <a href="data-stories.html">Daten-Stories</a>
+                <span class="ds-breadcrumb-sep">/</span>
+                <span class="ds-breadcrumb-current" id="currentThemeName">Übersicht</span>
+            </nav>
+
+            <!-- Story Header: Titel & Infotext -->
+            <section class="ds-story-header" id="storyHeader">
+                <h1 class="ds-story-title" id="storyTitle">Daten-Stories aus Carnuntum</h1>
+                <p class="ds-story-description" id="storyDescription">
+                    Interaktive Analysen der archäologischen Funde und deren Zusammenhang mit sozialen Statusgruppen und Fundorten.
+                </p>
+            </section>
+
+            <!-- Chart Section -->
+            <section class="ds-chart-section" id="chartSection">
+                <div class="ds-chart-header">
+                    <div class="ds-chart-meta">
+                        <h2 class="ds-chart-title" id="chartTitle">Diagramm</h2>
+                        <p class="ds-chart-subtitle" id="chartSubtitle">Zeitraum • Datenpunkte</p>
+                    </div>
+                    <div class="ds-chart-actions">
+                        <button class="ds-action-btn" id="exportBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Export
+                        </button>
+                        <button class="ds-action-btn" id="shareBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="18" cy="5" r="3"/>
+                                <circle cx="6" cy="12" r="3"/>
+                                <circle cx="18" cy="19" r="3"/>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                            </svg>
+                            Teilen
+                        </button>
+                    </div>
+                </div>
+                <div class="ds-chart-container" id="chartContainer">
+                    <div class="ds-chart-loading">
+                        <div class="ds-spinner"></div>
+                        <p>Lade Daten...</p>
+                    </div>
+                </div>
+                <div class="ds-chart-legend" id="chartLegend"></div>
+            </section>
+
+            <!-- Interpretation Box -->
+            <section class="ds-interpretation" id="interpretationSection">
+                <div class="ds-interpretation-header">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                    <span>Interpretation</span>
+                </div>
+                <h3 class="ds-interpretation-title" id="interpretationTitle">Analyse der Daten</h3>
+                <p class="ds-interpretation-text" id="interpretationText">
+                    Die Visualisierung zeigt Zusammenhänge zwischen verschiedenen Aspekten der archäologischen Funde.
+                </p>
+            </section>
+
+            <footer class="ds-footer">
+                <div>MMXXVI • AETCAR • pro aeternitate Carnunti</div>
+                <div>Archiv · Info · Rechtliches</div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="data-stories.js"></script>
+</body>
+
+</html>
