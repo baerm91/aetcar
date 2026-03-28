@@ -238,59 +238,56 @@
                         <div class="aetcar-story-text" id="aetcarModalStory"></div>
                     </div>
 
-                    <!-- Research View: Three Column Layout -->
+                    <!-- Research View: Structured Layout -->
                     <div class="view-research-only">
-                        <div class="aetcar-research-grid">
-                            <!-- Left: Dating & Context -->
-                            <div class="aetcar-research-left">
-                                <div>
-                                    <h3 class="aetcar-section-header">Datierung & Kontext</h3>
-                                    <div class="aetcar-highlight-box">
-                                        <span class="aetcar-highlight-label">Zeitstellung</span>
-                                        <div class="aetcar-highlight-value" id="aetcarModalDating"></div>
-                                        <div id="aetcarModalDatingStatus" style="margin-top:0.5rem;"></div>
-                                        <div class="aetcar-highlight-desc">
-                                            Basiert auf stilistischen Merkmalen und Kontext.
-                                        </div>
+                        <!-- Datierung & Kontext Section -->
+                        <div class="aetcar-dating-section">
+                            <h3 class="aetcar-section-header aetcar-section-header-small">Datierung & Kontext</h3>
+                            <div class="aetcar-dating-grid">
+                                <!-- Allgemeine Zeitstellung -->
+                                <div class="aetcar-dating-col aetcar-dating-main">
+                                    <span class="aetcar-dating-label">Allgemeine Zeitstellung</span>
+                                    <div class="aetcar-dating-value" id="aetcarModalDating"></div>
+                                    <div id="aetcarModalDatingStatus"></div>
+                                    <div class="aetcar-dating-desc">
+                                        Basiert auf stilistischen Merkmalen der Reliefs und Grabbeigaben (Münzdatierung).
                                     </div>
                                 </div>
-                                <div class="aetcar-detail-list" id="aetcarModalDetailsList"></div>
-                                
-                                <!-- Inschrift / Legende -->
-                                <div id="aetcarModalInscriptionSection" style="display:none;">
-                                    <h3 class="aetcar-section-header" style="margin-top:1.5rem;">Inschrift / Legende</h3>
-                                    <div class="aetcar-inscription-box" id="aetcarModalInscription"></div>
+                                <!-- Details (Material, Erhaltung, Maße) -->
+                                <div class="aetcar-dating-col">
+                                    <div class="aetcar-detail-list" id="aetcarModalDetailsList"></div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Right: Individuals & Goods -->
-                            <div class="aetcar-research-right">
-                                <!-- Individuals Section -->
-                                <div>
-                                    <div class="aetcar-individuals-header">
-                                        <h3 class="aetcar-section-header" style="margin-bottom:0">Individuen (Bestattungen)</h3>
-                                        <span class="aetcar-count-badge" id="aetcarModalIndividualsCount">0</span>
-                                    </div>
-                                    <div class="aetcar-individuals-grid" id="aetcarModalIndividuals"></div>
-                                </div>
+                        <!-- Inschrift / Legende -->
+                        <div id="aetcarModalInscriptionSection" class="aetcar-inscription-section" style="display:none;">
+                            <h3 class="aetcar-section-header aetcar-section-header-small">Inschrift / Legende</h3>
+                            <div class="aetcar-inscription-box" id="aetcarModalInscription"></div>
+                        </div>
 
-                                <!-- Beigaben Section -->
-                                <div>
-                                    <div class="aetcar-individuals-header">
-                                        <h3 class="aetcar-section-header" style="margin-bottom:0">Beigaben</h3>
-                                        <span class="aetcar-count-badge" id="aetcarModalBeigabenCount">0</span>
-                                    </div>
-                                    <div class="aetcar-beigaben-list" id="aetcarModalBeigaben"></div>
-                                </div>
-
-                                <div>
-                                    <div class="aetcar-individuals-header">
-                                        <h3 class="aetcar-section-header" style="margin-bottom:0">Schlagworte</h3>
-                                        <span class="aetcar-count-badge" id="aetcarModalTagsCount">0</span>
-                                    </div>
-                                    <div class="aetcar-individual-tags" id="aetcarModalTags"></div>
-                                </div>
+                        <!-- Individuen & Beigaben Side by Side -->
+                        <div class="aetcar-two-col-section">
+                            <!-- Individuals Section -->
+                            <div class="aetcar-col-left">
+                                <h3 class="aetcar-section-header aetcar-section-header-small">Individuen</h3>
+                                <div class="aetcar-individuals-grid" id="aetcarModalIndividuals"></div>
                             </div>
+
+                            <!-- Beigaben Section -->
+                            <div class="aetcar-col-right">
+                                <div class="aetcar-individuals-header">
+                                    <h3 class="aetcar-section-header aetcar-section-header-small" style="margin-bottom:0">Beigaben</h3>
+                                    <span class="aetcar-count-badge" id="aetcarModalBeigabenCount">0</span>
+                                </div>
+                                <div class="aetcar-beigaben-list" id="aetcarModalBeigaben"></div>
+                            </div>
+                        </div>
+
+                        <!-- Schlagworte Section -->
+                        <div class="aetcar-tags-section">
+                            <h3 class="aetcar-section-header aetcar-section-header-small">Schlagworte</h3>
+                            <div class="aetcar-individual-tags" id="aetcarModalTags"></div>
                         </div>
                     </div>
 
@@ -778,9 +775,16 @@
         // Research Details - Dating
         const datingEl = modal.querySelector('#aetcarModalDating');
         if (dating) {
-            datingEl.innerHTML = `<span class="aetcar-highlight-big">${dating}</span>`;
+            // Format dating - only add "n. Chr." if not already present
+            const datingText = String(dating).trim();
+            const hasNChr = /n\.\s*Chr\.?/i.test(datingText);
+            if (hasNChr) {
+                datingEl.innerHTML = datingText;
+            } else {
+                datingEl.innerHTML = `${datingText}<span class="aetcar-dating-suffix">n. Chr.</span>`;
+            }
         } else {
-            datingEl.innerHTML = `<span class="aetcar-highlight-big aetcar-unknown">Unbekannt</span>`;
+            datingEl.innerHTML = `<span class="aetcar-unknown">Unbekannt</span>`;
         }
 
         // Dating Status
@@ -789,8 +793,8 @@
             if (dating) {
                 datingStatusEl.innerHTML = `
                     <div style="display:flex; align-items:center; gap:0.375rem;">
-                        <span class="material-symbols-outlined" style="font-size:16px; color:var(--modal-success);">check_circle</span>
-                        <span style="font-size:0.75rem; font-weight:700; color:var(--modal-success);">Datierung vorhanden</span>
+                        <span class="material-symbols-outlined" style="font-size:14px; color:var(--modal-success);">verified</span>
+                        <span style="font-size:0.6875rem; font-weight:700; color:var(--modal-success); text-transform:uppercase; letter-spacing:0.05em;">Gesichert</span>
                     </div>
                 `;
             } else {
@@ -827,9 +831,7 @@
 
         // Individuen Section (nur wenn in individuen.json vorhanden)
         const individualsEl = modal.querySelector('#aetcarModalIndividuals');
-        const individualsCountEl = modal.querySelector('#aetcarModalIndividualsCount');
         individualsEl.innerHTML = '';
-        individualsCountEl.textContent = '...';
 
         loadIndividuenData().then(() => {
             const individuenList = getIndividuenForSarkophag(invNum);
@@ -837,12 +839,21 @@
 
             if (individuenList && individuenList.length > 0) {
                 // Render from JSON
-                individualsCountEl.textContent = individuenList.length;
                 individuenList.forEach((ind, idx) => {
                     const isFemale = (ind.geschlecht && ind.geschlecht.toLowerCase() === 'weiblich');
                     const isMale = (ind.geschlecht && ind.geschlecht.toLowerCase() === 'männlich');
                     const iconClass = isFemale ? 'female' : (isMale ? 'male' : 'unknown');
                     const iconName = isFemale ? 'woman' : (isMale ? 'man' : 'person');
+                    
+                    // Build description text
+                    const descParts = [];
+                    if (ind.geschlecht) descParts.push(ind.geschlecht);
+                    if (ind.sterbealter) descParts.push(`adult (${ind.sterbealter})`);
+                    if (ind.kategorie) descParts.push(ind.kategorie);
+                    const descText = descParts.join(', ') || '';
+                    
+                    // Check for C14 data
+                    const hasC14 = ind.c14 || ind.C14 || (ind.anmerkungen && ind.anmerkungen.toLowerCase().includes('c14'));
 
                     const card = document.createElement('div');
                     card.className = 'aetcar-individual-card';
@@ -851,19 +862,14 @@
                             <span class="material-symbols-outlined">${iconName}</span>
                         </div>
                         <div class="aetcar-individual-info">
-                            <h4>${ind.bezeichnung || 'Individuum ' + (idx + 1)}</h4>
-                            <div class="aetcar-individual-details">
-                                ${ind.geschlecht ? `<span>Geschlecht: ${ind.geschlecht}</span>` : ''}
-                                ${ind.sterbealter ? `<span>Alter: ${ind.sterbealter}</span>` : ''}
-                                ${ind.kategorie ? `<span>Bestattung: ${ind.kategorie}</span>` : ''}
-                            </div>
-                            ${ind.anmerkungen ? `<p class="aetcar-individual-note">${ind.anmerkungen}</p>` : ''}
+                            <h4>${ind.bezeichnung || 'Individuum ' + String.fromCharCode(65 + idx)}</h4>
+                            ${descText ? `<p>${descText}</p>` : ''}
                         </div>
+                        ${hasC14 ? '<span class="aetcar-c14-badge">C14 OK</span>' : ''}
                     `;
                     individualsEl.appendChild(card);
                 });
             } else {
-                individualsCountEl.textContent = '0';
                 const unknownCard = document.createElement('div');
                 unknownCard.className = 'aetcar-individual-card';
                 unknownCard.innerHTML = `
@@ -871,8 +877,7 @@
                         <span class="material-symbols-outlined">help_outline</span>
                     </div>
                     <div class="aetcar-individual-info">
-                        <h4>Keine Individuen erfasst</h4>
-                        <p class="aetcar-unknown">Für dieses Objekt liegen keine Individuen-Daten vor.</p>
+                        <h4 class="aetcar-unknown">Keine Individuen erfasst</h4>
                     </div>
                 `;
                 individualsEl.appendChild(unknownCard);
@@ -887,7 +892,7 @@
         // Show loading state
         beigabenCountEl.textContent = '...';
 
-        // Load beigaben data and render grouped by category
+        // Load beigaben data and render as simple cards
         loadBeigabenData().then(() => {
             const beigabenList = getBeigabenForSarkophag(invNum);
             beigabenEl.innerHTML = '';
@@ -895,86 +900,37 @@
             if (beigabenList.length > 0) {
                 beigabenCountEl.textContent = beigabenList.length;
 
-                // Group by category
-                const grouped = beigabenList.reduce((acc, beigabe) => {
-                    const cat = beigabe.kategorie || 'Beigabe';
-                    if (!acc[cat]) acc[cat] = [];
-                    acc[cat].push(beigabe);
-                    return acc;
-                }, {});
-
-                Object.entries(grouped).forEach(([category, items]) => {
-                    const icon = getKategorieIcon(category);
+                // Render each beigabe as a simple card
+                beigabenList.forEach(beigabe => {
+                    const icon = getKategorieIcon(beigabe.kategorie);
                     const card = document.createElement('div');
-                    card.className = 'aetcar-beigabe-card aetcar-beigabe-card-detailed';
-
-                    // Build items HTML
-                    const itemsHtml = items.map((beigabe, idx) => {
-                        const hasImage = beigabe.bild_url || beigabe.bild_url_rueckseite;
-                        const hasEmuseum = beigabe.emuseum_url;
-
-                        let imageHtml = '';
-                        if (hasImage) {
-                            imageHtml = `
-                                <div class="aetcar-beigabe-images">
-                                    ${beigabe.bild_url ? `<img src="${beigabe.bild_url}" alt="${beigabe.titel || 'Beigabe'}" class="aetcar-beigabe-img" onerror="this.style.display='none'">` : ''}
-                                    ${beigabe.bild_url_rueckseite ? `<img src="${beigabe.bild_url_rueckseite}" alt="${beigabe.titel || 'Beigabe'} Rückseite" class="aetcar-beigabe-img" onerror="this.style.display='none'">` : ''}
-                                </div>
-                            `;
-                        }
-
-                        let linksHtml = '';
-                        if (hasEmuseum) {
-                            linksHtml = `<a href="${beigabe.emuseum_url}" target="_blank" rel="noopener" class="aetcar-beigabe-link">
-                                <span class="material-symbols-outlined">open_in_new</span> eMuseum
-                            </a>`;
-                        }
-
-                        return `
-                            <div class="aetcar-beigabe-item" ${idx > 0 ? 'style="border-top: 1px solid var(--modal-border); padding-top: 1rem; margin-top: 1rem;"' : ''}>
-                                <h4 class="aetcar-beigabe-title">${beigabe.titel || 'Unbenannt'}</h4>
-                                ${beigabe.beschreibung ? `<p class="aetcar-beigabe-desc">${beigabe.beschreibung}</p>` : ''}
-                                ${beigabe.datierung ? `<span class="aetcar-beigabe-meta">Datierung: ${beigabe.datierung}</span>` : ''}
-                                ${beigabe.material ? `<span class="aetcar-beigabe-meta">Material: ${beigabe.material}</span>` : ''}
-                                ${beigabe.fundlage ? `<span class="aetcar-beigabe-meta">Fundlage: ${beigabe.fundlage}</span>` : ''}
-                                ${imageHtml}
-                                ${linksHtml}
-                            </div>
-                        `;
-                    }).join('');
-
+                    card.className = 'aetcar-beigabe-card';
+                    
+                    // Build subtitle from available info
+                    const subtitle = beigabe.beschreibung || beigabe.material || beigabe.kategorie || '';
+                    
                     card.innerHTML = `
-                        <div class="aetcar-beigabe-header">
-                            <div class="aetcar-beigabe-icon">
-                                <span class="material-symbols-outlined">${icon}</span>
-                            </div>
-                            <div class="aetcar-beigabe-header-info">
-                                <span class="aetcar-beigabe-kategorie">${category}</span>
-                                <span class="aetcar-beigabe-count">${items.length} ${items.length === 1 ? 'Eintrag' : 'Einträge'}</span>
-                            </div>
-                            <span class="material-symbols-outlined aetcar-expand-icon">expand_more</span>
+                        <div class="aetcar-beigabe-icon">
+                            <span class="material-symbols-outlined">${icon}</span>
                         </div>
-                        <div class="aetcar-beigabe-body" style="display: none;">
-                            ${itemsHtml}
+                        <div class="aetcar-beigabe-info">
+                            <span class="aetcar-beigabe-name">${beigabe.titel || 'Beigabe'}</span>
+                            ${subtitle ? `<span class="aetcar-beigabe-subtitle">${subtitle}</span>` : ''}
                         </div>
                     `;
-
-                    // Add click handler for toggling
-                    const header = card.querySelector('.aetcar-beigabe-header');
-                    const body = card.querySelector('.aetcar-beigabe-body');
-                    const expandIcon = card.querySelector('.aetcar-expand-icon');
-
-                    header.addEventListener('click', () => {
-                        const isExpanded = body.style.display !== 'none';
-                        body.style.display = isExpanded ? 'none' : '';
-                        expandIcon.textContent = isExpanded ? 'expand_more' : 'expand_less';
-                        card.classList.toggle('expanded', !isExpanded);
-                    });
-
+                    
+                    // Make card clickable if has eMuseum link
+                    if (beigabe.emuseum_url) {
+                        card.style.cursor = 'pointer';
+                        card.addEventListener('click', () => {
+                            window.open(beigabe.emuseum_url, '_blank');
+                        });
+                    }
+                    
                     beigabenEl.appendChild(card);
                 });
             } else {
-                beigabenCountEl.textContent = '?';
+                beigabenCountEl.textContent = '0';
                 const unknownCard = document.createElement('div');
                 unknownCard.className = 'aetcar-beigabe-card';
                 unknownCard.innerHTML = `
@@ -990,11 +946,9 @@
         });
 
         const tagsEl = modal.querySelector('#aetcarModalTags');
-        const tagsCountEl = modal.querySelector('#aetcarModalTagsCount');
-        if (tagsEl && tagsCountEl) {
+        if (tagsEl) {
             tagsEl.innerHTML = '';
             if (tags.length > 0) {
-                tagsCountEl.textContent = tags.length;
                 tags.forEach(t => {
                     const chip = document.createElement('span');
                     chip.className = 'aetcar-individual-tag';
@@ -1034,7 +988,6 @@
                     tagsEl.appendChild(chip);
                 });
             } else {
-                tagsCountEl.textContent = '?';
                 const chip = document.createElement('span');
                 chip.className = 'aetcar-individual-tag aetcar-unknown';
                 chip.textContent = 'Keine Schlagworte';
